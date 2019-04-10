@@ -1,1 +1,2 @@
 summary(cars)
+head(cars)
