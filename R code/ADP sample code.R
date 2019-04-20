@@ -1,4 +1,4 @@
-# ① 벡터
+① 벡터
 x = c( 1, 10, 24, 40)
 y = c("사과","바나나","오렌지")
 z = c(TRUE , FALSE , TRUE )
@@ -7,10 +7,12 @@ x <- c( 1, 10, 24, 40)
 y <- c("사과","바나나","오렌지")
 z <- c(TRUE , FALSE , TRUE )
 
-xy <- c(x, y) 
+xy <- c( x , y)
 xy
+[1] "1" "10" "24" "40" "사과" "바나나" "오렌지" 
 
-# ② 행렬 
+
+② 행렬 
 mx = matrix(c(1 , 2, 3, 4 , 5, 6) , ncol=2)
 mx
 [,1] [,2]
@@ -1200,10 +1202,32 @@ Coefficients:
 
 summary(n)
 
+Call:
+  lm(formula = y ~ u + v + w)
+
+Residuals:
+  Min        1Q    Median        3Q       Max 
+-0.188562 -0.058632 -0.002013  0.080024  0.143757 
+
+Coefficients:
+  Estimate Std. Error  t value Pr(>|t|)    
+(Intercept)  3.041653   0.264808   11.486 2.62e-05 ***
+  u            0.123173   0.012841    9.592 7.34e-05 ***
+  v            1.989017   0.016586  119.923 2.27e-11 ***
+  w           -2.997816   0.005421 -552.981 2.36e-15 ***
+  ---
+  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1303 on 6 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:      1 
+F-statistic: 1.038e+05 on 3 and 6 DF,  p-value: 1.564e-14
+
 F통계량= 1.038e+05 이 며 p-값이 1.564e-14로 유의 수준 5% 하에서 추정된 회귀 모형이 통계적으로 매우유의함을 볼 수 있다.
 결정 계수와 수정된 결정계수 모두 1로 이 회귀식이 데이터를 매우 잘 설명하고 있음을 알 수 있다. 
 또한 회귀계수 u, v, w들의 p-값들도 0.01보다 작으므로 회귀계수의 추정치들이 통계적으로 유의하다.
 
+install.packages("MASS")
+library(MASS)
 head(ChickWeight)
 weight Time Chick Diet
 1     42    0     1    1
@@ -1289,6 +1313,8 @@ F통계량= 232.7 이며 p-값이 2.974e-08로 유의수준 5% 하에서 추정�
 또한 회귀계수들의 p-값들도 0.05보다 매우 작으므로 회귀계수의 추정치들이 통계적으로 매우 유의하다. 
 Time에 대한 회귀계수가 7.99 이므로 Time이 1 증가할 때 weight가 7.99 만큼 증가한다고 해석할 수 있다.
 
+# cars 데이터를 이용해 다항회귀분석
+# dist = ßo + β1 speed + ß2speed^2 + t 회귀모형을 적합하고 분석하시오
 data(cars)
 head(cars)
 speed dist
@@ -1316,6 +1342,8 @@ Call:
 Coefficients:
   (Intercept)        speed       speed2  
 2.47014      0.91329      0.09996  
+
+# 다중회귀식은 dist = 2.47014 + 0.91329speed + 0 .09996spee d2 로 추정
 
 summary(lm(dist~speed+speed2, data=cars))
 
@@ -1351,7 +1379,9 @@ x  y
 7 7 10
 8 8 12
 9 9 18
-plot(df1)
+plot(df1) 
+# 산점도를 봤을 때 2차식이 펼요한 것처럼 보인다. 
+# 즉 모형은 y =bO+blx+b2x2+e 다항회귀분석을 이용
 x2 <- x^2
 df2 <- cbind(x2,df1)
 df2
@@ -1395,9 +1425,12 @@ Multiple R-squared:  0.7083,	Adjusted R-squared:  0.6666
 F-statistic: 16.99 on 1 and 7 DF,  p-value: 0.004446
 
 df1에서의 F통계량= 16.99 이며 p-값이 0.004446으로 유의수준 5% 하에서 추정된 회귀 모형이 통계적으로 유의함을 볼 수 있다. 
-결정계수는 0 70 83으로 추정된 회귀식이 약 71%만큼 데이터를 설명
+결정계수는 0.7083으로 추정된 회귀식이 약 71%만큼 데이터를 설명
 
 plot(lm(y~x, data=df1))
+# df1을 λF용한 회귀식의 잔차도가 뚜렷한 곡선 패턴을 가지기 때문에 
+# 오차항은 평균이 0이고 분산이 일정하다는 가정을 만족하지 않는다 
+# x2 항을 모형에 추가해야 한다는 증거를 보여준다
 
 lm(y~x+x2, data=df2)
 
@@ -1434,6 +1467,10 @@ df2에서의 F통계량= 292.2 이며 p 값이 0.0000105으로 유의수준 5%�
 이로써 x2을추가했을 때가 그렇지 않을 때보다 훨씬 회귀식의 추정이 잘됐음을 확인할 수 있다.
 최종 회귀식은 y= 7.16667 - 2.91212X +0 .4 5455X2 으로 추정 된다.
 
+plot(lm(y-x+x2, data=df2)) # df1을 사용한 회귀식의 잔차도에 비해 다소 안정된 형태의 잔차도 
+
+# y를 반응변수로 하고 Xl, X2, X3, X4를 설명변수로 하는 선형회귀모형을 고려하고
+# 후진제거법을 이용하여 변수를 선택하시오
 X1 <- c(7,1,11,11,7,11,3,1,2,21,1,11,10)
 X2 <- c(26,29,56,31,52,55,71,31,54,47,40,66,68)
 X3 <- c(6,15,8,8,6,9,17,22,18,4,23,9,8)
@@ -1557,7 +1594,7 @@ F통계량= 229.5 이며 p-값이 0.000000004407로 유의수준 5% 하에서 �
 설명변수 X1, X2 의 p-값이 모두 유의하므로 여기에서 변수제거를 멈춘다. 
 즉, 최종 회귀식은 y= 52.57735 + 1.46831X1 +0.66225X2 로 추정된다.
 
-[예제] 위의 예에서 주어진 자료와 선형회귀모형에 대해 전진선택법을 적용하여 모형을 선택하시오.
+# [예제] 위의 예에서 주어진 자료와 선형회귀모형에 대해 전진선택법을 적용하여 모형을 선택하시오.
 step(lm(Y~1,df), scope=list(lower=~1,upper=~X1+X2+X3+X4), direction="forward")
 Start:  AIC=71.44
 Y ~ 1
@@ -1599,6 +1636,10 @@ Call:
 Coefficients:
   (Intercept)           X4           X1           X2  
 71.6483      -0.2365       1.4519       0.4161  
+
+# 최종회귀식은 y= 71.6483-0.2365X4+1.4519X1+0.4161X2 로 추정된다. 
+# 앞의 후진선택법의 결과와 다른 모형이 선택되었다. 
+# 보통 변수선택의 기준에 따라 선택된 모형은 차이를 보일 수 있다.
 
 [예제] 위의 자료와 모형에 대해 단계적 방법을 적용하여 모형을 선택하시오.
 step(lm(Y~1,df), scope=list(lower=~1,upper=~X1+X2+X3+X4), direction="both")
@@ -1649,8 +1690,9 @@ Coefficients:
   (Intercept)           X4           X1           X2  
 71.6483      -0.2365       1.4519       0.4161 
 
-최종 회귀모형은 Y= 71.6483-O.2365X4+1.4519X1+0.4161X2로 추정된다
+최종 회귀모형은 y=71.6483-0.2365X4+1.4519X1+0.4161X2로 추정된다.
 
+# step 합수를 이용해 전진선택법을 적용하시오. 이때 time은 종속변수다
 library(MASS) 
 data(hills)
 head(hills)
@@ -1661,6 +1703,7 @@ Craig Dunain  6.0   900 33.650
 Ben Rha       7.5   800 45.600
 Ben Lomond    8.0  3070 62.267
 Goatfell      8.0  2866 73.217
+
 step(lm(time~1,hills), scope=list(lower=~1,upper=~dist+climb), direction="forward")
 Start:  AIC=274.88
 time ~ 1
@@ -1688,9 +1731,12 @@ Coefficients:
   (Intercept)         dist        climb  
 -8.99204      6.21796      0.01105  
 
-step 함수 결과 최종회귀식은 dist와 climb 모두 채택된 time =-8.99204 + 6.21796dist + 0.01105climb로 추정됐다.
+step 함수 결과 최종회귀식은 dist와 climb 모두 채택된 time = -8.99204 + 6.21796dist + 0.01105climb로 추정됐다.
 
-Bio <- read.csv("C:\\Users\\juno2\\Documents\\회사업무\\ADP\\Bio.csv", header=TRUE)
+# 다음 데이터세트로 step 함수를 이용해 후진제거법, 전진선택법, 단계적방법을 적용하시오. 
+# 이때 Premax 변수를 종속변수로 지정한다
+# R에서 구체적인 디렉터리를 설정해 외부 데이터세트를 읽을 때 ‘\’를 2번 해줘야 한다.
+Bio <- read.csv("C:\\Users\\juno2\\Documents\\회사업무\\ADP\\Bio.csv", header=TRUE) 
 Bio
 나이  키 체중 BMP FEV  RV FRC TLC Pemax
 1     7 109 13.1  68  32 258 183 137    95
@@ -1904,13 +1950,14 @@ Coefficients:
   (Intercept)         체중          BMP  
 124.830        1.640       -1.005  
 
-제3절 다변량 분석
+
+# 제3절 다변량 분석
 
 install.packages("Hmisc")
 library(Hmisc)
 data(mtcars)
 head(mtcars)
-mpg cyl disp  hp drat    wt  qsec vs am gear carb
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
 Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
@@ -1922,11 +1969,12 @@ disp <- mtcars$disp
 plot(drat,disp)
 cor(drat,disp) # disp와 drat은 서로 강한 편의 음의 상관성을 가지고 있음
 [1] -0.7102139
+
 # Hmisc 패키지의 rcorr합수를 이용하여 mtcars 데이터세트를 상관분석한 내용이다. 
-# rcorr함수는 모든 변수들 사이의 상관계수와 함께 가설 Ho:p=O 에 대한 p 값을 출력한다.
+# rcorr함수는 모든 변수들 사이의 상관계수와 함께 가설 H0 : ρ=0 에 대한 p-값을 출력한다.
 # 앞부분 표시된 상관계수 행렬, 아래 부분 표시된 P 행렬은 각 상관계수의 유의확률
 rcorr(as.matrix(mtcars), type="pearson")
-mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 mpg   1.00 -0.85 -0.85 -0.78  0.68 -0.87  0.42  0.66  0.60  0.48 -0.55
 cyl  -0.85  1.00  0.90  0.83 -0.70  0.78 -0.59 -0.81 -0.52 -0.49  0.53
 disp -0.85  0.90  1.00  0.79 -0.71  0.89 -0.43 -0.71 -0.59 -0.56  0.39
@@ -1943,7 +1991,7 @@ n= 32
 
 
 P
-mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
+     mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
 mpg         0.0000 0.0000 0.0000 0.0000 0.0000 0.0171 0.0000 0.0003 0.0054 0.0011
 cyl  0.0000        0.0000 0.0000 0.0000 0.0000 0.0004 0.0000 0.0022 0.0042 0.0019
 disp 0.0000 0.0000        0.0000 0.0000 0.0000 0.0131 0.0000 0.0004 0.0010 0.0253
@@ -1958,7 +2006,7 @@ carb 0.0011 0.0019 0.0253 0.0000 0.6212 0.0146 0.0000 0.0007 0.7545 0.1290
 # carb와 am의 p-값이 0.7545로 두 변수 사이의 상관계수가 유의하지 않음
 
 cov(mtcars) # 매트릭스 형식으로 공분산
-mpg         cyl        disp          hp         drat          wt         qsec           vs           am        gear        carb
+      mpg         cyl        disp          hp         drat          wt         qsec           vs           am        gear        carb
 mpg    36.324103  -9.1723790  -633.09721 -320.732056   2.19506351  -5.1166847   4.50914919   2.01713710   1.80393145   2.1356855 -5.36310484
 cyl    -9.172379   3.1895161   199.66028  101.931452  -0.66836694   1.3673710  -1.88685484  -0.72983871  -0.46572581  -0.6491935  1.52016129
 disp -633.097208 199.6602823 15360.79983 6721.158669 -47.06401915 107.6842040 -96.05168145 -44.37762097 -36.56401210 -50.8026210 79.06875000
@@ -1971,11 +2019,12 @@ am      1.803931  -0.4657258   -36.56401   -8.320565   0.19015121  -0.3381048  -
 gear    2.135685  -0.6491935   -50.80262   -6.358871   0.27598790  -0.4210806  -0.28040323   0.07661290   0.29233871   0.5443548  0.32661290
 carb   -5.363105   1.5201613    79.06875   83.036290  -0.07840726   0.6757903  -1.89411290  -0.46370968   0.04637097   0.3266129  2.60887097
 
-# 스피어만 상관계수는 두 변수 간의 비선형적인 관계도 나타낼 수 있는 값으로，
+# 피어슨의 상관계수는 두 변수 간의 선형관계의 크기를 측정하는 값으로 비선형적인 상관관계는 나타내지 못한다. 
+# 스피어만 상관계수는 두 변수 간의 비선형적인 관계도 나타낼 수 있는 값으로, 
 # 한 변수를 단조 증가 합수로 변환하여 다른 변수를 나타낼 수 있는 정도를 나타낸다. 
-# 스피어만의 상관계수는 두 변수를 모두 순위로 변환시킨 후，두 순위 사이의 피어슨 상관계수로 정의가 된다.
+# 스피어만의 상관계수는 두 변수를 모두 순위로 변환시킨 후, 두 순위 사이의 피어슨 상관계수로 정의가 된다.
 rcorr(as.matrix(mtcars), type="spearman")
-mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 mpg   1.00 -0.91 -0.91 -0.89  0.65 -0.89  0.47  0.71  0.56  0.54 -0.66
 cyl  -0.91  1.00  0.93  0.90 -0.68  0.86 -0.57 -0.81 -0.52 -0.56  0.58
 disp -0.91  0.93  1.00  0.85 -0.68  0.90 -0.46 -0.72 -0.62 -0.59  0.54
@@ -1992,7 +2041,7 @@ n= 32
 
 
 P
-mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
+     mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
 mpg         0.0000 0.0000 0.0000 0.0000 0.0000 0.0071 0.0000 0.0008 0.0013 0.0000
 cyl  0.0000        0.0000 0.0000 0.0000 0.0000 0.0006 0.0000 0.0022 0.0008 0.0005
 disp 0.0000 0.0000        0.0000 0.0000 0.0000 0.0081 0.0000 0.0001 0.0003 0.0014
@@ -2019,7 +2068,7 @@ korean math english science
 5     59   50      80      67
 6     60   64      95      89
 rcorr(as.matrix(test), type="spearman")
-korean  math english science
+        korean  math english science
 korean    1.00  0.65    0.20    0.00
 math      0.65  1.00    0.16   -0.09
 english   0.20  0.16    1.00   -0.42
@@ -2029,21 +2078,22 @@ n= 11
 
 
 P
-korean math   english science
+        korean math   english science
 korean         0.0299 0.5517  1.0000 
 math    0.0299        0.6462  0.7937 
 english 0.5517 0.6462         0.1926 
 science 1.0000 0.7937 0.1926         
 
+# 2. 다차원 척도법
 data(eurodist) # eurodist는 각 도시 사이의 거리를 포함하는 행렬형태의 자료 
 eurodist
-Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen Geneva Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid
-Barcelona         3313                                                                                                                    
-Brussels          2963      1318                                                                                                          
-Calais            3175      1326      204                                                                                                 
-Cherbourg         3339      1294      583    460                                                                                          
-Cologne           2762      1498      206    409       785                                                                                
-Copenhagen        3276      2218      966   1136      1545     760                                                                        
+                Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen Geneva Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid
+Barcelona         3313                                                 
+Brussels          2963      1318                                       
+Calais            3175      1326      204                              
+Cherbourg         3339      1294      583    460                       
+Cologne           2762      1498      206    409       785             
+Copenhagen        3276      2218      966   1136      1545     760     
 Geneva            2610       803      677    747       853    1662       1418                                                             
 Gibraltar         4485      1172     2256   2224      2047    2436       3196   1975                                                      
 Hamburg           2977      2018      597    714      1115     460        460   1118      2897                                            
@@ -2062,7 +2112,7 @@ Vienna            1991      1802     1175   1381      1588     937       1455   
 # 각 개체에 대한 특정 변수들의 관측치는 없더라도 개체 간의 유사성에 대한 자료를 사용하여 산점도를 그릴 수 있다.
 loc <- cmdscale(eurodist)
 loc
-[,1]        [,2]
+                        [,1]        [,2]
 Athens           2290.274680  1798.80293
 Barcelona        -825.382790   546.81148
 Brussels           59.183341  -367.08135
@@ -2090,8 +2140,15 @@ plot(x,y,type="n", main="eurodist")
 text(x,y,rownames(loc),cex=0.8)
 abline(v=0,h=0)
 
+# 3. 주성분 분석
+# 주성분 분석 (Principal Component Analysis, PCA)은 상관관계가 있는 고차원 자료를 자료의 변동을
+# 최대한 보존하는 저차원 자료로 변환시키는 방법으로, 자료의 차원을 축약시키는데 주로 사용된다.
+# 주성분들은 서로 상관관계가 없고, 주성분들의 분산의 합은 Xi 들의 분산의 합과 같다.
+# 주성분들은 차원을 줄여 예측모댈을 만들 때도 사용한다. 희생되는 정보가 가장 적은 방향을 결정한다.
+
 library(datasets)
-data(USArrests)
+# 미국의 50개 주의 인구 10만명 당 살인, 폭행, 강간으로 인한 체포의 수와 도시 인구의 비율을 포함
+data(USArrests) 
 head(USArrests)
 Murder Assault UrbanPop Rape
 Alabama      13.2     236       58 21.2
@@ -2108,25 +2165,25 @@ Median : 7.250   Median :159.0   Median :66.00   Median :20.10
 Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
 3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
 Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00  
-# 주성분분석은 R 함수 pnncomp를 이용하여 수행
+# 주성분분석은 R 함수 princomp를 이용하여 수행
 # cor=TRUE 옵션은 주성분분석을 공분산행렬이 아닌 상관계수 행렬을 사용하여 수행 
 fit <- princomp(USArrests, cor=TRUE)
 summary(fit)
 Importance of components:
-  Comp.1    Comp.2    Comp.3     Comp.4
+                          Comp.1    Comp.2    Comp.3     Comp.4
 Standard deviation     1.5748783 0.9948694 0.5971291 0.41644938
 Proportion of Variance 0.6200604 0.2474413 0.0891408 0.04335752 # 첫 번째 주성분 하나가 전체 분산의 약 62%를 설명하고 있다. 두 번째와 세 번째 주성분의 분산은 전체 분산 중 각각 25%와 9%를 설명하고
 Cumulative Proportion  0.6200604 0.8675017 0.9566425 1.00000000
-loadings(fit)
+loadings(fit) # 주성분들의 로딩 벡터들을 보여준다
 
 Loadings:
-  Comp.1 Comp.2 Comp.3 Comp.4
+          Comp.1 Comp.2 Comp.3 Comp.4
 Murder    0.536  0.418  0.341  0.649
 Assault   0.583  0.188  0.268 -0.743
 UrbanPop  0.278 -0.873  0.378  0.134
 Rape      0.543 -0.167 -0.818       
 
-Comp.1 Comp.2 Comp.3 Comp.4
+                Comp.1 Comp.2 Comp.3 Comp.4
 SS loadings      1.00   1.00   1.00   1.00
 Proportion Var   0.25   0.25   0.25   0.25
 Cumulative Var   0.25   0.50   0.75   1.00
@@ -2134,11 +2191,10 @@ Cumulative Var   0.25   0.50   0.75   1.00
 Y1 = 0.536Mrder+0.583Assault+0.278UbanPop+0.543Rape
 Y2 = 0.418Mrderr+0.188Assault-0.873UrbanPop-0.167Rape
 
-plot(fit,type="lines")
+plot(fit, type="lines")
 # plot(fit) 함수는 각 주성분의 분산의 크기를 그림으로 그려준다. 이 그림을 스크리 그림 (Scree plot) 이라고 한다.
 
-# fit$s cores는 각 관측치를 주성분들로 표현한 값을 나타낸다
-fit$scores
+fit$scores # 각 관측치를 주성분들로 표현한 값
 Comp.1      Comp.2      Comp.3       Comp.4
 Alabama         0.98556588  1.13339238  0.44426879  0.156267145
 Alaska          1.95013775  1.07321326 -2.04000333 -0.438583440
@@ -2194,14 +2250,15 @@ Wyoming        -0.62942666  0.32101297  0.24065923 -0.166651801
 # biplot은 관측치들을 첫 번째와 두 번째 주성분의 좌표에 그린 그림이다.
 biplot(fit)
 
-
+# 컴퓨터 예제 
+# 새로운 컴퓨터를 구입했을때 가격, 소프트웨어, 외형, 브랜드에 대한 만족도를 1~7까지의 척도로 점수를 부여한 분석
 Price <- c(6,7,6,5,7,6,5,6,3,1,2,5,2,3,1,2)
 Software <- c(5,3,4,7,7,4,7,5,5,3,6,7,4,5,6,3)
 Aesthetics <- c(3,2,4,1,5,2,2,4,6,7,6,7,5,6,5,7)
 Brand <- c(4,2,5,3,5,3,1,4,7,5,7,6,6,5,5,7)
 data <- data.frame(Price,Software,Aesthetics,Brand)
 head(data)
-Price Software Aesthetics Brand
+   Price Software Aesthetics Brand
 1     6        5          3     4
 2     7        3          2     2
 3     6        4          4     5
@@ -2211,13 +2268,13 @@ Price Software Aesthetics Brand
 pca <- princomp(data, cor=T)
 summary(pca, loadings=T)
 Importance of components:
-  Comp.1    Comp.2    Comp.3     Comp.4
+                          Comp.1    Comp.2    Comp.3     Comp.4
 Standard deviation     1.5589391 0.9804092 0.6816673 0.37925777
 Proportion of Variance 0.6075727 0.2403006 0.1161676 0.03595911
 Cumulative Proportion  0.6075727 0.8478733 0.9640409 1.00000000
 
 Loadings:
-  Comp.1 Comp.2 Comp.3 Comp.4
+           Comp.1 Comp.2 Comp.3 Comp.4
 Price       0.523         0.848       
 Software    0.177  0.977 -0.120       
 Aesthetics -0.597  0.134  0.295  0.734
@@ -2226,22 +2283,26 @@ Brand      -0.583  0.167  0.423 -0.674
 위 결과를 보면 Comp.1이 60%, Comp.2까지 하면 84%를 설명 해 줌을 알 수 있다. 
 Comp.1은 Aesthetics와 Brand가 클수록 Price가 낮을수록 높은 값을 가지고 Software의 영향은 적게 받는다 
 Comp.2는 Software의 영향만을 크게 받는다. 
-Comp.1은 패션 추구형， Comp.2는 기능 추구형을 측정하는 변수로 해석할 수 있다.
+Comp.1은 패션 추구형, Comp.2는 기능 추구형을 측정하는 변수로 해석할 수 있다.
 
 biplot(pca)
 
 
-제4절 시계열 예측
+# 제4절 시계열 예측
 
-Nile # 1871년도부터 1970년도까지 아스완 댐에서 측정한 나일강의 연간 유입량에 관한 시계열 데이터다.
+# 1871년도부터 1970년도까지 아스완 댐에서 측정한 나일강의 연간 유입량에 관한 시계열 데이터
+# 데이터 자체가 시계열 자료 형식인 ‘ts’ 클래스를 갖기 때문에 따로 설정할 펼요는 없다. 
+# 다만, 일반 데이터 셋을 시계열 자료 형식으로 변환하려면 ts 함수를 사용하면 된다.
+Nile 
 Time Series:
-  Start = 1871 
+Start = 1871 
 End = 1970 
 Frequency = 1 
 [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994 1020  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100
 [29]  774  840  874  694  940  833  701  916  692 1020 1050  969  831  726  456  824  702 1120 1100  832  764  821  768  845  864  862  698  845
 [57]  744  796 1040  759  781  865  845  944  984  897  822 1010  771  676  649  846  812  742  801 1040  860  874  848  890  744  749  838 1050
 [85]  918  986  797  923  975  815 1020  906  901 1170  912  746  919  718  714  740
+
 ldeaths # 1974년부터 1979년까지의 영국 내의 월별 폐질환 사망자에 관한 시계열 자료다
 Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec
 1974 3035 2552 2704 2554 2014 1655 1721 1524 1596 2074 2199 2512
@@ -2250,10 +2311,13 @@ Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov  Dec
 1977 3102 2294 2385 2444 1748 1554 1498 1361 1346 1564 1640 2293
 1978 2815 3137 2679 1969 1870 1633 1529 1366 1357 1570 1535 2491
 1979 3084 2605 2573 2143 1693 1504 1461 1354 1333 1492 1781 1915
-plot(Nile)
-plot(ldeaths)
-ldeaths.decompose <- decompose(ldeaths) 
+
+plot(Nile) # 비계절성을 띄는 데이터. 펑균이 변화하는 추세를 보이므로 정상성을 만족하지 못함
+plot(ldeaths) # 년도 별로 계절성을 띄고 있음 
+
+# 계절성을 띄는 시계열 자료는 추세요인, 계절요인, 불규칙요인으로 구성된다 
 # decompose 함수를 사용하면 시계열 자료를 4 가지 요인으로 분해
+ldeaths.decompose <- decompose(ldeaths) 
 # 추세요인， 계절요인， 불규칙요인으로 분해된 시계열 자료 
 ldeaths.decompose$seasonal
 Jan       Feb       Mar       Apr       May       Jun       Jul       Aug       Sep       Oct       Nov       Dec
@@ -2263,17 +2327,19 @@ Jan       Feb       Mar       Apr       May       Jun       Jul       Aug       
 1977  873.7514  896.3347  687.5431  156.5847 -284.4819 -440.0236 -519.4236 -669.8736 -678.2236 -354.3069 -185.2069  517.3264
 1978  873.7514  896.3347  687.5431  156.5847 -284.4819 -440.0236 -519.4236 -669.8736 -678.2236 -354.3069 -185.2069  517.3264
 1979  873.7514  896.3347  687.5431  156.5847 -284.4819 -440.0236 -519.4236 -669.8736 -678.2236 -354.3069 -185.2069  517.3264
-plot(ldeaths.decompose)
+plot(ldeaths.decompose) # random, seasonal, trend, observed 4가지 그래프 표시 
 # 계절성을 띄는 시계열 자료는 계절요인를 추정해 그 값을 원 시계열자료에서 빼면 적절하게 조정할 수 있다.
 ldeaths.decompose.adj <- ldeaths - ldeaths.decompose$seasonal
 plot(ldeaths.decompose.adj)
 
+# 나일강 연간 유입량 데이터는 그림으로 고찰해보았을 때 시간에 따라 평균이 일정하지 않은 비정상 시계열 자료였다. 
+# 따라서 diff 함수를 사용하여 차분을 한다.
 Nile.diff1 <- diff(Nile,differences=1)
 plot(Nile.diff1) # 1번 차분한 결과로는 아직 평균이 일정하지 않아 보인다. 
 
 Nile.diff2 <- diff(Nile, differences=2)
 plot(Nile.diff2)
-# 2번 차분한 결과로 명균과 분산이 시간이 지남에 따라 명균과 분산이 어느 정도 일정한 정상성을 만족하는 것으로 보인다. ???
+# 2번 차분한 결과로 시간이 지남에 따라 평균과 분산이 어느 정도 일정한 정상성을 만족하는 것으로 보인다. ???
 
 acf(Nile.diff2, lag.max=20) # 자기상관함수 
 acf(Nile.diff2, lag.max=20, plot=FALSE)
@@ -2812,240 +2878,240 @@ $ family           :List of 12
         ..$ aic       :function (y, n, mu, wt, dev)  
           ..$ mu.eta    :function (eta)  
             ..$ initialize:  expression({  if (NCOL(y) == 1) {  if (is.factor(y))  y <- y != levels(y)[1L]  n <- rep.int(1, nobs)  y[weights =| __truncated__
-                                                                                                                                     ..$ validmu   :function (mu)  
-                                                                                                                                       ..$ valideta  :function (eta)  
-                                                                                                                                         ..$ simulate  :function (object, nsim)  
-                                                                                                                                           ..- attr(*, "class")= chr "family"
-                                                                                                                                     $ linear.predictors: Named num [1:32] -1.4131 -1.4131 -0.1874 1.8666 0.0281 ...
-                                                                                                                                     ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                                                                                     $ deviance         : num 20.6
-                                                                                                                                     $ aic              : num 26.6
-                                                                                                                                     $ null.deviance    : num 43.9
-                                                                                                                                     $ iter             : int 6
-                                                                                                                                     $ weights          : Named num [1:32] 0.157 0.157 0.248 0.116 0.25 ...
-                                                                                                                                     ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                                                                                     $ prior.weights    : Named num [1:32] 1 1 1 1 1 1 1 1 1 1 ...
-                                                                                                                                     ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                                                                                     $ df.residual      : int 29
-                                                                                                                                     $ df.null          : int 31
-                                                                                                                                     $ y                : Named num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                                                                                     ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                                                                                     $ converged        : logi TRUE
-                                                                                                                                     $ boundary         : logi FALSE
-                                                                                                                                     $ model            :'data.frame':	32 obs. of  3 variables:
-                                                                                                                                       ..$ vs : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                                                                                     ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
-                                                                                                                                     ..$ am : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
-                                                                                                                                     ..- attr(*, "terms")=Classes 'terms', 'formula'  language vs ~ mpg + am
-                                                                                                                                     .. .. ..- attr(*, "variables")= language list(vs, mpg, am)
-                                                                                                                                     .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-                                                                                                                                     .. .. .. ..- attr(*, "dimnames")=List of 2
-                                                                                                                                     .. .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
-                                                                                                                                     .. .. .. .. ..$ : chr [1:2] "mpg" "am"
-                                                                                                                                     .. .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
-                                                                                                                                     .. .. ..- attr(*, "order")= int [1:2] 1 1
-                                                                                                                                     .. .. ..- attr(*, "intercept")= int 1
-                                                                                                                                     .. .. ..- attr(*, "response")= int 1
-                                                                                                                                     .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
-                                                                                                                                       .. .. ..- attr(*, "predvars")= language list(vs, mpg, am)
-                                                                                                                                     .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-                                                                                                                                     .. .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
-                                                                                                                                     $ call             : language glm(formula = vs ~ mpg + am, family = binomial, data = mtcars)
-                                                                                                                                     $ formula          :Class 'formula'  language vs ~ mpg + am
-                                                                                                                                     .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
-                                                                                                                                       $ terms            :Classes 'terms', 'formula'  language vs ~ mpg + am
-                                                                                                                                     .. ..- attr(*, "variables")= language list(vs, mpg, am)
-                                                                                                                                     .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-                                                                                                                                     .. .. ..- attr(*, "dimnames")=List of 2
-                                                                                                                                     .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
-                                                                                                                                     .. .. .. ..$ : chr [1:2] "mpg" "am"
-                                                                                                                                     .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
-                                                                                                                                     .. ..- attr(*, "order")= int [1:2] 1 1
-                                                                                                                                     .. ..- attr(*, "intercept")= int 1
-                                                                                                                                     .. ..- attr(*, "response")= int 1
-                                                                                                                                     .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
-                                                                                                                                       .. ..- attr(*, "predvars")= language list(vs, mpg, am)
-                                                                                                                                     .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-                                                                                                                                     .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
-                                                                                                                                     $ data             :'data.frame':	32 obs. of  11 variables:
-                                                                                                                                       ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
-                                                                                                                                     ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...
-                                                                                                                                     ..$ disp: num [1:32] 160 160 108 258 360 ...
-                                                                                                                                     ..$ hp  : num [1:32] 110 110 93 110 175 105 245 62 95 123 ...
-                                                                                                                                     ..$ drat: num [1:32] 3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
-                                                                                                                                     ..$ wt  : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
-                                                                                                                                     ..$ qsec: num [1:32] 16.5 17 18.6 19.4 17 ...
-                                                                                                                                     ..$ vs  : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                                                                                     ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
-                                                                                                                                     ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
-                                                                                                                                     ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-                                                                                                                                     $ offset           : NULL
-                                                                                                                                     $ control          :List of 3
-                                                                                                                                     ..$ epsilon: num 1e-08
-                                                                                                                                     ..$ maxit  : num 25
-                                                                                                                                     ..$ trace  : logi FALSE
-                                                                                                                                     $ method           : chr "glm.fit"
-                                                                                                                                     $ contrasts        : NULL
-                                                                                                                                     $ xlevels          : Named list()
-                                                                                                                                     - attr(*, "class")= chr [1:2] "glm" "lm"
-                                                                                                                                     
-                                                                                                                                     # anova() 함수는 모형의 적 합(변수가 추가되는) 단계별로 이탈도의 감소량과 유의성 검정 결과를 제시
-                                                                                                                                     anova(glm.vs, test="Chisq")
-                                                                                                                                     Analysis of Deviance Table
-                                                                                                                                     
-                                                                                                                                     Model: binomial, link: logit
-                                                                                                                                     
-                                                                                                                                     Response: vs
-                                                                                                                                     
-                                                                                                                                     Terms added sequentially (first to last)
-                                                                                                                                     
-                                                                                                                                     
-                                                                                                                                     Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
-                                                                                                                                     NULL                    31     43.860              
-                                                                                                                                     mpg   1   18.327        30     25.533 1.861e-05 ***
-                                                                                                                                       am    1    4.887        29     20.646   0.02706 *  
-                                                                                                                                       ---
-                                                                                                                                       Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-                                                                                                                                     # 절편항만 포함하는 영(null) 모형에서 mpg와 am 변수가 차례로 모형에 추가됨에 따라 발생하는 이탈도의 감소량을 제시하며 
-                                                                                                                                     # p-값은 각각 p(x2 (1) 18.327) 과 p(x2 (1) 4.887) 을 계산한 값이다.
-                                                                                                                                     # 그 결과 두 변수가 차례로 추가되면서 생겨나는 이탈도의 감소량이 모두 통계적으로 유의함을 나타낸다.
-                                                                                                                                     1-pchisq(18.327,1)
-                                                                                                                                     [1] 1.860515e-05
-                                                                                                                                     1-pchisq(4.887,1)
-                                                                                                                                     [1] 0.02705967
-                                                                                                                                     
-                                                                                                                                     
-                                                                                                                                     # 2. 신경망 모형 
-                                                                                                                                     # 인공신경망에서 입력(inputs)은 시냅스에 해당하며 개별신호의 강도에 따라 가중(weight) 되며, 
-                                                                                                                                     # 활성 함수(activation function)는 인공신경망의 출력 (outputs)을 계산한다
-                                                                                                                                     # iris : 자료의 수는 150개이며 입력변수의 차원은 4이며, 목표값은 3개의 범주로 출력된다. ??? 
-                                                                                                                                     library(nnet)
-                                                                                                                                     nn.iris <- nnet(Species~.,data=iris, size=2, rang=0.1, decay=5e-4, maxit=200)
-                                                                                                                                     # weights:  19
-                                                                                                                                     initial  value 164.777723 
-                                                                                                                                     iter  10 value 21.844122
-                                                                                                                                     iter  20 value 9.390303
-                                                                                                                                     iter  30 value 8.746321
-                                                                                                                                     iter  40 value 8.572956
-                                                                                                                                     iter  50 value 8.506089
-                                                                                                                                     iter  60 value 8.438906
-                                                                                                                                     iter  70 value 8.409124
-                                                                                                                                     iter  80 value 8.405577
-                                                                                                                                     iter  90 value 7.958875
-                                                                                                                                     iter 100 value 6.943049
-                                                                                                                                     iter 110 value 6.673702
-                                                                                                                                     iter 120 value 6.475792
-                                                                                                                                     iter 130 value 6.464455
-                                                                                                                                     iter 140 value 6.447116
-                                                                                                                                     iter 150 value 6.444583
-                                                                                                                                     final  value 6.443926 
-                                                                                                                                     converged
-                                                                                                                                     summary(nn.iris)
-                                                                                                                                     a 4-2-3 network with 19 weights
-                                                                                                                                     options were - softmax modelling  decay=5e-04
-                                                                                                                                     b->h1 i1->h1 i2->h1 i3->h1 i4->h1 
-                                                                                                                                     3.04   0.43  -0.09  -0.79  -1.89 
-                                                                                                                                     b->h2 i1->h2 i2->h2 i3->h2 i4->h2 
-                                                                                                                                     2.40   5.76  14.99 -13.86 -10.02 
-                                                                                                                                     b->o1 h1->o1 h2->o1 
-                                                                                                                                     -12.33  31.88  -0.90 
-                                                                                                                                     b->o2 h1->o2 h2->o2 
-                                                                                                                                     2.27   1.24   7.79 
-                                                                                                                                     b->o3 h1->o3 h2->o3 
-                                                                                                                                     10.06 -33.12  -6.89 
-                                                                                                                                     library(devtools)
-                                                                                                                                     source_url('https://gist.githubusercontent.com/Peque/41a9e20d6687f2f3108d/raw/85e14f3a292e126f1454864427e3a189c2fe33f3/nnet_plot_update.r')
-                                                                                                                                     SHA-1 hash of file is bf3c7b8ac910823b729e3ce73bb6ab5e6955ad3d
-                                                                                                                                     plot.nnet(nn.iris) # 선의 굵기는 연결선의 가중치 (weight) 에 비례한다
-                                                                                                                                     Loading required package: scales
-                                                                                                                                     Loading required package: reshape
-                                                                                                                                     # 신경망 분석에 대한 시각화 결과는 다음 과정을 통해서도 가능하다(3개의 패키지 를 인스톨 후 plot() 함수를 이용). 
-                                                                                                                                     # 이 방법은 url로부터 파일을 가져오지 않아도 되므로 위의 방법보다 편리하다.
-                                                                                                                                     library(clusterGeneration)
-                                                                                                                                     필요한 패키지를 로딩중입니다: MASS
-                                                                                                                                     library(scales)
-                                                                                                                                     library(reshape)
-                                                                                                                                     plot(nn.iris)
-                                                                                                                                     # 신경망 모형에 대한 정오분류표(confusion matrix) 
-                                                                                                                                     table(iris$Species, predict(nn.iris, iris, type="class"))
-                                                                                                                                     
-                                                                                                                                     setosa versicolor virginica
-                                                                                                                                     setosa         50          0         0
-                                                                                                                                     versicolor      0         49         1
-                                                                                                                                     virginica       0          0        50
-                                                                                                                                     # setosa는 50개 모두, versicolor은 50 개 중 49개, virginica는 50개중 49개가 잘 분류되었다.
-                                                                                                                                     
-                                                                                                                                     data(infert, package="datasets")
-                                                                                                                                     str(infert)
-                                                                                                                                     'data.frame':	248 obs. of  8 variables:
-                                                                                                                                       $ education     : Factor w/ 3 levels "0-5yrs","6-11yrs",..: 1 1 1 1 2 2 2 2 2 2 ...
-                                                                                                                                     $ age           : num  26 42 39 34 35 36 23 32 21 28 ...
-                                                                                                                                     $ parity        : num  6 1 6 4 3 4 1 2 1 2 ...
-                                                                                                                                     $ induced       : num  1 1 2 2 1 2 0 0 0 0 ...
-                                                                                                                                     $ case          : num  1 1 1 1 1 1 1 1 1 1 ...
-                                                                                                                                     $ spontaneous   : num  2 0 0 0 1 1 0 0 1 0 ...
-                                                                                                                                     $ stratum       : int  1 2 3 4 5 6 7 8 9 10 ...
-                                                                                                                                     $ pooled.stratum: num  3 1 4 2 32 36 6 22 5 19 ...
-                                                                                                                                     library(neuralnet)
-                                                                                                                                     net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=infert, hidden=2, err.fct="ce", linear.output=FALSE, likelihood=TRUE)
-                                                                                                                                     Warning message:
-                                                                                                                                       algorithm did not converge in 1 of 1 repetition(s) within the stepmax 
-                                                                                                                                     net.infert # p.467 결과가 책과 다름. 일단 통과 (p.472까지)
-                                                                                                                                     
-                                                                                                                                     # 0과 100 사이의 난수를 50 개 발생시키고， 제곱근을 취한 값을 결과로 하는 자료를 구축한다
-                                                                                                                                     library(neuralnet)
-                                                                                                                                     train.out <- as.data.frame(runif(50,min=0,max=100))
-                                                                                                                                     train.input <- as.data.frame(runif(50,min=0,max=100))
-                                                                                                                                     train.output <- sqrt(train.input)
-                                                                                                                                     train.data <- cbind(train.input, train.output)
-                                                                                                                                     colnames(train.data) <- c("Input","Output")
-                                                                                                                                     head(train.data)
-                                                                                                                                     Input      Output
-                                                                                                                                     1 60.23831414 7.761334559
-                                                                                                                                     2 23.13909307 4.810311120
-                                                                                                                                     3 35.02012538 5.917780444
-                                                                                                                                     4 10.53790939 3.246214625
-                                                                                                                                     5 90.50094713 9.513198575
-                                                                                                                                     6 46.70735106 6.834277655
-                                                                                                                                     
-                                                                                                                                     # 1개의 은닉층과 1Q개의 은닉노드를 가지는 신경망모형을 적용한다
-                                                                                                                                     net.sqrt <- neuralnet(Output~Input,train.data,hidden=10,threshold=0.01)
-                                                                                                                                     print(net.sqrt)
-                                                                                                                                     plot(net.sqrt)
-                                                                                                                                     
-                                                                                                                                     # 1 ~ 1O 정수값의 제곱을 취하여 검증용 자료(test.data)를 만든 후, 
-                                                                                                                                     # 이 자료에 대해 compute() 함수를 통해 신경망 모형 (net.sqrt)을 적용하고, 그 결과를 출력한다.
-                                                                                                                                     test.data <- as.data.frame((1:10)^2)
-                                                                                                                                     test.out <- compute(net.sqrt, test.data)
-                                                                                                                                     ls(test.out)
-                                                                                                                                     [1] "net.result" "neurons"   
-                                                                                                                                     print(test.out$net.result)
-                                                                                                                                     [,1]
-                                                                                                                                     [1,] 0.9053011126
-                                                                                                                                     [2,] 2.0298476075
-                                                                                                                                     [3,] 2.9993973702
-                                                                                                                                     [4,] 3.9985522614
-                                                                                                                                     [5,] 4.9972990921
-                                                                                                                                     [6,] 6.0076170955
-                                                                                                                                     [7,] 6.9938123018
-                                                                                                                                     [8,] 8.0034570552
-                                                                                                                                     [9,] 9.0147943179
-                                                                                                                                     [10,] 9.9555461693
-                                                                                                                                     net2.sqrt <- neuralnet(Output~Input,train.data,hidden=c(10,8),threshold=0.01)
-                                                                                                                                     plot(net2.sqrt)
-                                                                                                                                     
-                                                                                                                                     
-                                                                                                                                     p.476
-                                                                                                                                     3. 의사결정나무 모형
-                                                                                                                                     
-                                                                                                                                     # R 패키지 {rpart} 의 rpart() 함수를 이용하여 의사결정 나무 분석을 수행한다. 
-                                                                                                                                     # rpart는 recursive partitioning and regression tree 의 약어
-                                                                                                                                     library(rpart)
-                                                                                                                                     c <- rpart(Species~.,data=iris)
-                                                                                                                                     c
-                                                                                                                                     n= 150 
-                                                                                                                                     
-                                                                                                                                     node), split, n, loss, yval, (yprob)
+                                                                  ..$ validmu   :function (mu)  
+ ..$ valideta  :function (eta)  
+   ..$ simulate  :function (object, nsim)  
+     ..- attr(*, "class")= chr "family"
+                                                                  $ linear.predictors: Named num [1:32] -1.4131 -1.4131 -0.1874 1.8666 0.0281 ...
+                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+                                                                  $ deviance         : num 20.6
+                                                                  $ aic              : num 26.6
+                                                                  $ null.deviance    : num 43.9
+                                                                  $ iter             : int 6
+                                                                  $ weights          : Named num [1:32] 0.157 0.157 0.248 0.116 0.25 ...
+                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+                                                                  $ prior.weights    : Named num [1:32] 1 1 1 1 1 1 1 1 1 1 ...
+                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+                                                                  $ df.residual      : int 29
+                                                                  $ df.null          : int 31
+                                                                  $ y                : Named num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
+                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+                                                                  $ converged        : logi TRUE
+                                                                  $ boundary         : logi FALSE
+                                                                  $ model            :'data.frame':	32 obs. of  3 variables:
+ ..$ vs : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
+                                                                  ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+                                                                  ..$ am : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
+                                                                  ..- attr(*, "terms")=Classes 'terms', 'formula'  language vs ~ mpg + am
+                                                                  .. .. ..- attr(*, "variables")= language list(vs, mpg, am)
+                                                                  .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+                                                                  .. .. .. ..- attr(*, "dimnames")=List of 2
+                                                                  .. .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
+                                                                  .. .. .. .. ..$ : chr [1:2] "mpg" "am"
+                                                                  .. .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
+                                                                  .. .. ..- attr(*, "order")= int [1:2] 1 1
+                                                                  .. .. ..- attr(*, "intercept")= int 1
+                                                                  .. .. ..- attr(*, "response")= int 1
+                                                                  .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
+ .. .. ..- attr(*, "predvars")= language list(vs, mpg, am)
+                                                                  .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+                                                                  .. .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
+                                                                  $ call             : language glm(formula = vs ~ mpg + am, family = binomial, data = mtcars)
+                                                                  $ formula          :Class 'formula'  language vs ~ mpg + am
+                                                                  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
+ $ terms            :Classes 'terms', 'formula'  language vs ~ mpg + am
+                                                                  .. ..- attr(*, "variables")= language list(vs, mpg, am)
+                                                                  .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
+                                                                  .. .. ..- attr(*, "dimnames")=List of 2
+                                                                  .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
+                                                                  .. .. .. ..$ : chr [1:2] "mpg" "am"
+                                                                  .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
+                                                                  .. ..- attr(*, "order")= int [1:2] 1 1
+                                                                  .. ..- attr(*, "intercept")= int 1
+                                                                  .. ..- attr(*, "response")= int 1
+                                                                  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
+ .. ..- attr(*, "predvars")= language list(vs, mpg, am)
+                                                                  .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
+                                                                  .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
+                                                                  $ data             :'data.frame':	32 obs. of  11 variables:
+ ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+                                                                  ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...
+                                                                  ..$ disp: num [1:32] 160 160 108 258 360 ...
+                                                                  ..$ hp  : num [1:32] 110 110 93 110 175 105 245 62 95 123 ...
+                                                                  ..$ drat: num [1:32] 3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+                                                                  ..$ wt  : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
+                                                                  ..$ qsec: num [1:32] 16.5 17 18.6 19.4 17 ...
+                                                                  ..$ vs  : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
+                                                                  ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
+                                                                  ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
+                                                                  ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
+                                                                  $ offset           : NULL
+                                                                  $ control          :List of 3
+                                                                  ..$ epsilon: num 1e-08
+                                                                  ..$ maxit  : num 25
+                                                                  ..$ trace  : logi FALSE
+                                                                  $ method           : chr "glm.fit"
+                                                                  $ contrasts        : NULL
+                                                                  $ xlevels          : Named list()
+                                                                  - attr(*, "class")= chr [1:2] "glm" "lm"
+                                                                  
+                                                                  # anova() 함수는 모형의 적 합(변수가 추가되는) 단계별로 이탈도의 감소량과 유의성 검정 결과를 제시
+                                                                  anova(glm.vs, test="Chisq")
+                                                                  Analysis of Deviance Table
+                                                                  
+                                                                  Model: binomial, link: logit
+                                                                  
+                                                                  Response: vs
+                                                                  
+                                                                  Terms added sequentially (first to last)
+                                                                  
+                                                                  
+                                                                  Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+                                                                  NULL                    31     43.860              
+                                                                  mpg   1   18.327        30     25.533 1.861e-05 ***
+ am    1    4.887        29     20.646   0.02706 *  
+ ---
+ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+                                                                  # 절편항만 포함하는 영(null) 모형에서 mpg와 am 변수가 차례로 모형에 추가됨에 따라 발생하는 이탈도의 감소량을 제시하며 
+                                                                  # p-값은 각각 p(x2 (1) 18.327) 과 p(x2 (1) 4.887) 을 계산한 값이다.
+                                                                  # 그 결과 두 변수가 차례로 추가되면서 생겨나는 이탈도의 감소량이 모두 통계적으로 유의함을 나타낸다.
+                                                                  1-pchisq(18.327,1)
+                                                                  [1] 1.860515e-05
+                                                                  1-pchisq(4.887,1)
+                                                                  [1] 0.02705967
+                                                                  
+                                                                  
+                                                                  # 2. 신경망 모형 
+                                                                  # 인공신경망에서 입력(inputs)은 시냅스에 해당하며 개별신호의 강도에 따라 가중(weight) 되며, 
+                                                                  # 활성 함수(activation function)는 인공신경망의 출력 (outputs)을 계산한다
+                                                                  # iris : 자료의 수는 150개이며 입력변수의 차원은 4이며, 목표값은 3개의 범주로 출력된다. ??? 
+                                                                  library(nnet)
+                                                                  nn.iris <- nnet(Species~.,data=iris, size=2, rang=0.1, decay=5e-4, maxit=200)
+                                                                  # weights:  19
+                                                                  initial  value 164.777723 
+                                                                  iter  10 value 21.844122
+                                                                  iter  20 value 9.390303
+                                                                  iter  30 value 8.746321
+                                                                  iter  40 value 8.572956
+                                                                  iter  50 value 8.506089
+                                                                  iter  60 value 8.438906
+                                                                  iter  70 value 8.409124
+                                                                  iter  80 value 8.405577
+                                                                  iter  90 value 7.958875
+                                                                  iter 100 value 6.943049
+                                                                  iter 110 value 6.673702
+                                                                  iter 120 value 6.475792
+                                                                  iter 130 value 6.464455
+                                                                  iter 140 value 6.447116
+                                                                  iter 150 value 6.444583
+                                                                  final  value 6.443926 
+                                                                  converged
+                                                                  summary(nn.iris)
+                                                                  a 4-2-3 network with 19 weights
+                                                                  options were - softmax modelling  decay=5e-04
+                                                                  b->h1 i1->h1 i2->h1 i3->h1 i4->h1 
+                                                                  3.04   0.43  -0.09  -0.79  -1.89 
+                                                                  b->h2 i1->h2 i2->h2 i3->h2 i4->h2 
+                                                                  2.40   5.76  14.99 -13.86 -10.02 
+                                                                  b->o1 h1->o1 h2->o1 
+                                                                  -12.33  31.88  -0.90 
+                                                                  b->o2 h1->o2 h2->o2 
+                                                                  2.27   1.24   7.79 
+                                                                  b->o3 h1->o3 h2->o3 
+                                                                  10.06 -33.12  -6.89 
+                                                                  library(devtools)
+                                                                  source_url('https://gist.githubusercontent.com/Peque/41a9e20d6687f2f3108d/raw/85e14f3a292e126f1454864427e3a189c2fe33f3/nnet_plot_update.r')
+                                                                  SHA-1 hash of file is bf3c7b8ac910823b729e3ce73bb6ab5e6955ad3d
+                                                                  plot.nnet(nn.iris) # 선의 굵기는 연결선의 가중치 (weight) 에 비례한다
+                                                                  Loading required package: scales
+                                                                  Loading required package: reshape
+                                                                  # 신경망 분석에 대한 시각화 결과는 다음 과정을 통해서도 가능하다(3개의 패키지 를 인스톨 후 plot() 함수를 이용). 
+                                                                  # 이 방법은 url로부터 파일을 가져오지 않아도 되므로 위의 방법보다 편리하다.
+                                                                  library(clusterGeneration)
+                                                                  필요한 패키지를 로딩중입니다: MASS
+                                                                  library(scales)
+                                                                  library(reshape)
+                                                                  plot(nn.iris)
+                                                                  # 신경망 모형에 대한 정오분류표(confusion matrix) 
+                                                                  table(iris$Species, predict(nn.iris, iris, type="class"))
+                                                                  
+                                                                  setosa versicolor virginica
+                                                                  setosa         50          0         0
+                                                                  versicolor      0         49         1
+                                                                  virginica       0          0        50
+                                                                  # setosa는 50개 모두, versicolor은 50 개 중 49개, virginica는 50개중 49개가 잘 분류되었다.
+                                                                  
+                                                                  data(infert, package="datasets")
+                                                                  str(infert)
+                                                                  'data.frame':	248 obs. of  8 variables:
+ $ education     : Factor w/ 3 levels "0-5yrs","6-11yrs",..: 1 1 1 1 2 2 2 2 2 2 ...
+                                                                  $ age           : num  26 42 39 34 35 36 23 32 21 28 ...
+                                                                  $ parity        : num  6 1 6 4 3 4 1 2 1 2 ...
+                                                                  $ induced       : num  1 1 2 2 1 2 0 0 0 0 ...
+                                                                  $ case          : num  1 1 1 1 1 1 1 1 1 1 ...
+                                                                  $ spontaneous   : num  2 0 0 0 1 1 0 0 1 0 ...
+                                                                  $ stratum       : int  1 2 3 4 5 6 7 8 9 10 ...
+                                                                  $ pooled.stratum: num  3 1 4 2 32 36 6 22 5 19 ...
+                                                                  library(neuralnet)
+                                                                  net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=infert, hidden=2, err.fct="ce", linear.output=FALSE, likelihood=TRUE)
+                                                                  Warning message:
+ algorithm did not converge in 1 of 1 repetition(s) within the stepmax 
+                                                                  net.infert # p.467 결과가 책과 다름. 일단 통과 (p.472까지)
+                                                                  
+                                                                  # 0과 100 사이의 난수를 50 개 발생시키고， 제곱근을 취한 값을 결과로 하는 자료를 구축한다
+                                                                  library(neuralnet)
+                                                                  train.out <- as.data.frame(runif(50,min=0,max=100))
+                                                                  train.input <- as.data.frame(runif(50,min=0,max=100))
+                                                                  train.output <- sqrt(train.input)
+                                                                  train.data <- cbind(train.input, train.output)
+                                                                  colnames(train.data) <- c("Input","Output")
+                                                                  head(train.data)
+                                                                  Input      Output
+                                                                  1 60.23831414 7.761334559
+                                                                  2 23.13909307 4.810311120
+                                                                  3 35.02012538 5.917780444
+                                                                  4 10.53790939 3.246214625
+                                                                  5 90.50094713 9.513198575
+                                                                  6 46.70735106 6.834277655
+                                                                  
+                                                                  # 1개의 은닉층과 1Q개의 은닉노드를 가지는 신경망모형을 적용한다
+                                                                  net.sqrt <- neuralnet(Output~Input,train.data,hidden=10,threshold=0.01)
+                                                                  print(net.sqrt)
+                                                                  plot(net.sqrt)
+                                                                  
+                                                                  # 1 ~ 1O 정수값의 제곱을 취하여 검증용 자료(test.data)를 만든 후, 
+                                                                  # 이 자료에 대해 compute() 함수를 통해 신경망 모형 (net.sqrt)을 적용하고, 그 결과를 출력한다.
+                                                                  test.data <- as.data.frame((1:10)^2)
+                                                                  test.out <- compute(net.sqrt, test.data)
+                                                                  ls(test.out)
+                                                                  [1] "net.result" "neurons"   
+                                                                  print(test.out$net.result)
+                                                                  [,1]
+                                                                  [1,] 0.9053011126
+                                                                  [2,] 2.0298476075
+                                                                  [3,] 2.9993973702
+                                                                  [4,] 3.9985522614
+                                                                  [5,] 4.9972990921
+                                                                  [6,] 6.0076170955
+                                                                  [7,] 6.9938123018
+                                                                  [8,] 8.0034570552
+                                                                  [9,] 9.0147943179
+                                                                  [10,] 9.9555461693
+                                                                  net2.sqrt <- neuralnet(Output~Input,train.data,hidden=c(10,8),threshold=0.01)
+                                                                  plot(net2.sqrt)
+                                                                  
+                                                                  
+                                                                  p.476
+                                                                  3. 의사결정나무 모형
+                                                                  
+                                                                  # R 패키지 {rpart} 의 rpart() 함수를 이용하여 의사결정 나무 분석을 수행한다. 
+                                                                  # rpart는 recursive partitioning and regression tree 의 약어
+                                                                  library(rpart)
+                                                                  c <- rpart(Species~.,data=iris)
+                                                                  c
+                                                                  n= 150 
+                                                                  
+                                                                  node), split, n, loss, yval, (yprob)
 * denotes terminal node
 
 1) root 150 100 setosa (0.33333333 0.33333333 0.33333333)  
@@ -3476,524 +3542,523 @@ Error: `data` and `reference` should be factors with the same levels.
 
 accuracy <- c(nn_con$overall['Accuracy'], dt_con$overall['Accuracy'])
 precision <- c(nn_con$byClass['Pos Pred Value'] , dt_con$byClass[Pos Pred Value'])
-                                                                   recall <- c(nn_con$byClass['Sensitivity'], dt_con$byClass [Sensitivity])
-                                                                   f1 <- 2 * (( precision * recall ) / (precision + recall ))
-                                                                   result <- data.frame (rbind(accuracy , precision , recall, f1) )
-                                                                   names(result ) <- c("Nueral Network", "Decision Tree")
-                                                                   result
-                                                                   
-                                                                   
-                                                                   나. ROC 그래프
-                                                                   
-                                                                   set.seed(1234)
-                                                                   infert <- infert[sample(nrow(infert)),]
-                                                                   infert <- infert[,c("age","parity","induced","spontaneous","case")]
-                                                                   trainData <- infert[1:(nrow(infert)*0.7),]
-                                                                   testData <- infert[((nrow(infert)*0.7)+1):nrow(infert),]
-                                                                   library(neuralnet)
-                                                                   net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=trainData, hidden=3, err.fct="ce", linear.outpu=FALSE, likelihood=TRUE)
-                                                                   n_test <- subset(testData, select=-case)
-                                                                   nn_pred <- compute(net.infert, n_test)
-                                                                   testData$net_pred <- nn_pred$net.result
-                                                                   head(testData)
-                                                                   age parity induced spontaneous case      net_pred
-                                                                   164  29      1       0           1    0 0.60085711017
-                                                                   199  32      2       2           0    0 0.30853793595
-                                                                   223  28      2       1           0    0 0.30640076235
-                                                                   133  38      3       1           0    0 0.06823728009
-                                                                   40   28      1       0           1    1 0.60080163992
-                                                                   225  27      2       1           0    0 0.30640076176
-                                                                   install.packages("C50")
-                                                                   library(C50)
-                                                                   trainData$case <- factor(trainData$case)
-                                                                   dt.infert <- C5.0(case~age+parity+induced+spontaneous, data=trainData)
-                                                                   testData$dt_pred <- predict(dt.infert, testData, type="prob")[,2]
-                                                                   head(testData)
-                                                                   age parity induced spontaneous case      net_pred      dt_pred
-                                                                   164  29      1       0           1    0 0.60085711017 0.6240261275
-                                                                   199  32      2       2           0    0 0.30853793595 0.2015895955
-                                                                   223  28      2       1           0    0 0.30640076235 0.2015895955
-                                                                   133  38      3       1           0    0 0.06823728009 0.2015895955
-                                                                   40   28      1       0           1    1 0.60080163992 0.6240261275
-                                                                   225  27      2       1           0    0 0.30640076176 0.2015895955
-                                                                   
-                                                                   install.packages("Epi")
-                                                                   library(Epi)
-                                                                   neural_ROC <- ROC(form=case~net_pred, data=testData, plot="ROC")
-                                                                   dtree_ROC <- ROC(form=case~dt_pred, data=testData, plot="ROC")
-                                                                   
-                                                                   install.packages("ROCR")
-                                                                   library(ROCR)
-                                                                   n_r <- prediction(testData$net_pred, testData$case)
-                                                                   d_r <- prediction(testData$dt_pred, testData$case)
-                                                                   n_p <- performance(n_r, "tpr", "fpr")
-                                                                   d_p <- performance(d_r, "tpr", "fpr")
-                                                                   plot(n_p, col="red")
-                                                                   abline(a=0, b=1)
-                                                                   
-                                                                   n_lift <- performance(n_r, "lift", "rpp")
-                                                                   plot(n_lift, col="red")
-                                                                   abline(v=0.2)
-                                                                   
-                                                                   
-                                                                   제3절 군집 분석
-                                                                   
-                                                                   data(USArrests)
-                                                                   str(USArrests)
-                                                                   'data.frame':	50 obs. of  4 variables:
-                                                                   $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
-                                                                   $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
-                                                                   $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
-                                                                   $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
-                                                                   d <- dist(USArrests, method="euclidean") # 거리 (또는 비유사성)행렬 
-                                                                   fit <- hclust(d, method="ave") # 계층적 군집 분석 
-                                                                   par(mfrow=c(1,2))
-                                                                   plot(fit)
-                                                                   plot(fit, hang=-1)
-                                                                   par(mfrow=c(1,1))
-                                                                   
-                                                                   # cutree()는 계층적군집의 결과를 이용하여 tree 의 높이 (h) 나 그룹의 수(k)를 옵션으로 지정하여 원하는 수의 그룹으로 나눌 수 있다.
-                                                                   groups <- cutree(fit, k=6)
-                                                                   groups
-                                                                   Alabama         Alaska        Arizona       Arkansas     California       Colorado    Connecticut       Delaware        Florida        Georgia         Hawaii 
-                                                                   1              1              1              2              1              2              3              1              4              2              5 
-                                                                   Idaho       Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana          Maine       Maryland  Massachusetts       Michigan 
-                                                                   3              1              3              5              3              3              1              5              1              6              1 
-                                                                   Minnesota    Mississippi       Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey     New Mexico       New York North Carolina 
-                                                                   5              1              2              3              3              1              5              6              1              1              4 
-                                                                   North Dakota           Ohio       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee          Texas           Utah 
-                                                                   5              3              6              6              3              6              1              5              2              2              3 
-                                                                   Vermont       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
-                                                                   5              6              6              5              5              6 
-                                                                   
-                                                                   
-                                                                   plot(fit)
-                                                                   rect.hclust(fit, k=6, border="red")
-                                                                   hca <- hclust(dist(USArrests))
-                                                                   plot(hca)
-                                                                   rect.hclust(hca, k=3, border"red")
-                                                                   Error: unexpected string constant in "rect.hclust(hca, k=3, border"red""
-                                                                   rect.hclust(hca, k=3, border="red")
-                                                                   rect.hclust(hca, h=50, which=c(2,7), border=3:4)
-                                                                   
-                                                                   
-                                                                   # ??????????????????
-                                                                   library(cluster)
-                                                                   agn1 <- agnes(USArrests, metric="manhattan", stand=TRUE)
-                                                                   agn1
-                                                                   Call:	 agnes(x = USArrests, metric = "manhattan", stand = TRUE) 
-                                                                   Agglomerative coefficient:  0.7584534729 
-                                                                   Order of objects:
-                                                                   [1] Alabama        Tennessee      Georgia        Louisiana      Mississippi    South Carolina North Carolina Alaska         Arizona       
-                                                                   [10] Maryland       New Mexico     Michigan       Illinois       New York       Texas          Florida        California     Colorado      
-                                                                   [19] Nevada         Arkansas       Idaho          Nebraska       Kentucky       Montana        Indiana        Kansas         Oklahoma      
-                                                                   [28] Ohio           Pennsylvania   Virginia       Wyoming        Delaware       Missouri       Oregon         Washington     Connecticut   
-                                                                   [37] Utah           Hawaii         Massachusetts  New Jersey     Rhode Island   Iowa           New Hampshire  Maine          Minnesota     
-                                                                   [46] Wisconsin      North Dakota   Vermont        South Dakota   West Virginia 
-                                                                   Height (summary):
-                                                                   Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-                                                                   0.3718103 1.5668819 2.0340726 2.3765539 2.9197634 7.3157290 
-                                                                   
-                                                                   Available components:
-                                                                   [1] "order"     "height"    "ac"        "merge"     "diss"      "call"      "method"    "order.lab" "data"     
-                                                                   par(mfrow=c(1,2))
-                                                                   plot(agn1)
-                                                                   agn2 <- agnes(daisy(USArrests), diss=TRUE, method="complete")
-                                                                   plot(agn2)
-                                                                   agn3 <- agnes(USArrests, method="flexible", par.meth=0.6)
-                                                                   plot(agn3)
-                                                                   par(mfrow=c(1,1))
-                                                                   
-                                                                   # data는 수치형의 자료이며. nc는 고려할 군집의 최대 수. seed는 난수 발생 초기값이다 
-                                                                   wssplot <- function(data, nc=15, seed=1234) {
-                                                                   +     wss <- (nrow(data)-1)*sum(apply(data,2,var))
-                                                                   +     for (i in 2:nc) {
-                                                                   +         set.seed(seed)
-                                                                   +         wss[i] <- sum(kmeans(data, centers=i)$withinss)
-                                                                   +     }
-                                                                   +     plot(1:nc, wss, type="b", xlab="Number of Clusters", ylab="Within groups sum of squares")
-                                                                   + }
-                                                                   
-                                                                   # rattle, wine 못찾겠음 
-                                                                   data(wine, package="rattle")
-                                                                   head(wine)
-                                                                   df <- scale(wine[-1]) # 표준화를 수행 
-                                                                   wssplot(df) # 적절한 군집 수를 정하기 위해 앞서 소개된 wssplot() 함수를 수행한다
-                                                                   
-                                                                   install.packages("NbClust")
-                                                                   library(NbClust)
-                                                                   set.seed(1234)
-                                                                   table(nc$Best.n[1,])
-                                                                   Error in table(nc$Best.n[1, ]) : object 'nc' not found
-                                                                   barplot(table(nc$Best.n[1,]), 
-                                                                   +     xlab="Number of Cluster", ylab="Number of Criteria",
-                                                                   +     main="Number of Cluster Chosen by 26 Criteria"
-                                                                   + )
-                                                                   Error in table(nc$Best.n[1, ]) : object 'nc' not found
-                                                                   
-                                                                   set.seed(1234)
-                                                                   fit.km <- kmeans(df, 3, nstart=25)
-                                                                   fit.km$size 
-                                                                   fit.km$centers
-                                                                   plot(df, col=fit.km$cluster)
-                                                                   points(fit,km$center, col=1:3, pch=8, cex=1.5)
-                                                                   
-                                                                   aggregate(wine[-1], by=list(cluster=fit.km$cluster), mean) 
-                                                                   ct.km <- table(wine$Type, fit.km$cluster)
-                                                                   ct.km 
-                                                                   
-                                                                   library (flexclust)
-                                                                   # 실제 와인의 종류(Type)와 군집간의 일치도 (agreement)를 나타내는 수정된 순위 지수(adjusted rank index)
-                                                                   # 이 지수는 -l(no agreement)과 l (perfect agreement) 사이의 값
-                                                                   randlndex( ct.km) 
-                                                                   ARI
-                                                                   0.897495
-                                                                   
-                                                                   library(flexclust)
-                                                                   data("Nclus")
-                                                                   plot(Nclus)
-                                                                   cl <- kcca (Nclus, k=4, family=kccaFamily("kmeans"))
-                                                                   image(cl)
-                                                                   points(Nclus)
-                                                                   
-                                                                   barplot(cl)
-                                                                   stripes(cl)
-                                                                   
-                                                                   library(cc1ust)
-                                                                   c1.1 <- cc1ust(Nc1us, 4, 20, method="kmeans")
-                                                                   p1ot(Nclus, col=cl.1$cluster) 
-                                                                   points (c1.1$center, c01 = 1:4, pch = 8, cex=1.5)
-                                                                   
-                                                                   library(cluster)
-                                                                   clusplot(Nclus, cl.1$cluster)
-                                                                   
-                                                                   # 미국의 올드페이스풀 간헐천의 분출 간의 시간 자료(faithful) 에 대해 정규혼합분포모형을 적합한다.
-                                                                   install.packages("mixtools")
-                                                                   library(mixtools)
-                                                                   data(faithful)
-                                                                   attach(faithful)
-                                                                   hist(waiting, main="Time between Old Faithful eruptions", xlab="Minutes", ylab="", cex.main=1.5, cex.lab=1.5, cex.axis=1.4)
-                                                                   
-                                                                   # EM 알고리즘을 이용한 정규혼합분포의 추정결과는 다음과 같다.
-                                                                   wait1 <- normalmixEM(waiting, lambda=.5, mu=c(55,80), sigma=5)
-                                                                   number of iterations= 9 
-                                                                   summary(wait1)
-                                                                   summary of normalmixEM object:
-                                                                   comp 1   comp 2
-                                                                   lambda  0.36085  0.63915
-                                                                   mu     54.61364 80.09031
-                                                                   sigma   5.86909  5.86909
-                                                                   loglik at estimate:  -1034.002 
-                                                                   # 추정된 정규혼합분포를 시각화 
-                                                                   plot(wait1, density=TRUE, cex.axis=1.4, cex.lab=1.4, cex.main=1.8, main2="Time between Old Faithful eruptions", xlab2="Minutes")
-                                                                   
-                                                                   # iris 자료에 대해 Mclust() 함수를 통해 군집 분석을 수행 
-                                                                   install.packages("mclust")
-                                                                   Installing package into ‘C:/Users/juno2/Documents/R/win-library/3.5’
-                                                                   (as ‘lib’ is unspecified)
-                                                                   trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/mclust_5.4.zip'
-                                                                   Content type 'application/zip' length 4129221 bytes (3.9 MB)
-                                                                   downloaded 3.9 MB
-                                                                   
-                                                                   package ‘mclust’ successfully unpacked and MD5 sums checked
-                                                                   
-                                                                   The downloaded binary packages are in
-                                                                   C:\Users\juno2\AppData\Local\Temp\RtmpOoYJJt\downloaded_packages
-                                                                   library(mclust)
-                                                                   __  ___________    __  _____________
-                                                                   /  |/  / ____/ /   / / / / ___/_  __/
-                                                                   / /|_/ / /   / /   / / / /\__ \ / /   
-                                                                   / /  / / /___/ /___/ /_/ /___/ // /    
-                                                                   /_/  /_/\____/_____/\____//____//_/    version 5.4
-                                                                   Type 'citation("mclust")' for citing this R package in publications.
-                                                                   mc <- Mclust(iris[,1:4], G=3)
-                                                                   fitting ...
-                                                                   |==============================================================================================================================================================| 100%
-                                                                   summary(mc, parameters=TRUE)
-                                                                   ----------------------------------------------------
-                                                                   Gaussian finite mixture model fitted by EM algorithm 
-                                                                   ----------------------------------------------------
-                                                                   
-                                                                   Mclust VEV (ellipsoidal, equal shape) model with 3 components:
-                                                                   
-                                                                   log.likelihood   n df       BIC       ICL
-                                                                   -186.074 150 38 -562.5522 -566.4673
-                                                                   
-                                                                   Clustering table:
-                                                                   1  2  3 
-                                                                   50 45 55 
-                                                                   
-                                                                   Mixing probabilities:
-                                                                   1         2         3 
-                                                                   0.3333333 0.3005423 0.3661243 
-                                                                   
-                                                                   Means:
-                                                                   [,1]     [,2]     [,3]
-                                                                   Sepal.Length 5.006 5.915044 6.546807
-                                                                   Sepal.Width  3.428 2.777451 2.949613
-                                                                   Petal.Length 1.462 4.204002 5.482252
-                                                                   Petal.Width  0.246 1.298935 1.985523
-                                                                   
-                                                                   Variances:
-                                                                   [,,1]
-                                                                   Sepal.Length Sepal.Width Petal.Length Petal.Width
-                                                                   Sepal.Length   0.13320850  0.10938369  0.019191764 0.011585649
-                                                                   Sepal.Width    0.10938369  0.15495369  0.012096999 0.010010130
-                                                                   Petal.Length   0.01919176  0.01209700  0.028275400 0.005818274
-                                                                   Petal.Width    0.01158565  0.01001013  0.005818274 0.010695632
-                                                                   [,,2]
-                                                                   Sepal.Length Sepal.Width Petal.Length Petal.Width
-                                                                   Sepal.Length   0.22572159  0.07613348   0.14689934  0.04335826
-                                                                   Sepal.Width    0.07613348  0.08024338   0.07372331  0.03435893
-                                                                   Petal.Length   0.14689934  0.07372331   0.16613979  0.04953078
-                                                                   Petal.Width    0.04335826  0.03435893   0.04953078  0.03338619
-                                                                   [,,3]
-                                                                   Sepal.Length Sepal.Width Petal.Length Petal.Width
-                                                                   Sepal.Length   0.42943106  0.10784274   0.33452389  0.06538369
-                                                                   Sepal.Width    0.10784274  0.11596343   0.08905176  0.06134034
-                                                                   Petal.Length   0.33452389  0.08905176   0.36422115  0.08706895
-                                                                   Petal.Width    0.06538369  0.06134034   0.08706895  0.08663823
-                                                                   
-                                                                   # plot.Mclust() 함수는 다양한 방식으로 군집 결과를 시각화 
-                                                                   plot.Mclust(mc)
-                                                                   Model-based clustering plots: 
-                                                                   
-                                                                   1: BIC
-                                                                   2: classification
-                                                                   3: uncertainty
-                                                                   4: density
-                                                                   
-                                                                   선택: 2
-                                                                   
-                                                                   선택: 
-                                                                   Enter an item from the menu, or 0 to exit
-                                                                   선택: 0
-                                                                   str(mc)
-                                                                   List of 15
-                                                                   $ call          : language Mclust(data = iris[, 1:4], G = 3)
-                                                                   $ data          : num [1:150, 1:4] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-                                                                   ..- attr(*, "dimnames")=List of 2
-                                                                   .. ..$ : NULL
-                                                                   .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   $ modelName     : chr "VEV"
-                                                                   $ n             : int 150
-                                                                   $ d             : int 4
-                                                                   $ G             : int 3
-                                                                   $ BIC           : 'mclustBIC' num [1, 1:14] -879 -854 -813 -779 -798 ...
-                                                                   ..- attr(*, "dimnames")=List of 2
-                                                                   .. ..$ : chr "3"
-                                                                   .. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
-                                                                   ..- attr(*, "G")= num 3
-                                                                   ..- attr(*, "modelNames")= chr [1:14] "EII" "VII" "EEI" "VEI" ...
-                                                                   ..- attr(*, "control")=List of 4
-                                                                   .. ..$ eps     : num 2.22e-16
-                                                                   .. ..$ tol     : num [1:2] 1.00e-05 1.49e-08
-                                                                   .. ..$ itmax   : int [1:2] 2147483647 2147483647
-                                                                   .. ..$ equalPro: logi FALSE
-                                                                   ..- attr(*, "initialization")=List of 3
-                                                                   .. ..$ hcPairs: 'hc' num [1:2, 1:149] 102 143 128 139 18 41 1 18 1 28 ...
-                                                                   .. .. ..- attr(*, "initialPartition")= num [1:150] 1 2 3 4 5 6 7 8 9 10 ...
-                                                                   .. .. .. ..- attr(*, "unique")= int 150
-                                                                   .. .. ..- attr(*, "dimensions")= int [1:2] 150 4
-                                                                   .. .. ..- attr(*, "modelName")= chr "VVV"
-                                                                   .. .. ..- attr(*, "call")= language hc(data = data, modelName = mclust.options("hcModelNames")[1])
-                                                                   .. ..$ subset : NULL
-                                                                   .. ..$ noise  : NULL
-                                                                   ..- attr(*, "warn")= logi FALSE
-                                                                   ..- attr(*, "n")= int 150
-                                                                   ..- attr(*, "d")= int 4
-                                                                   ..- attr(*, "oneD")= logi FALSE
-                                                                   ..- attr(*, "criterion")= chr "BIC"
-                                                                   ..- attr(*, "returnCodes")= num [1, 1:14] 0 0 0 0 0 0 0 0 0 0 ...
-                                                                   .. ..- attr(*, "dimnames")=List of 2
-                                                                   .. .. ..$ : chr "3"
-                                                                   .. .. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
-                                                                   $ bic           : num -563
-                                                                   $ loglik        : num -186
-                                                                   $ df            : num 38
-                                                                   $ hypvol        : num NA
-                                                                   $ parameters    :List of 4
-                                                                   ..$ pro     : num [1:3] 0.333 0.301 0.366
-                                                                   ..$ mean    : num [1:4, 1:3] 5.006 3.428 1.462 0.246 5.915 ...
-                                                                   .. ..- attr(*, "dimnames")=List of 2
-                                                                   .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   .. .. ..$ : NULL
-                                                                   ..$ variance:List of 7
-                                                                   .. ..$ modelName  : chr "VEV"
-                                                                   .. ..$ d          : int 4
-                                                                   .. ..$ G          : int 3
-                                                                   .. ..$ sigma      : num [1:4, 1:4, 1:3] 0.1332 0.1094 0.0192 0.0116 0.1094 ...
-                                                                   .. .. ..- attr(*, "dimnames")=List of 3
-                                                                   .. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   .. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   .. .. .. ..$ : NULL
-                                                                   .. ..$ scale      : num [1:3] 0.0375 0.0579 0.1142
-                                                                   .. ..$ shape      : num [1:4] 6.858 1.012 0.627 0.23
-                                                                   .. ..$ orientation: num [1:4, 1:4, 1:3] -0.6691 -0.7341 -0.0965 -0.0636 0.5979 ...
-                                                                   .. .. ..- attr(*, "dimnames")=List of 3
-                                                                   .. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   .. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-                                                                   .. .. .. ..$ : NULL
-                                                                   ..$ Vinv    : NULL
-                                                                   $ z             : num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
-                                                                   ..- attr(*, "dimnames")=List of 2
-                                                                   .. ..$ : NULL
-                                                                   .. ..$ : NULL
-                                                                   $ classification: num [1:150] 1 1 1 1 1 1 1 1 1 1 ...
-                                                                   $ uncertainty   : num [1:150] 0 0 0 0 0 0 0 0 0 0 ...
-                                                                   - attr(*, "class")= chr "Mclust"
-                                                                   mc$classification
-                                                                   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 2 3 2 2 2 2 3 2 2 2
-                                                                   [82] 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
-                                                                   
-                                                                   # 새로운 자료에 대한 분류는 predict() 함수를 이용 
-                                                                   predict(mc, data= )
-                                                                   
-                                                                   install.packages("kohonen")
-                                                                   library(kohonen)
-                                                                   data(wines)
-                                                                   str(wines)
-                                                                   num [1:177, 1:13] 13.2 13.2 14.4 13.2 14.2 ...
-                                                                   - attr(*, "dimnames")=List of 2
-                                                                   ..$ : NULL
-                                                                   ..$ : chr [1:13] "alcohol" "malic acid" "ash" "ash alkalinity" ...
-                                                                   head(wines)
-                                                                   alcohol malic acid  ash ash alkalinity magnesium tot. phenols flavonoids non-flav. phenols proanth col. int. col. hue OD ratio proline
-                                                                   [1,]   13.20       1.78 2.14           11.2       100         2.65       2.76              0.26    1.28      4.38     1.05     3.40    1050
-                                                                   [2,]   13.16       2.36 2.67           18.6       101         2.80       3.24              0.30    2.81      5.68     1.03     3.17    1185
-                                                                   [3,]   14.37       1.95 2.50           16.8       113         3.85       3.49              0.24    2.18      7.80     0.86     3.45    1480
-                                                                   [4,]   13.24       2.59 2.87           21.0       118         2.80       2.69              0.39    1.82      4.32     1.04     2.93     735
-                                                                   [5,]   14.20       1.76 2.45           15.2       112         3.27       3.39              0.34    1.97      6.75     1.05     2.85    1450
-                                                                   [6,]   14.39       1.87 2.45           14.6        96         2.50       2.52              0.30    1.98      5.25     1.02     3.58    1290
-                                                                   wines.sc <- scale(wines)
-                                                                   set.seed(7)
-                                                                   wine.som <- som(data=wines.sc,
-                                                                   + grid = somgrid(5,4, "hexagonal"),
-                                                                   + rlen = 100, alpha = c(0.05, 0.01), 
-                                                                   + toroidal = FALSE, keep.data = TRUE)
-                                                                   Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
-                                                                   wine.som <- som(data = wines.sc, grid = somgrid (5, 4, "hexagonal"), rlen = 100, alpha = c(0.05 , 0.01), toroidal = FALSE, keep.data = TRUE)
-                                                                   Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
-                                                                   plot(wine.som, main = "Wine data") 
-                                                                   summary(wine.som) 
-                                                                   
-                                                                   par(mfrow = c(1, 3))
-                                                                   plot(wine.som, type = "counts", main = "wine data: counts")
-                                                                   plot(wine.som, type = "quality", main = "wine data: mapping quality")
-                                                                   plot(wine.som, type="mapping", labels=wine.classes, col=wine.classes, main= "mapping plot")
-                                                                   
-                                                                   par(mfrow = c(1 , 3))
-                                                                   >
-                                                                   colour1 <- tricolor(wine.som$grid)
-                                                                   plot(wine.som, "mapping" , bg = rgb(colour1))
-                                                                   >
-                                                                   colour2 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6))
-                                                                   plot(wine.som, "mapping", bg = rgb(colour2))
-                                                                   >
-                                                                   colour3 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6 ), offset = .5)
-                                                                   plot(wine.som, "mapping", bg = rgb(colour3))
-                                                                   
-                                                                   unit.distances(grid, toroidal) # SOM 군집 분석 결과， 유니트 사이의 거리 계산법 
-                                                                   
-                                                                   par(mfrow = c(1 , 2))
-                                                                   >
-                                                                   dists <- unit.distances(wine.som$grid, toroidal=FALSE)
-                                                                   plot(wine.som, type="property", property=dists[1,],
-                                                                   + main="Distances to unit 1" , zlim=c(0, 6) ,
-                                                                   + palette = rainbow, ncolors = 7, contin = TRUE)
-                                                                   >
-                                                                   dists <- unit.distances(wine.som$grid, toroidal=FALSE )
-                                                                   plot(wine.som, type="property", property=dists[1,],
-                                                                   + main="Distances to unit 1", zlim=c(0,2),
-                                                                   + palette = rainbow, ncolors = 2, contin = TRUE )
-                                                                   
-                                                                   data("wines")
-                                                                   wines.sc <- scale(wines)
-                                                                   
-                                                                   set.seed(7)
-                                                                   
-                                                                   wine.som <- som(data=wines.sc, 
-                                                                   + grid = somgrid(5,4,"hexagonal"), 
-                                                                   + rlen = 100, 
-                                                                   + alpha = c(0.05, 0.01), 
-                                                                   + toroidal = FALSE, keep.data = TRUE)
-                                                                   
-                                                                   wine.som_1 <- som(data = wines.sc, 
-                                                                   + grid = somgrid(5,4,"hexagonal"), 
-                                                                   + rlen = 500, 
-                                                                   + alpha = c(0.05, 0.01), 
-                                                                   + toroidal = FALSE, keep.data = TRUE) 
-                                                                   
-                                                                   par(mfrow = c(1,2))
-                                                                   
-                                                                   plot(wine.som, type = "changes", main = "Wine data : SOM(Learning no=100")
-                                                                   plot(wine.som_1, type = "changes", main = "Wine data : SOM(Learning no=500") 
-                                                                   
-                                                                   library(ggplot2)
-                                                                   wines.sc = as.data.frame(wines)
-                                                                   wines.sc$clusterX <- wine.som$grid$pts[wine.som$unit.classif, "x"]
-                                                                   wines.sc$clusterY <- wine.som$grid$pts[wine.som$unit.classif, "y"]
-                                                                   
-                                                                   p <- ggplot(wines.sc, aes(clusterX, clusterY))
-                                                                   p+geom_jitter(position=position_jitter(width=0.4, height=0.3))
-                                                                   
-                                                                   # arules 패키지의 apriori 함수를 사용하면 연관규칙을 발굴해낼 수 있다.
-                                                                   데이터
-                                                                   install.packages("arules")
-                                                                   library(arules)
-                                                                   data("Adult")
-                                                                   Adult
-                                                                   transactions in sparse format with
-                                                                   48842 transactions (rows) and
-                                                                   115 items (columns)
-                                                                   rules <- apriori(Adult)
-                                                                   Apriori
-                                                                   
-                                                                   Parameter specification:
-                                                                   confidence minval smax arem  aval originalSupport maxtime support minlen maxlen target   ext
-                                                                   0.8    0.1    1 none FALSE            TRUE       5     0.1      1     10  rules FALSE
-                                                                   
-                                                                   Algorithmic control:
-                                                                   filter tree heap memopt load sort verbose
-                                                                   0.1 TRUE TRUE  FALSE TRUE    2    TRUE
-                                                                   
-                                                                   Absolute minimum support count: 4884 
-                                                                   
-                                                                   set item appearances ...[0 item(s)] done [0.00s].
-                                                                   set transactions ...[115 item(s), 48842 transaction(s)] done [0.05s].
-                                                                   sorting and recoding items ... [31 item(s)] done [0.01s].
-                                                                   creating transaction tree ... done [0.04s].
-                                                                   checking subsets of size 1 2 3 4 5 6 7 8 9 done [0.14s].
-                                                                   writing ... [6137 rule(s)] done [0.00s].
-                                                                   creating S4 object  ... done [0.01s].
-                                                                   
-                                                                   inspect(head(rules)) # inspect 함수를 사용하면 apriori 함수를 통해 발굴된 규칙을 보여준다.
-                                                                   lhs                         rhs                            support   confidence lift     count
-                                                                   [1] {}                       ={race=White}                   0.8550428 0.8550428  1.000000 41762
-                                                                   [2] {}                       ={native-country=United-States} 0.8974243 0.8974243  1.000000 43832
-                                                                   [3] {}                       ={capital-gain=None}            0.9173867 0.9173867  1.000000 44807
-                                                                   [4] {}                       ={capital-loss=None}            0.9532779 0.9532779  1.000000 46560
-                                                                   [5] {relationship=Unmarried} ={capital-loss=None}            0.1019819 0.9719024  1.019537  4981
-                                                                   [6] {occupation=Sales}       ={race=White}                   0.1005282 0.8920785  1.043314  4910
-                                                                   
-                                                                   adult.rules <- apriori(Adult, parameter=list(support=0.1, confidence=0.6),
-                                                                   +                         appearance = list(rhs=c('income=small', 'income=large'),
-                                                                   +                                             default='lhs'),
-                                                                   +                         control=list(verbose=F))
-                                                                   adult.rules.sorted <- sort(adult.rules, by='lift')
-                                                                   inspect(head(adult.rules.sorted))
-                                                                   lhs                                                                             rhs            support   confidence lift     count
-                                                                   [1] {age=Young,workclass=Private,capital-loss=None}                              ={income=small} 0.1005282 0.6633342  1.310622 4910 
-                                                                   [2] {age=Young,workclass=Private}                                                ={income=small} 0.1025961 0.6630938  1.310147 5011 
-                                                                   [3] {age=Young,marital-status=Never-married,capital-gain=None,capital-loss=None} ={income=small} 0.1060563 0.6616426  1.307279 5180 
-                                                                   [4] {age=Young,marital-status=Never-married,capital-gain=None}                   ={income=small} 0.1084517 0.6609683  1.305947 5297 
-                                                                   [5] {relationship=Own-child,capital-loss=None}                                   ={income=small} 0.1000983 0.6604972  1.305016 4889 
-                                                                   [6] {relationship=Own-child}                                                     ={income=small} 0.1023914 0.6596755  1.303393 5001 
-                                                                   
-                                                                   install.packages("arulesViz") 
-                                                                   library(arulesViz)
-                                                                   plot(adult.rules.sorted, method="scatterplot")
-                                                                   plot(adult.rules.sorted, method="graph", control=list(type="items", alpha=0.5))
-                                                                   
-                                                                   
-                                                                   
+recall <- c(nn_con$byClass['Sensitivity'], dt_con$byClass [Sensitivity])
+f1 <- 2 * (( precision * recall ) / (precision + recall ))
+result <- data.frame (rbind(accuracy , precision , recall, f1) )
+names(result ) <- c("Nueral Network", "Decision Tree")
+result
+
+
+나. ROC 그래프
+
+set.seed(1234)
+infert <- infert[sample(nrow(infert)),]
+infert <- infert[,c("age","parity","induced","spontaneous","case")]
+trainData <- infert[1:(nrow(infert)*0.7),]
+testData <- infert[((nrow(infert)*0.7)+1):nrow(infert),]
+library(neuralnet)
+net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=trainData, hidden=3, err.fct="ce", linear.outpu=FALSE, likelihood=TRUE)
+n_test <- subset(testData, select=-case)
+nn_pred <- compute(net.infert, n_test)
+testData$net_pred <- nn_pred$net.result
+head(testData)
+age parity induced spontaneous case      net_pred
+164  29      1       0           1    0 0.60085711017
+199  32      2       2           0    0 0.30853793595
+223  28      2       1           0    0 0.30640076235
+133  38      3       1           0    0 0.06823728009
+40   28      1       0           1    1 0.60080163992
+225  27      2       1           0    0 0.30640076176
+install.packages("C50")
+library(C50)
+trainData$case <- factor(trainData$case)
+dt.infert <- C5.0(case~age+parity+induced+spontaneous, data=trainData)
+testData$dt_pred <- predict(dt.infert, testData, type="prob")[,2]
+head(testData)
+age parity induced spontaneous case      net_pred      dt_pred
+164  29      1       0           1    0 0.60085711017 0.6240261275
+199  32      2       2           0    0 0.30853793595 0.2015895955
+223  28      2       1           0    0 0.30640076235 0.2015895955
+133  38      3       1           0    0 0.06823728009 0.2015895955
+40   28      1       0           1    1 0.60080163992 0.6240261275
+225  27      2       1           0    0 0.30640076176 0.2015895955
+
+install.packages("Epi")
+library(Epi)
+neural_ROC <- ROC(form=case~net_pred, data=testData, plot="ROC")
+dtree_ROC <- ROC(form=case~dt_pred, data=testData, plot="ROC")
+
+install.packages("ROCR")
+library(ROCR)
+n_r <- prediction(testData$net_pred, testData$case)
+d_r <- prediction(testData$dt_pred, testData$case)
+n_p <- performance(n_r, "tpr", "fpr")
+d_p <- performance(d_r, "tpr", "fpr")
+plot(n_p, col="red")
+abline(a=0, b=1)
+
+n_lift <- performance(n_r, "lift", "rpp")
+plot(n_lift, col="red")
+abline(v=0.2)
+
+
+제3절 군집 분석
+
+data(USArrests)
+str(USArrests)
+'data.frame':	50 obs. of  4 variables:
+$ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+$ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
+$ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
+$ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
+d <- dist(USArrests, method="euclidean") # 거리 (또는 비유사성)행렬 
+fit <- hclust(d, method="ave") # 계층적 군집 분석 
+par(mfrow=c(1,2))
+plot(fit)
+plot(fit, hang=-1)
+par(mfrow=c(1,1))
+
+# cutree()는 계층적군집의 결과를 이용하여 tree 의 높이 (h) 나 그룹의 수(k)를 옵션으로 지정하여 원하는 수의 그룹으로 나눌 수 있다.
+groups <- cutree(fit, k=6)
+groups
+Alabama         Alaska        Arizona       Arkansas     California       Colorado    Connecticut       Delaware        Florida        Georgia         Hawaii 
+1              1              1              2              1              2              3              1              4              2              5 
+Idaho       Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana          Maine       Maryland  Massachusetts       Michigan 
+3              1              3              5              3              3              1              5              1              6              1 
+Minnesota    Mississippi       Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey     New Mexico       New York North Carolina 
+5              1              2              3              3              1              5              6              1              1              4 
+North Dakota           Ohio       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee          Texas           Utah 
+5              3              6              6              3              6              1              5              2              2              3 
+Vermont       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+5              6              6              5              5              6 
+
+
+plot(fit)
+rect.hclust(fit, k=6, border="red")
+hca <- hclust(dist(USArrests))
+plot(hca)
+rect.hclust(hca, k=3, border"red")
+Error: unexpected string constant in "rect.hclust(hca, k=3, border"red""
+rect.hclust(hca, k=3, border="red")
+rect.hclust(hca, h=50, which=c(2,7), border=3:4)
+
+
+# ??????????????????
+library(cluster)
+agn1 <- agnes(USArrests, metric="manhattan", stand=TRUE)
+agn1
+Call:	 agnes(x = USArrests, metric = "manhattan", stand = TRUE) 
+Agglomerative coefficient:  0.7584534729 
+Order of objects:
+[1] Alabama        Tennessee      Georgia        Louisiana      Mississippi    South Carolina North Carolina Alaska         Arizona       
+[10] Maryland       New Mexico     Michigan       Illinois       New York       Texas          Florida        California     Colorado      
+[19] Nevada         Arkansas       Idaho          Nebraska       Kentucky       Montana        Indiana        Kansas         Oklahoma      
+[28] Ohio           Pennsylvania   Virginia       Wyoming        Delaware       Missouri       Oregon         Washington     Connecticut   
+[37] Utah           Hawaii         Massachusetts  New Jersey     Rhode Island   Iowa           New Hampshire  Maine          Minnesota     
+[46] Wisconsin      North Dakota   Vermont        South Dakota   West Virginia 
+Height (summary):
+Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+0.3718103 1.5668819 2.0340726 2.3765539 2.9197634 7.3157290 
+
+Available components:
+[1] "order"     "height"    "ac"        "merge"     "diss"      "call"      "method"    "order.lab" "data"     
+par(mfrow=c(1,2))
+plot(agn1)
+agn2 <- agnes(daisy(USArrests), diss=TRUE, method="complete")
+plot(agn2)
+agn3 <- agnes(USArrests, method="flexible", par.meth=0.6)
+plot(agn3)
+par(mfrow=c(1,1))
+
+# data는 수치형의 자료이며. nc는 고려할 군집의 최대 수. seed는 난수 발생 초기값이다 
+wssplot <- function(data, nc=15, seed=1234) {
++     wss <- (nrow(data)-1)*sum(apply(data,2,var))
++     for (i in 2:nc) {
++         set.seed(seed)
++         wss[i] <- sum(kmeans(data, centers=i)$withinss)
++     }
++     plot(1:nc, wss, type="b", xlab="Number of Clusters", ylab="Within groups sum of squares")
++ }
+
+# rattle, wine 못찾겠음 
+data(wine, package="rattle")
+head(wine)
+df <- scale(wine[-1]) # 표준화를 수행 
+wssplot(df) # 적절한 군집 수를 정하기 위해 앞서 소개된 wssplot() 함수를 수행한다
+
+install.packages("NbClust")
+library(NbClust)
+set.seed(1234)
+table(nc$Best.n[1,])
+Error in table(nc$Best.n[1, ]) : object 'nc' not found
+barplot(table(nc$Best.n[1,]), 
++     xlab="Number of Cluster", ylab="Number of Criteria",
++     main="Number of Cluster Chosen by 26 Criteria"
++ )
+Error in table(nc$Best.n[1, ]) : object 'nc' not found
+
+set.seed(1234)
+fit.km <- kmeans(df, 3, nstart=25)
+fit.km$size 
+fit.km$centers
+plot(df, col=fit.km$cluster)
+points(fit,km$center, col=1:3, pch=8, cex=1.5)
+
+aggregate(wine[-1], by=list(cluster=fit.km$cluster), mean) 
+ct.km <- table(wine$Type, fit.km$cluster)
+ct.km 
+
+library (flexclust)
+# 실제 와인의 종류(Type)와 군집간의 일치도 (agreement)를 나타내는 수정된 순위 지수(adjusted rank index)
+# 이 지수는 -l(no agreement)과 l (perfect agreement) 사이의 값
+randlndex( ct.km) 
+ARI
+0.897495
+
+library(flexclust)
+data("Nclus")
+plot(Nclus)
+cl <- kcca (Nclus, k=4, family=kccaFamily("kmeans"))
+image(cl)
+points(Nclus)
+
+barplot(cl)
+stripes(cl)
+
+library(cc1ust)
+c1.1 <- cc1ust(Nc1us, 4, 20, method="kmeans")
+p1ot(Nclus, col=cl.1$cluster) 
+points (c1.1$center, c01 = 1:4, pch = 8, cex=1.5)
+
+library(cluster)
+clusplot(Nclus, cl.1$cluster)
+
+# 미국의 올드페이스풀 간헐천의 분출 간의 시간 자료(faithful) 에 대해 정규혼합분포모형을 적합한다.
+install.packages("mixtools")
+library(mixtools)
+data(faithful)
+attach(faithful)
+hist(waiting, main="Time between Old Faithful eruptions", xlab="Minutes", ylab="", cex.main=1.5, cex.lab=1.5, cex.axis=1.4)
+
+# EM 알고리즘을 이용한 정규혼합분포의 추정결과는 다음과 같다.
+wait1 <- normalmixEM(waiting, lambda=.5, mu=c(55,80), sigma=5)
+number of iterations= 9 
+summary(wait1)
+summary of normalmixEM object:
+comp 1   comp 2
+lambda  0.36085  0.63915
+mu     54.61364 80.09031
+sigma   5.86909  5.86909
+loglik at estimate:  -1034.002 
+# 추정된 정규혼합분포를 시각화 
+plot(wait1, density=TRUE, cex.axis=1.4, cex.lab=1.4, cex.main=1.8, main2="Time between Old Faithful eruptions", xlab2="Minutes")
+
+# iris 자료에 대해 Mclust() 함수를 통해 군집 분석을 수행 
+install.packages("mclust")
+Installing package into ‘C:/Users/juno2/Documents/R/win-library/3.5’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/mclust_5.4.zip'
+Content type 'application/zip' length 4129221 bytes (3.9 MB)
+downloaded 3.9 MB
+
+package ‘mclust’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+C:\Users\juno2\AppData\Local\Temp\RtmpOoYJJt\downloaded_packages
+library(mclust)
+__  ___________    __  _____________
+/  |/  / ____/ /   / / / / ___/_  __/
+/ /|_/ / /   / /   / / / /\__ \ / /   
+/ /  / / /___/ /___/ /_/ /___/ // /    
+/_/  /_/\____/_____/\____//____//_/    version 5.4
+Type 'citation("mclust")' for citing this R package in publications.
+mc <- Mclust(iris[,1:4], G=3)
+fitting ...
+|==============================================================================================================================================================| 100%
+summary(mc, parameters=TRUE)
+----------------------------------------------------
+Gaussian finite mixture model fitted by EM algorithm 
+----------------------------------------------------
+
+Mclust VEV (ellipsoidal, equal shape) model with 3 components:
+
+log.likelihood   n df       BIC       ICL
+-186.074 150 38 -562.5522 -566.4673
+
+Clustering table:
+1  2  3 
+50 45 55 
+
+Mixing probabilities:
+1         2         3 
+0.3333333 0.3005423 0.3661243 
+
+Means:
+[,1]     [,2]     [,3]
+Sepal.Length 5.006 5.915044 6.546807
+Sepal.Width  3.428 2.777451 2.949613
+Petal.Length 1.462 4.204002 5.482252
+Petal.Width  0.246 1.298935 1.985523
+
+Variances:
+[,,1]
+Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length   0.13320850  0.10938369  0.019191764 0.011585649
+Sepal.Width    0.10938369  0.15495369  0.012096999 0.010010130
+Petal.Length   0.01919176  0.01209700  0.028275400 0.005818274
+Petal.Width    0.01158565  0.01001013  0.005818274 0.010695632
+[,,2]
+Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length   0.22572159  0.07613348   0.14689934  0.04335826
+Sepal.Width    0.07613348  0.08024338   0.07372331  0.03435893
+Petal.Length   0.14689934  0.07372331   0.16613979  0.04953078
+Petal.Width    0.04335826  0.03435893   0.04953078  0.03338619
+[,,3]
+Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length   0.42943106  0.10784274   0.33452389  0.06538369
+Sepal.Width    0.10784274  0.11596343   0.08905176  0.06134034
+Petal.Length   0.33452389  0.08905176   0.36422115  0.08706895
+Petal.Width    0.06538369  0.06134034   0.08706895  0.08663823
+
+# plot.Mclust() 함수는 다양한 방식으로 군집 결과를 시각화 
+plot.Mclust(mc)
+Model-based clustering plots: 
+
+1: BIC
+2: classification
+3: uncertainty
+4: density
+
+선택: 2
+
+선택: 
+Enter an item from the menu, or 0 to exit
+선택: 0
+str(mc)
+List of 15
+$ call          : language Mclust(data = iris[, 1:4], G = 3)
+$ data          : num [1:150, 1:4] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+..- attr(*, "dimnames")=List of 2
+.. ..$ : NULL
+.. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+$ modelName     : chr "VEV"
+$ n             : int 150
+$ d             : int 4
+$ G             : int 3
+$ BIC           : 'mclustBIC' num [1, 1:14] -879 -854 -813 -779 -798 ...
+..- attr(*, "dimnames")=List of 2
+.. ..$ : chr "3"
+.. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
+..- attr(*, "G")= num 3
+..- attr(*, "modelNames")= chr [1:14] "EII" "VII" "EEI" "VEI" ...
+..- attr(*, "control")=List of 4
+.. ..$ eps     : num 2.22e-16
+.. ..$ tol     : num [1:2] 1.00e-05 1.49e-08
+.. ..$ itmax   : int [1:2] 2147483647 2147483647
+.. ..$ equalPro: logi FALSE
+..- attr(*, "initialization")=List of 3
+.. ..$ hcPairs: 'hc' num [1:2, 1:149] 102 143 128 139 18 41 1 18 1 28 ...
+.. .. ..- attr(*, "initialPartition")= num [1:150] 1 2 3 4 5 6 7 8 9 10 ...
+.. .. .. ..- attr(*, "unique")= int 150
+.. .. ..- attr(*, "dimensions")= int [1:2] 150 4
+.. .. ..- attr(*, "modelName")= chr "VVV"
+.. .. ..- attr(*, "call")= language hc(data = data, modelName = mclust.options("hcModelNames")[1])
+.. ..$ subset : NULL
+.. ..$ noise  : NULL
+..- attr(*, "warn")= logi FALSE
+..- attr(*, "n")= int 150
+..- attr(*, "d")= int 4
+..- attr(*, "oneD")= logi FALSE
+..- attr(*, "criterion")= chr "BIC"
+..- attr(*, "returnCodes")= num [1, 1:14] 0 0 0 0 0 0 0 0 0 0 ...
+.. ..- attr(*, "dimnames")=List of 2
+.. .. ..$ : chr "3"
+.. .. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
+$ bic           : num -563
+$ loglik        : num -186
+$ df            : num 38
+$ hypvol        : num NA
+$ parameters    :List of 4
+..$ pro     : num [1:3] 0.333 0.301 0.366
+..$ mean    : num [1:4, 1:3] 5.006 3.428 1.462 0.246 5.915 ...
+.. ..- attr(*, "dimnames")=List of 2
+.. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+.. .. ..$ : NULL
+..$ variance:List of 7
+.. ..$ modelName  : chr "VEV"
+.. ..$ d          : int 4
+.. ..$ G          : int 3
+.. ..$ sigma      : num [1:4, 1:4, 1:3] 0.1332 0.1094 0.0192 0.0116 0.1094 ...
+.. .. ..- attr(*, "dimnames")=List of 3
+.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+.. .. .. ..$ : NULL
+.. ..$ scale      : num [1:3] 0.0375 0.0579 0.1142
+.. ..$ shape      : num [1:4] 6.858 1.012 0.627 0.23
+.. ..$ orientation: num [1:4, 1:4, 1:3] -0.6691 -0.7341 -0.0965 -0.0636 0.5979 ...
+.. .. ..- attr(*, "dimnames")=List of 3
+.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
+.. .. .. ..$ : NULL
+..$ Vinv    : NULL
+$ z             : num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
+..- attr(*, "dimnames")=List of 2
+.. ..$ : NULL
+.. ..$ : NULL
+$ classification: num [1:150] 1 1 1 1 1 1 1 1 1 1 ...
+$ uncertainty   : num [1:150] 0 0 0 0 0 0 0 0 0 0 ...
+- attr(*, "class")= chr "Mclust"
+mc$classification
+[1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 2 3 2 2 2 2 3 2 2 2
+[82] 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+
+# 새로운 자료에 대한 분류는 predict() 함수를 이용 
+predict(mc, data= )
+
+install.packages("kohonen")
+library(kohonen)
+data(wines)
+str(wines)
+num [1:177, 1:13] 13.2 13.2 14.4 13.2 14.2 ...
+- attr(*, "dimnames")=List of 2
+..$ : NULL
+..$ : chr [1:13] "alcohol" "malic acid" "ash" "ash alkalinity" ...
+head(wines)
+alcohol malic acid  ash ash alkalinity magnesium tot. phenols flavonoids non-flav. phenols proanth col. int. col. hue OD ratio proline
+[1,]   13.20       1.78 2.14           11.2       100         2.65       2.76              0.26    1.28      4.38     1.05     3.40    1050
+[2,]   13.16       2.36 2.67           18.6       101         2.80       3.24              0.30    2.81      5.68     1.03     3.17    1185
+[3,]   14.37       1.95 2.50           16.8       113         3.85       3.49              0.24    2.18      7.80     0.86     3.45    1480
+[4,]   13.24       2.59 2.87           21.0       118         2.80       2.69              0.39    1.82      4.32     1.04     2.93     735
+[5,]   14.20       1.76 2.45           15.2       112         3.27       3.39              0.34    1.97      6.75     1.05     2.85    1450
+[6,]   14.39       1.87 2.45           14.6        96         2.50       2.52              0.30    1.98      5.25     1.02     3.58    1290
+wines.sc <- scale(wines)
+set.seed(7)
+wine.som <- som(data=wines.sc,
++ grid = somgrid(5,4, "hexagonal"),
++ rlen = 100, alpha = c(0.05, 0.01), 
++ toroidal = FALSE, keep.data = TRUE)
+Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
+wine.som <- som(data = wines.sc, grid = somgrid (5, 4, "hexagonal"), rlen = 100, alpha = c(0.05 , 0.01), toroidal = FALSE, keep.data = TRUE)
+Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
+plot(wine.som, main = "Wine data") 
+summary(wine.som) 
+
+par(mfrow = c(1, 3))
+plot(wine.som, type = "counts", main = "wine data: counts")
+plot(wine.som, type = "quality", main = "wine data: mapping quality")
+plot(wine.som, type="mapping", labels=wine.classes, col=wine.classes, main= "mapping plot")
+
+par(mfrow = c(1 , 3))
+>
+colour1 <- tricolor(wine.som$grid)
+plot(wine.som, "mapping" , bg = rgb(colour1))
+>
+colour2 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6))
+plot(wine.som, "mapping", bg = rgb(colour2))
+>
+colour3 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6 ), offset = .5)
+plot(wine.som, "mapping", bg = rgb(colour3))
+
+unit.distances(grid, toroidal) # SOM 군집 분석 결과， 유니트 사이의 거리 계산법 
+
+par(mfrow = c(1 , 2))
+>
+dists <- unit.distances(wine.som$grid, toroidal=FALSE)
+plot(wine.som, type="property", property=dists[1,],
++ main="Distances to unit 1" , zlim=c(0, 6) ,
++ palette = rainbow, ncolors = 7, contin = TRUE)
+>
+dists <- unit.distances(wine.som$grid, toroidal=FALSE )
+plot(wine.som, type="property", property=dists[1,],
++ main="Distances to unit 1", zlim=c(0,2),
++ palette = rainbow, ncolors = 2, contin = TRUE )
+
+data("wines")
+wines.sc <- scale(wines)
+
+set.seed(7)
+
+wine.som <- som(data=wines.sc, 
++ grid = somgrid(5,4,"hexagonal"), 
++ rlen = 100, 
++ alpha = c(0.05, 0.01), 
++ toroidal = FALSE, keep.data = TRUE)
+
+wine.som_1 <- som(data = wines.sc, 
++ grid = somgrid(5,4,"hexagonal"), 
++ rlen = 500, 
++ alpha = c(0.05, 0.01), 
++ toroidal = FALSE, keep.data = TRUE) 
+
+par(mfrow = c(1,2))
+
+plot(wine.som, type = "changes", main = "Wine data : SOM(Learning no=100")
+plot(wine.som_1, type = "changes", main = "Wine data : SOM(Learning no=500") 
+
+library(ggplot2)
+wines.sc = as.data.frame(wines)
+wines.sc$clusterX <- wine.som$grid$pts[wine.som$unit.classif, "x"]
+wines.sc$clusterY <- wine.som$grid$pts[wine.som$unit.classif, "y"]
+
+p <- ggplot(wines.sc, aes(clusterX, clusterY))
+p+geom_jitter(position=position_jitter(width=0.4, height=0.3))
+
+# arules 패키지의 apriori 함수를 사용하면 연관규칙을 발굴해낼 수 있다.
+데이터
+install.packages("arules")
+library(arules)
+data("Adult")
+Adult
+transactions in sparse format with
+48842 transactions (rows) and
+115 items (columns)
+rules <- apriori(Adult)
+Apriori
+
+Parameter specification:
+confidence minval smax arem  aval originalSupport maxtime support minlen maxlen target   ext
+0.8    0.1    1 none FALSE            TRUE       5     0.1      1     10  rules FALSE
+
+Algorithmic control:
+filter tree heap memopt load sort verbose
+0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+
+Absolute minimum support count: 4884 
+
+set item appearances ...[0 item(s)] done [0.00s].
+set transactions ...[115 item(s), 48842 transaction(s)] done [0.05s].
+sorting and recoding items ... [31 item(s)] done [0.01s].
+creating transaction tree ... done [0.04s].
+checking subsets of size 1 2 3 4 5 6 7 8 9 done [0.14s].
+writing ... [6137 rule(s)] done [0.00s].
+creating S4 object  ... done [0.01s].
+
+inspect(head(rules)) # inspect 함수를 사용하면 apriori 함수를 통해 발굴된 규칙을 보여준다.
+lhs                         rhs                            support   confidence lift     count
+[1] {}                       ={race=White}                   0.8550428 0.8550428  1.000000 41762
+[2] {}                       ={native-country=United-States} 0.8974243 0.8974243  1.000000 43832
+[3] {}                       ={capital-gain=None}            0.9173867 0.9173867  1.000000 44807
+[4] {}                       ={capital-loss=None}            0.9532779 0.9532779  1.000000 46560
+[5] {relationship=Unmarried} ={capital-loss=None}            0.1019819 0.9719024  1.019537  4981
+[6] {occupation=Sales}       ={race=White}                   0.1005282 0.8920785  1.043314  4910
+
+adult.rules <- apriori(Adult, parameter=list(support=0.1, confidence=0.6),
++                         appearance = list(rhs=c('income=small', 'income=large'),
++                                             default='lhs'),
++                         control=list(verbose=F))
+adult.rules.sorted <- sort(adult.rules, by='lift')
+inspect(head(adult.rules.sorted))
+lhs          rhs            support   confidence lift     count
+[1] {age=Young,workclass=Private,capital-loss=None}                              ={income=small} 0.1005282 0.6633342  1.310622 4910 
+[2] {age=Young,workclass=Private}                                                ={income=small} 0.1025961 0.6630938  1.310147 5011 
+[3] {age=Young,marital-status=Never-married,capital-gain=None,capital-loss=None} ={income=small} 0.1060563 0.6616426  1.307279 5180 
+[4] {age=Young,marital-status=Never-married,capital-gain=None}                   ={income=small} 0.1084517 0.6609683  1.305947 5297 
+[5] {relationship=Own-child,capital-loss=None}                                   ={income=small} 0.1000983 0.6604972  1.305016 4889 
+[6] {relationship=Own-child}                                                     ={income=small} 0.1023914 0.6596755  1.303393 5001 
+
+install.packages("arulesViz") 
+library(arulesViz)
+plot(adult.rules.sorted, method="scatterplot")
+plot(adult.rules.sorted, method="graph", control=list(type="items", alpha=0.5))
+
+
