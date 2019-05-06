@@ -330,7 +330,7 @@ plot(height , weight) # 산점도 : x 축 height, y 축 weight
 pairs(iris[1:4], main = "Anderson's Iris Data -- 3 species", pch=21, bg=c("red", "green3", "blue") [unclass(iris$Species)]) # 산점도 행렬 
 
 StatScore = c(88 , 90 , 78, 84, 76 , 68 , 50 , 48 , 33, 70 , 48 , 66 , 88 , 96 , 79 , 65 , 27 , 88 , 96 ,
-                + 33, 64, 48 , 77 , 18, 26 , 44 , 48 , 68 , 77 , 64 , 88, 95 , 79 , 88, 49 , 30 , 29 , 10 , 49 , 88)
+              + 33, 64, 48 , 77 , 18, 26 , 44 , 48 , 68 , 77 , 64 , 88, 95 , 79 , 88, 49 , 30 , 29 , 10 , 49 , 88)
 hist( StatScore , prob=T ) # 히스토그램, prob=T 옵션을 통해 상대도수를 표시 
 boxplot ( StatScore ) # 상자그림 
 
@@ -1368,7 +1368,7 @@ x <- c(1,2,3,4,5,6,7,8,9)
 y <- c(5,3,2,3,4,6,10,12,18)
 df1 <- data.frame(x,y)
 
-  df1
+df1
 x  y
 1 1  5
 2 2  3
@@ -1957,7 +1957,7 @@ install.packages("Hmisc")
 library(Hmisc)
 data(mtcars)
 head(mtcars)
-                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+mpg cyl disp  hp drat    wt  qsec vs am gear carb
 Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
 Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
@@ -1974,7 +1974,7 @@ cor(drat,disp) # disp와 drat은 서로 강한 편의 음의 상관성을 가지
 # rcorr함수는 모든 변수들 사이의 상관계수와 함께 가설 H0 : ρ=0 에 대한 p-값을 출력한다.
 # 앞부분 표시된 상관계수 행렬, 아래 부분 표시된 P 행렬은 각 상관계수의 유의확률
 rcorr(as.matrix(mtcars), type="pearson")
-      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 mpg   1.00 -0.85 -0.85 -0.78  0.68 -0.87  0.42  0.66  0.60  0.48 -0.55
 cyl  -0.85  1.00  0.90  0.83 -0.70  0.78 -0.59 -0.81 -0.52 -0.49  0.53
 disp -0.85  0.90  1.00  0.79 -0.71  0.89 -0.43 -0.71 -0.59 -0.56  0.39
@@ -1991,7 +1991,7 @@ n= 32
 
 
 P
-     mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
+mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
 mpg         0.0000 0.0000 0.0000 0.0000 0.0000 0.0171 0.0000 0.0003 0.0054 0.0011
 cyl  0.0000        0.0000 0.0000 0.0000 0.0000 0.0004 0.0000 0.0022 0.0042 0.0019
 disp 0.0000 0.0000        0.0000 0.0000 0.0000 0.0131 0.0000 0.0004 0.0010 0.0253
@@ -2006,7 +2006,7 @@ carb 0.0011 0.0019 0.0253 0.0000 0.6212 0.0146 0.0000 0.0007 0.7545 0.1290
 # carb와 am의 p-값이 0.7545로 두 변수 사이의 상관계수가 유의하지 않음
 
 cov(mtcars) # 매트릭스 형식으로 공분산
-      mpg         cyl        disp          hp         drat          wt         qsec           vs           am        gear        carb
+mpg         cyl        disp          hp         drat          wt         qsec           vs           am        gear        carb
 mpg    36.324103  -9.1723790  -633.09721 -320.732056   2.19506351  -5.1166847   4.50914919   2.01713710   1.80393145   2.1356855 -5.36310484
 cyl    -9.172379   3.1895161   199.66028  101.931452  -0.66836694   1.3673710  -1.88685484  -0.72983871  -0.46572581  -0.6491935  1.52016129
 disp -633.097208 199.6602823 15360.79983 6721.158669 -47.06401915 107.6842040 -96.05168145 -44.37762097 -36.56401210 -50.8026210 79.06875000
@@ -2024,7 +2024,7 @@ carb   -5.363105   1.5201613    79.06875   83.036290  -0.07840726   0.6757903  -
 # 한 변수를 단조 증가 합수로 변환하여 다른 변수를 나타낼 수 있는 정도를 나타낸다. 
 # 스피어만의 상관계수는 두 변수를 모두 순위로 변환시킨 후, 두 순위 사이의 피어슨 상관계수로 정의가 된다.
 rcorr(as.matrix(mtcars), type="spearman")
-      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 mpg   1.00 -0.91 -0.91 -0.89  0.65 -0.89  0.47  0.71  0.56  0.54 -0.66
 cyl  -0.91  1.00  0.93  0.90 -0.68  0.86 -0.57 -0.81 -0.52 -0.56  0.58
 disp -0.91  0.93  1.00  0.85 -0.68  0.90 -0.46 -0.72 -0.62 -0.59  0.54
@@ -2041,7 +2041,7 @@ n= 32
 
 
 P
-     mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
+mpg    cyl    disp   hp     drat   wt     qsec   vs     am     gear   carb  
 mpg         0.0000 0.0000 0.0000 0.0000 0.0000 0.0071 0.0000 0.0008 0.0013 0.0000
 cyl  0.0000        0.0000 0.0000 0.0000 0.0000 0.0006 0.0000 0.0022 0.0008 0.0005
 disp 0.0000 0.0000        0.0000 0.0000 0.0000 0.0081 0.0000 0.0001 0.0003 0.0014
@@ -2068,7 +2068,7 @@ korean math english science
 5     59   50      80      67
 6     60   64      95      89
 rcorr(as.matrix(test), type="spearman")
-        korean  math english science
+korean  math english science
 korean    1.00  0.65    0.20    0.00
 math      0.65  1.00    0.16   -0.09
 english   0.20  0.16    1.00   -0.42
@@ -2078,7 +2078,7 @@ n= 11
 
 
 P
-        korean math   english science
+korean math   english science
 korean         0.0299 0.5517  1.0000 
 math    0.0299        0.6462  0.7937 
 english 0.5517 0.6462         0.1926 
@@ -2087,7 +2087,7 @@ science 1.0000 0.7937 0.1926
 # 2. 다차원 척도법
 data(eurodist) # eurodist는 각 도시 사이의 거리를 포함하는 행렬형태의 자료 
 eurodist
-                Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen Geneva Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid
+Athens Barcelona Brussels Calais Cherbourg Cologne Copenhagen Geneva Gibraltar Hamburg Hook of Holland Lisbon Lyons Madrid
 Barcelona         3313                                                 
 Brussels          2963      1318                                       
 Calais            3175      1326      204                              
@@ -2112,7 +2112,7 @@ Vienna            1991      1802     1175   1381      1588     937       1455   
 # 각 개체에 대한 특정 변수들의 관측치는 없더라도 개체 간의 유사성에 대한 자료를 사용하여 산점도를 그릴 수 있다.
 loc <- cmdscale(eurodist)
 loc
-                        [,1]        [,2]
+[,1]        [,2]
 Athens           2290.274680  1798.80293
 Barcelona        -825.382790   546.81148
 Brussels           59.183341  -367.08135
@@ -2170,20 +2170,20 @@ Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00
 fit <- princomp(USArrests, cor=TRUE)
 summary(fit)
 Importance of components:
-                          Comp.1    Comp.2    Comp.3     Comp.4
+  Comp.1    Comp.2    Comp.3     Comp.4
 Standard deviation     1.5748783 0.9948694 0.5971291 0.41644938
 Proportion of Variance 0.6200604 0.2474413 0.0891408 0.04335752 # 첫 번째 주성분 하나가 전체 분산의 약 62%를 설명하고 있다. 두 번째와 세 번째 주성분의 분산은 전체 분산 중 각각 25%와 9%를 설명하고
 Cumulative Proportion  0.6200604 0.8675017 0.9566425 1.00000000
 loadings(fit) # 주성분들의 로딩 벡터들을 보여준다
 
 Loadings:
-          Comp.1 Comp.2 Comp.3 Comp.4
+  Comp.1 Comp.2 Comp.3 Comp.4
 Murder    0.536  0.418  0.341  0.649
 Assault   0.583  0.188  0.268 -0.743
 UrbanPop  0.278 -0.873  0.378  0.134
 Rape      0.543 -0.167 -0.818       
 
-                Comp.1 Comp.2 Comp.3 Comp.4
+Comp.1 Comp.2 Comp.3 Comp.4
 SS loadings      1.00   1.00   1.00   1.00
 Proportion Var   0.25   0.25   0.25   0.25
 Cumulative Var   0.25   0.50   0.75   1.00
@@ -2258,7 +2258,7 @@ Aesthetics <- c(3,2,4,1,5,2,2,4,6,7,6,7,5,6,5,7)
 Brand <- c(4,2,5,3,5,3,1,4,7,5,7,6,6,5,5,7)
 data <- data.frame(Price,Software,Aesthetics,Brand)
 head(data)
-   Price Software Aesthetics Brand
+Price Software Aesthetics Brand
 1     6        5          3     4
 2     7        3          2     2
 3     6        4          4     5
@@ -2268,13 +2268,13 @@ head(data)
 pca <- princomp(data, cor=T)
 summary(pca, loadings=T)
 Importance of components:
-                          Comp.1    Comp.2    Comp.3     Comp.4
+  Comp.1    Comp.2    Comp.3     Comp.4
 Standard deviation     1.5589391 0.9804092 0.6816673 0.37925777
 Proportion of Variance 0.6075727 0.2403006 0.1161676 0.03595911
 Cumulative Proportion  0.6075727 0.8478733 0.9640409 1.00000000
 
 Loadings:
-           Comp.1 Comp.2 Comp.3 Comp.4
+  Comp.1 Comp.2 Comp.3 Comp.4
 Price       0.523         0.848       
 Software    0.177  0.977 -0.120       
 Aesthetics -0.597  0.134  0.295  0.734
@@ -2295,7 +2295,7 @@ biplot(pca)
 # 다만, 일반 데이터 셋을 시계열 자료 형식으로 변환하려면 ts 함수를 사용하면 된다.
 Nile 
 Time Series:
-Start = 1871 
+  Start = 1871 
 End = 1970 
 Frequency = 1 
 [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994 1020  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100
@@ -2341,6 +2341,7 @@ Nile.diff2 <- diff(Nile, differences=2)
 plot(Nile.diff2)
 # 2번 차분한 결과로 시간이 지남에 따라 평균과 분산이 어느 정도 일정한 정상성을 만족하는 것으로 보인다. ???
 
+# ② ARlMA 모델 적합 및 결정
 acf(Nile.diff2, lag.max=20) # 자기상관함수 
 acf(Nile.diff2, lag.max=20, plot=FALSE)
 
@@ -2357,7 +2358,7 @@ Partial autocorrelations of series ‘Nile.diff2’, by lag
 
 1      2      3      4      5      6      7      8      9     10     11     12     13     14     15     16     17     18     19     20 
 -0.626 -0.481 -0.302 -0.265 -0.273 -0.112 -0.353 -0.213  0.038 -0.120 -0.117 -0.197 -0.132 -0.055 -0.109  0.022 -0.184 -0.067 -0.037 -0.024 
-# 부분자기상관함수가 lag =1~8 에서 신뢰구간을 넘어서 음의 값을 가지고， lag=9 에서 절단된 것을 볼 수 있다.
+# 부분자기상관함수가 lag=1~8 에서 신뢰구간을 넘어서 음의 값을 가지고， lag=9 에서 절단된 것을 볼 수 있다.
 
 # forecast 패키지 에 있는 auto.arima 합수를 사용하여 적절한 ARlMA 모형을 결정
 install.packages("forecast")
@@ -2375,7 +2376,8 @@ sigma^2 estimated as 20177:  log likelihood=-630.63
 AIC=1267.25   AICc=1267.51   BIC=1275.04
 # auto.arima 함수를 사용하여 나일강의 연간 유입량 시계열 자료에 적절한 모형은 ARlMA(1,1,1) 모형으로 결정
 
-# 시계열 자료를 ARIMA(1,1,1) 모형에 적합한다
+# 시계열 자료에 대해 적절한 ARIMA 모형이 결정되었다연 ARlMA 모형을 통해 미래의 수치 값을 예측할 수 있다. 
+# 나일강 연간 유입량 시계열 자료의 모형은 ARIMA(1, 1, 1) 모형으로 결정되었다. 이 시계열 자료를 ARIMA(1, 1, 1) 모형에 적합한다.
 Nile.arima <- arima(Nile, order=c(1,1,1))
 Nile.arima
 
@@ -2388,7 +2390,10 @@ Coefficients:
 s.e.  0.1194   0.0605
 
 sigma^2 estimated as 19769:  log likelihood = -630.63,  aic = 1267.25
-Nile.forecasts <- forecast(Nile.arima, h=10) # h=1O은 10개 년도만 예측
+
+# 데이터를 모형에 적합한 후 forecast 패키지의 forecast 함수를 사용하여 미래의 수치 값을 예측한다.
+# h=10은 10개 년도만 예측한다는 의미
+Nile.forecasts <- forecast(Nile.arima, h=10) 
 Nile.forecasts
 Point Forecast    Lo 80     Hi 80    Lo 95    Hi 95
 1971       816.1813 635.9909  996.3717 540.6039 1091.759
@@ -2403,6 +2408,7 @@ Point Forecast    Lo 80     Hi 80    Lo 95    Hi 95
 1980       842.1704 628.9682 1055.3727 516.1057 1168.235
 plot(Nile.forecasts)
 
+# Exercise (p.439) 
 firm <- read.csv("C:\\Users\\juno2\\Documents\\회사업무\\ADP\\ceo_salary_p440.csv")
 head(firm)
 salary tenure age  sales profits assets
@@ -2412,6 +2418,7 @@ salary tenure age  sales profits assets
 4   3300      6  60 100697    6370  92630
 5      0     18  63 100469    9296 355935
 6   9375      6  57  81667    6328  86100
+# 1. 표의 빈칸에 해당하는 기초 통계량을 구하시오.
 summary(firm)
 salary         tenure           age            sales           profits          assets       
 Min.   :   0   Min.   : 0.00   Min.   :51.00   Min.   : 31707   Min.   :  568   Min.   :  14166  
@@ -2444,11 +2451,11 @@ var(firm$assets)
 [1] 648644675330
 sd(firm$assets)
 [1] 805384.8
-# profits 에 따른 CEO의 salary에 대한 산점도, 상관계수
+# 2. profits 에 따른 CEO의 salary에 대한 산점도를 그리고 상관계수를 구하시오.
 plot(firm$profits,firm$salary)
 cor(firm$profits,firm$salary)
 [1] 0.3019593
-# profits에 따른 CEO 의 salary 에 대한 단순 선형 회귀식
+# 3. profits에 따른 CEO 의 salary 에 대한 단순선형회귀식을 구하고 분석하시오.
 lm(salary~profits,data=firm)
 
 Call:
@@ -2478,9 +2485,9 @@ Residual standard error: 2562 on 18 degrees of freedom
 Multiple R-squared:  0.09118,	Adjusted R-squared:  0.04069 
 F-statistic: 1.806 on 1 and 18 DF,  p-value: 0.1957
 # 추정된 회귀식 salary = 3024.1107 + 0.1675profits
-유의수준 0.05하에서 p-값=0.1957 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
+# 유의수준 0.05하에서 p-값=0.1957 > 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
 
-# profits과 age, sales 에 따른 CEO 의 salary의 회귀식 
+# 4. profits과 age, sales 에 따른 CEO 의 salary 의 회귀식을 구하고 분석하시오. 
 lm(salary~profits+age+sales,data=firm)
 
 Call:
@@ -2510,9 +2517,9 @@ Residual standard error: 2647 on 16 degrees of freedom
 Multiple R-squared:  0.1377,	Adjusted R-squared:  -0.02403 
 F-statistic: 0.8514 on 3 and 16 DF,  p-value: 0.4861
 # 추정된 회귀식 salary = 0.004569 + 0.234pTOfits + 0.01274age - 0.0056sales 
-유의수준 0.05하에서 p-값=0.4861 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
+# 유의수준 0.05하에서 p-값=0.4861 > 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
 
-# profit, age, sales, tenure, assets 에 따른 CEO의 salary 의 회귀식
+# 5. profit, age, sales, tenure, assets 에 따른 CEO의 salary 의 회귀식을 구하고 분석하시오.
 lm(salary~profits+age+sales+tenure+assets,data=firm)
 
 Call:
@@ -2546,7 +2553,7 @@ Residual standard error: 2822 on 14 degrees of freedom
 Multiple R-squared:  0.1426,	Adjusted R-squared:  -0.1636 
 F-statistic: 0.4658 on 5 and 14 DF,  p-value: 0.7954
 
-# 후진선택법으로 최적의 회귀식을 찾으시오. 단, salary를 종속변수로 한다.
+# 6. 후진선택법으로 최적의 회귀식을 찾으시오. 단, salary를 종속변수로 한다.
 step(lm(salary~.,data=firm),dirction="backward")
 Start:  AIC=322.67
 salary ~ tenure + age + sales + profits + assets
@@ -2604,9 +2611,9 @@ Coefficients:
   (Intercept)  
 3817  
 # 추정된 회귀식 : salary = -288 + 0.1798profits + 49.54age + 43.35tenure - 0.0001.56assets
-유의수준 0.05하에서 p-값=0.6741 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
+# 유의수준 0.05하에서 p-값=0.6741 > 0.05 이므로 추정된 회귀식이 통계적으로 유의하지 않다.
 
-# 전진선택법으로 최적의 회귀식을 찾으시오. 단, salary룰 종속변수로 한다.
+# 7. 전진선택법으로 최적의 회귀식을 찾으시오. 단, salary룰 종속변수로 한다.
 step(lm(salary~1,firm), scope=list(lower~1,upper=~tenure+age+sales+profits+assets), direction="forward")
 Start:  AIC=315.75
 salary ~ 1
@@ -2626,7 +2633,7 @@ Coefficients:
   (Intercept)  
 3817  
 
-# 단계적 방법으로 최적의 회귀식을 찾으시오. 단, salary를 종속변수로 한다.
+# 8.단계적 방법으로 최적의 회귀식을 찾으시오. 단, salary를 종속변수로 한다.
 step(lm(salary~1,firm), scope=list(lower=~1,upper=~tenure+age+sales+profits+assets), direction="both")
 Start:  AIC=315.75
 salary ~ 1
@@ -2768,9 +2775,9 @@ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
 $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
 $ carb: num  4 4 1 1 2 1 4 2 2 4 ...
 
-# 이항 변수 vs (O:flat engine, l:straight engine)를 반응변수로,
-# mpg(miles/gallon)와 am(Transmission:O=automatic, 1: manual)을 예측변수로 하는 로지스틱회귀모형을 이용하면 다음과 같다. 
-# 아래 glm() 함수의 적용시 family= binomial은 family= binomial (logit)과 동일하다.
+# 이항 변수 vs (0:flat engine, 1:straight engine)를 반응변수로,
+# mpg(miles/gallon)와 am(Transmission:O=automatic, 1: manual)을 예측변수로 하는 로지스틱회귀모형을 이용
+# glm() 함수의 적용시 family=binomial은 family=binomial(logit)과 동일.
 glm.vs <- glm(vs~mpg+am,data=mtcars, family=binomial)
 summary(glm.vs)
 
@@ -2796,11 +2803,13 @@ Residual deviance: 20.646  on 29  degrees of freedom
 AIC: 26.646
 
 Number of Fisher Scoring iterations: 6
-# 다중로지스틱에서 추정된 회귀계수 β1 에 대한 해석은 다음과 같다. 
-# 다른 모든 변수들(여기서는 am)이 주어질 때， mpg 값이 한 단위 증가함에 따라 vs가 1일 오즈가 exp(0.6809) = 1.98 배(즉, 98%) 증가한다.
+
+# 다른 모든 변수들(여기서는 am)이 주어질 때, mpg 값이 한 단위 증가함에 따라 vs가 1일 오즈가 exp(0.6809) = 1.98 배(즉, 98%) 증가한다.
 # 마찬가지로, mpg가 주어질 때, 오즈에 대한 am의 효과는 exp(-3.0073) = 0.05 배 
 # 즉, 변속기가 수동인 경우 자동에 비해 vs=1의 오즈가 95%나 감소한다.
 
+# 예측변수가 여러 개인 모형의 적합시 변수선택법을 적용하기 위해서는 direction= 옵션을 사용
+# direction= 용션 에 는 “both", "backward", " forward" 가 있으며 디폴트는 "backward" 가 적용
 step.vs <- step(glm.vs, direction="backward")
 Start:  AIC=26.65
 vs ~ mpg + am
@@ -2843,7 +2852,7 @@ ls(glm.vs)
 [15] "formula"           "iter"              "linear.predictors" "method"            "model"             "null.deviance"     "offset"           
 [22] "prior.weights"     "qr"                "R"                 "rank"              "residuals"         "terms"             "weights"          
 [29] "xlevels"           "y"                
-str(glm.vs)
+> str(glm.vs)
 List of 30
 $ coefficients     : Named num [1:3] -12.705 0.681 -3.007
 ..- attr(*, "names")= chr [1:3] "(Intercept)" "mpg" "am"
@@ -2852,274 +2861,212 @@ $ residuals        : Named num [1:32] -1.24 -1.24 2.21 1.15 -2.03 ...
 $ fitted.values    : Named num [1:32] 0.196 0.196 0.453 0.866 0.507 ...
 ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
 $ effects          : Named num [1:32] 0.726 -1.939 1.88 0.932 -0.658 ...
-..- attr(*, "names")= chr [1:32] "(Intercept)" "mpg" "am" "" ...
-$ R                : num [1:3, 1:3] -1.8 0 0 -35.07 -5.29 ...
-..- attr(*, "dimnames")=List of 2
-.. ..$ : chr [1:3] "(Intercept)" "mpg" "am"
-.. ..$ : chr [1:3] "(Intercept)" "mpg" "am"
-$ rank             : int 3
-$ qr               :List of 5
-..$ qr   : num [1:32, 1:3] -1.804 0.22 0.276 0.189 0.277 ...
-.. ..- attr(*, "dimnames")=List of 2
-.. .. ..$ : chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-.. .. ..$ : chr [1:3] "(Intercept)" "mpg" "am"
-..$ rank : int 3
-..$ qraux: num [1:3] 1.22 1.1 1.12
-..$ pivot: int [1:3] 1 2 3
-..$ tol  : num 1e-11
-..- attr(*, "class")= chr "qr"
-$ family           :List of 12
-..$ family    : chr "binomial"
-..$ link      : chr "logit"
-..$ linkfun   :function (mu)  
-  ..$ linkinv   :function (eta)  
-    ..$ variance  :function (mu)  
-      ..$ dev.resids:function (y, mu, wt)  
-        ..$ aic       :function (y, n, mu, wt, dev)  
-          ..$ mu.eta    :function (eta)  
-            ..$ initialize:  expression({  if (NCOL(y) == 1) {  if (is.factor(y))  y <- y != levels(y)[1L]  n <- rep.int(1, nobs)  y[weights =| __truncated__
-                                                                  ..$ validmu   :function (mu)  
- ..$ valideta  :function (eta)  
-   ..$ simulate  :function (object, nsim)  
-     ..- attr(*, "class")= chr "family"
-                                                                  $ linear.predictors: Named num [1:32] -1.4131 -1.4131 -0.1874 1.8666 0.0281 ...
-                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                  $ deviance         : num 20.6
-                                                                  $ aic              : num 26.6
-                                                                  $ null.deviance    : num 43.9
-                                                                  $ iter             : int 6
-                                                                  $ weights          : Named num [1:32] 0.157 0.157 0.248 0.116 0.25 ...
-                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                  $ prior.weights    : Named num [1:32] 1 1 1 1 1 1 1 1 1 1 ...
-                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                  $ df.residual      : int 29
-                                                                  $ df.null          : int 31
-                                                                  $ y                : Named num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                  ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
-                                                                  $ converged        : logi TRUE
-                                                                  $ boundary         : logi FALSE
-                                                                  $ model            :'data.frame':	32 obs. of  3 variables:
- ..$ vs : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                  ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
-                                                                  ..$ am : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
-                                                                  ..- attr(*, "terms")=Classes 'terms', 'formula'  language vs ~ mpg + am
-                                                                  .. .. ..- attr(*, "variables")= language list(vs, mpg, am)
-                                                                  .. .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-                                                                  .. .. .. ..- attr(*, "dimnames")=List of 2
-                                                                  .. .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
-                                                                  .. .. .. .. ..$ : chr [1:2] "mpg" "am"
-                                                                  .. .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
-                                                                  .. .. ..- attr(*, "order")= int [1:2] 1 1
-                                                                  .. .. ..- attr(*, "intercept")= int 1
-                                                                  .. .. ..- attr(*, "response")= int 1
-                                                                  .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
- .. .. ..- attr(*, "predvars")= language list(vs, mpg, am)
-                                                                  .. .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-                                                                  .. .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
-                                                                  $ call             : language glm(formula = vs ~ mpg + am, family = binomial, data = mtcars)
-                                                                  $ formula          :Class 'formula'  language vs ~ mpg + am
-                                                                  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
- $ terms            :Classes 'terms', 'formula'  language vs ~ mpg + am
-                                                                  .. ..- attr(*, "variables")= language list(vs, mpg, am)
-                                                                  .. ..- attr(*, "factors")= int [1:3, 1:2] 0 1 0 0 0 1
-                                                                  .. .. ..- attr(*, "dimnames")=List of 2
-                                                                  .. .. .. ..$ : chr [1:3] "vs" "mpg" "am"
-                                                                  .. .. .. ..$ : chr [1:2] "mpg" "am"
-                                                                  .. ..- attr(*, "term.labels")= chr [1:2] "mpg" "am"
-                                                                  .. ..- attr(*, "order")= int [1:2] 1 1
-                                                                  .. ..- attr(*, "intercept")= int 1
-                                                                  .. ..- attr(*, "response")= int 1
-                                                                  .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
- .. ..- attr(*, "predvars")= language list(vs, mpg, am)
-                                                                  .. ..- attr(*, "dataClasses")= Named chr [1:3] "numeric" "numeric" "numeric"
-                                                                  .. .. ..- attr(*, "names")= chr [1:3] "vs" "mpg" "am"
-                                                                  $ data             :'data.frame':	32 obs. of  11 variables:
- ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
-                                                                  ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...
-                                                                  ..$ disp: num [1:32] 160 160 108 258 360 ...
-                                                                  ..$ hp  : num [1:32] 110 110 93 110 175 105 245 62 95 123 ...
-                                                                  ..$ drat: num [1:32] 3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
-                                                                  ..$ wt  : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
-                                                                  ..$ qsec: num [1:32] 16.5 17 18.6 19.4 17 ...
-                                                                  ..$ vs  : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
-                                                                  ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
-                                                                  ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
-                                                                  ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-                                                                  $ offset           : NULL
-                                                                  $ control          :List of 3
-                                                                  ..$ epsilon: num 1e-08
-                                                                  ..$ maxit  : num 25
-                                                                  ..$ trace  : logi FALSE
-                                                                  $ method           : chr "glm.fit"
-                                                                  $ contrasts        : NULL
-                                                                  $ xlevels          : Named list()
-                                                                  - attr(*, "class")= chr [1:2] "glm" "lm"
-                                                                  
-                                                                  # anova() 함수는 모형의 적 합(변수가 추가되는) 단계별로 이탈도의 감소량과 유의성 검정 결과를 제시
-                                                                  anova(glm.vs, test="Chisq")
-                                                                  Analysis of Deviance Table
-                                                                  
-                                                                  Model: binomial, link: logit
-                                                                  
-                                                                  Response: vs
-                                                                  
-                                                                  Terms added sequentially (first to last)
-                                                                  
-                                                                  
-                                                                  Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
-                                                                  NULL                    31     43.860              
-                                                                  mpg   1   18.327        30     25.533 1.861e-05 ***
- am    1    4.887        29     20.646   0.02706 *  
- ---
- Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-                                                                  # 절편항만 포함하는 영(null) 모형에서 mpg와 am 변수가 차례로 모형에 추가됨에 따라 발생하는 이탈도의 감소량을 제시하며 
-                                                                  # p-값은 각각 p(x2 (1) 18.327) 과 p(x2 (1) 4.887) 을 계산한 값이다.
-                                                                  # 그 결과 두 변수가 차례로 추가되면서 생겨나는 이탈도의 감소량이 모두 통계적으로 유의함을 나타낸다.
-                                                                  1-pchisq(18.327,1)
-                                                                  [1] 1.860515e-05
-                                                                  1-pchisq(4.887,1)
-                                                                  [1] 0.02705967
-                                                                  
-                                                                  
-                                                                  # 2. 신경망 모형 
-                                                                  # 인공신경망에서 입력(inputs)은 시냅스에 해당하며 개별신호의 강도에 따라 가중(weight) 되며, 
-                                                                  # 활성 함수(activation function)는 인공신경망의 출력 (outputs)을 계산한다
-                                                                  # iris : 자료의 수는 150개이며 입력변수의 차원은 4이며, 목표값은 3개의 범주로 출력된다. ??? 
-                                                                  library(nnet)
-                                                                  nn.iris <- nnet(Species~.,data=iris, size=2, rang=0.1, decay=5e-4, maxit=200)
-                                                                  # weights:  19
-                                                                  initial  value 164.777723 
-                                                                  iter  10 value 21.844122
-                                                                  iter  20 value 9.390303
-                                                                  iter  30 value 8.746321
-                                                                  iter  40 value 8.572956
-                                                                  iter  50 value 8.506089
-                                                                  iter  60 value 8.438906
-                                                                  iter  70 value 8.409124
-                                                                  iter  80 value 8.405577
-                                                                  iter  90 value 7.958875
-                                                                  iter 100 value 6.943049
-                                                                  iter 110 value 6.673702
-                                                                  iter 120 value 6.475792
-                                                                  iter 130 value 6.464455
-                                                                  iter 140 value 6.447116
-                                                                  iter 150 value 6.444583
-                                                                  final  value 6.443926 
-                                                                  converged
-                                                                  summary(nn.iris)
-                                                                  a 4-2-3 network with 19 weights
-                                                                  options were - softmax modelling  decay=5e-04
-                                                                  b->h1 i1->h1 i2->h1 i3->h1 i4->h1 
-                                                                  3.04   0.43  -0.09  -0.79  -1.89 
-                                                                  b->h2 i1->h2 i2->h2 i3->h2 i4->h2 
-                                                                  2.40   5.76  14.99 -13.86 -10.02 
-                                                                  b->o1 h1->o1 h2->o1 
-                                                                  -12.33  31.88  -0.90 
-                                                                  b->o2 h1->o2 h2->o2 
-                                                                  2.27   1.24   7.79 
-                                                                  b->o3 h1->o3 h2->o3 
-                                                                  10.06 -33.12  -6.89 
-                                                                  library(devtools)
-                                                                  source_url('https://gist.githubusercontent.com/Peque/41a9e20d6687f2f3108d/raw/85e14f3a292e126f1454864427e3a189c2fe33f3/nnet_plot_update.r')
-                                                                  SHA-1 hash of file is bf3c7b8ac910823b729e3ce73bb6ab5e6955ad3d
-                                                                  plot.nnet(nn.iris) # 선의 굵기는 연결선의 가중치 (weight) 에 비례한다
-                                                                  Loading required package: scales
-                                                                  Loading required package: reshape
-                                                                  # 신경망 분석에 대한 시각화 결과는 다음 과정을 통해서도 가능하다(3개의 패키지 를 인스톨 후 plot() 함수를 이용). 
-                                                                  # 이 방법은 url로부터 파일을 가져오지 않아도 되므로 위의 방법보다 편리하다.
-                                                                  library(clusterGeneration)
-                                                                  필요한 패키지를 로딩중입니다: MASS
-                                                                  library(scales)
-                                                                  library(reshape)
-                                                                  plot(nn.iris)
-                                                                  # 신경망 모형에 대한 정오분류표(confusion matrix) 
-                                                                  table(iris$Species, predict(nn.iris, iris, type="class"))
-                                                                  
-                                                                  setosa versicolor virginica
-                                                                  setosa         50          0         0
-                                                                  versicolor      0         49         1
-                                                                  virginica       0          0        50
-                                                                  # setosa는 50개 모두, versicolor은 50 개 중 49개, virginica는 50개중 49개가 잘 분류되었다.
-                                                                  
-                                                                  data(infert, package="datasets")
-                                                                  str(infert)
-                                                                  'data.frame':	248 obs. of  8 variables:
- $ education     : Factor w/ 3 levels "0-5yrs","6-11yrs",..: 1 1 1 1 2 2 2 2 2 2 ...
-                                                                  $ age           : num  26 42 39 34 35 36 23 32 21 28 ...
-                                                                  $ parity        : num  6 1 6 4 3 4 1 2 1 2 ...
-                                                                  $ induced       : num  1 1 2 2 1 2 0 0 0 0 ...
-                                                                  $ case          : num  1 1 1 1 1 1 1 1 1 1 ...
-                                                                  $ spontaneous   : num  2 0 0 0 1 1 0 0 1 0 ...
-                                                                  $ stratum       : int  1 2 3 4 5 6 7 8 9 10 ...
-                                                                  $ pooled.stratum: num  3 1 4 2 32 36 6 22 5 19 ...
-                                                                  library(neuralnet)
-                                                                  net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=infert, hidden=2, err.fct="ce", linear.output=FALSE, likelihood=TRUE)
-                                                                  Warning message:
- algorithm did not converge in 1 of 1 repetition(s) within the stepmax 
-                                                                  net.infert # p.467 결과가 책과 다름. 일단 통과 (p.472까지)
-                                                                  
-                                                                  # 0과 100 사이의 난수를 50 개 발생시키고， 제곱근을 취한 값을 결과로 하는 자료를 구축한다
-                                                                  library(neuralnet)
-                                                                  train.out <- as.data.frame(runif(50,min=0,max=100))
-                                                                  train.input <- as.data.frame(runif(50,min=0,max=100))
-                                                                  train.output <- sqrt(train.input)
-                                                                  train.data <- cbind(train.input, train.output)
-                                                                  colnames(train.data) <- c("Input","Output")
-                                                                  head(train.data)
-                                                                  Input      Output
-                                                                  1 60.23831414 7.761334559
-                                                                  2 23.13909307 4.810311120
-                                                                  3 35.02012538 5.917780444
-                                                                  4 10.53790939 3.246214625
-                                                                  5 90.50094713 9.513198575
-                                                                  6 46.70735106 6.834277655
-                                                                  
-                                                                  # 1개의 은닉층과 1Q개의 은닉노드를 가지는 신경망모형을 적용한다
-                                                                  net.sqrt <- neuralnet(Output~Input,train.data,hidden=10,threshold=0.01)
-                                                                  print(net.sqrt)
-                                                                  plot(net.sqrt)
-                                                                  
-                                                                  # 1 ~ 1O 정수값의 제곱을 취하여 검증용 자료(test.data)를 만든 후, 
-                                                                  # 이 자료에 대해 compute() 함수를 통해 신경망 모형 (net.sqrt)을 적용하고, 그 결과를 출력한다.
-                                                                  test.data <- as.data.frame((1:10)^2)
-                                                                  test.out <- compute(net.sqrt, test.data)
-                                                                  ls(test.out)
-                                                                  [1] "net.result" "neurons"   
-                                                                  print(test.out$net.result)
-                                                                  [,1]
-                                                                  [1,] 0.9053011126
-                                                                  [2,] 2.0298476075
-                                                                  [3,] 2.9993973702
-                                                                  [4,] 3.9985522614
-                                                                  [5,] 4.9972990921
-                                                                  [6,] 6.0076170955
-                                                                  [7,] 6.9938123018
-                                                                  [8,] 8.0034570552
-                                                                  [9,] 9.0147943179
-                                                                  [10,] 9.9555461693
-                                                                  net2.sqrt <- neuralnet(Output~Input,train.data,hidden=c(10,8),threshold=0.01)
-                                                                  plot(net2.sqrt)
-                                                                  
-                                                                  
-                                                                  p.476
-                                                                  3. 의사결정나무 모형
-                                                                  
-                                                                  # R 패키지 {rpart} 의 rpart() 함수를 이용하여 의사결정 나무 분석을 수행한다. 
-                                                                  # rpart는 recursive partitioning and regression tree 의 약어
-                                                                  library(rpart)
-                                                                  c <- rpart(Species~.,data=iris)
-                                                                  c
-                                                                  n= 150 
-                                                                  
-                                                                  node), split, n, loss, yval, (yprob)
+
+
+# anova() 함수는 모형의 적 합(변수가 추가되는) 단계별로 이탈도의 감소량과 유의성 검정 결과를 제시
+anova(glm.vs, test="Chisq")
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: vs
+
+Terms added sequentially (first to last)
+
+
+Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                    31     43.860              
+mpg   1   18.327        30     25.533 1.861e-05 ***
+am    1    4.887        29     20.646   0.02706 *  
+  ---
+  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 절편항만 포함하는 영(null) 모형에서 mpg와 am 변수가 차례로 모형에 추가됨에 따라 발생하는 이탈도의 감소량을 제시하며 
+# p-값은 각각 p(x2 (1) 18.327) 과 p(x2 (1) 4.887) 을 계산한 값이다.
+# 그 결과 두 변수가 차례로 추가되면서 생겨나는 이탈도의 감소량이 모두 통계적으로 유의함을 나타낸다.
+1-pchisq(18.327,1)
+[1] 1.860515e-05
+1-pchisq(4.887,1)
+[1] 0.02705967
+
+
+# 2. 신경망 모형 
+# 인공신경망에서 입력(inputs)은 시냅스에 해당하며 개별신호의 강도에 따라 가중(weight) 되며, 
+# 활성 함수(activation function)는 인공신경망의 출력 (outputs)을 계산한다
+# iris : 자료의 수는 150개이며 입력변수의 차원은 4이며, 목표값(Species)은 3개의 범주로 출력 
+library(nnet)
+nn.iris <- nnet(Species~.,data=iris, size=2, rang=0.1, decay=5e-4, maxit=200)
+# weights:  19
+initial  value 164.777723 
+iter  10 value 21.844122
+iter  20 value 9.390303
+iter  30 value 8.746321
+iter  40 value 8.572956
+iter  50 value 8.506089
+iter  60 value 8.438906
+iter  70 value 8.409124
+iter  80 value 8.405577
+iter  90 value 7.958875
+iter 100 value 6.943049
+iter 110 value 6.673702
+iter 120 value 6.475792
+iter 130 value 6.464455
+iter 140 value 6.447116
+iter 150 value 6.444583
+final  value 6.443926 
+converged
+summary(nn.iris)
+a 4-2-3 network with 19 weights
+options were - softmax modelling  decay=5e-04
+b->h1 i1->h1 i2->h1 i3->h1 i4->h1 
+3.04   0.43  -0.09  -0.79  -1.89 
+b->h2 i1->h2 i2->h2 i3->h2 i4->h2 
+2.40   5.76  14.99 -13.86 -10.02 
+b->o1 h1->o1 h2->o1 
+-12.33  31.88  -0.90 
+b->o2 h1->o2 h2->o2 
+2.27   1.24   7.79 
+b->o3 h1->o3 h2->o3 
+10.06 -33.12  -6.89 
+library(devtools)
+source_url('https://gist.githubusercontent.com/Peque/41a9e20d6687f2f3108d/raw/85e14f3a292e126f1454864427e3a189c2fe33f3/nnet_plot_update.r')
+SHA-1 hash of file is bf3c7b8ac910823b729e3ce73bb6ab5e6955ad3d
+plot.nnet(nn.iris) # 선의 굵기는 연결선의 가중치 (weight) 에 비례한다
+Loading required package: scales
+Loading required package: reshape
+# 신경망 분석에 대한 시각화 결과는 다음 과정을 통해서도 가능하다(3개의 패키지를 설치 후 plot() 함수 이용). 
+# 이 방법은 url로부터 파일을 가져오지 않아도 되므로 위의 방법보다 편리하다.
+library(clusterGeneration)
+필요한 패키지를 로딩중입니다: MASS
+library(scales)
+library(reshape)
+plot(nn.iris)
+
+# 신경망 모형에 대한 정오분류표(confusion matrix) 
+table(iris$Species, predict(nn.iris, iris, type="class"))
+
+           setosa versicolor virginica
+setosa         50          0         0
+versicolor      0         49         1
+virginica       0          0        50
+# setosa는 50개 모두, versicolor은 50 개 중 49개, virginica는 50개중 49개가 잘 분류되었다.
+
+# 자료 infert는 자연유산과 인공유산 후의 불임에 대한 사례-대조 연구 자료
+# 8개의 변수와 248개의 관측치를 가지고 있다. 반응변수 case 변수는 (1:사례, 0:대조)를 나타낸다.
+data(infert, package="datasets")
+str(infert)
+'data.frame':	248 obs. of  8 variables:
+$ education     : Factor w/ 3 levels "0-5yrs","6-11yrs",..: 1 1 1 1 2 2 2 2 2 2 ...
+$ age           : num  26 42 39 34 35 36 23 32 21 28 ...
+$ parity        : num  6 1 6 4 3 4 1 2 1 2 ...
+$ induced       : num  1 1 2 2 1 2 0 0 0 0 ...
+$ case          : num  1 1 1 1 1 1 1 1 1 1 ...
+$ spontaneous   : num  2 0 0 0 1 1 0 0 1 0 ...
+$ stratum       : int  1 2 3 4 5 6 7 8 9 10 ...
+$ pooled.stratum: num  3 1 4 2 32 36 6 22 5 19 ...
+library(neuralnet)
+# neuralnet() 함수는 다양한 역전파(back-propagation) 알고리즘을 통해 모형을 적합
+net.infert <- neuralnet(case~age+parity+induced+spontaneous, data=infert, hidden=2, err.fct="ce", linear.output=FALSE, likelihood=TRUE)
+net.infert # p.467 결과가 책과 다름. 일단 통과 (p.472까지)
+plot(net.infert)
+names(net.infert) # neuralnetO 함수의 수행 결과의 추가적인 정보 확인 
+net.infert$result.matrix # neuralnetO 함수의 결과 중 결과 행렬에 대한 정보
+out <- cbind(net.infert$covariate, net.infert$net.result[[1]])
+dimnames(out) <- list(NULL, c("age", "parity", "induced", "spontaneous", "nn-output"))
+head(out)
+# 가중치의 초기값과 적합값은 $startweights와 $weights 에 제공
+# $generalized.weights가 제시하는 일반화가중치는 각 공변량들의 효과를 나타내는 것. 로지스틱 회귀모형에서의 회귀계수와 유사하게 해석
+# 모든자료에 대한 일반화가중치의 분포는 특정 공변량의 효과가 선형적인지의 여부를 나타낸다. 
+# 즉, 작은 분산은 선형효과를 제시하며, 
+# 큰 분산은 관측치 공간상에서 변화가 심하다는 것을 나타내므로 비-선형적인 효과가 있음을 나타낸다.
+head(net.infert$generalized.weights[[1]]) 
+# 일반화가중치에 대한 시각화를 수행
+par(mfrow=c(2,2))
+gwplot(net.infert, selected.covariate="age", min=-2.5, max=5)
+gwplot(net.infert, selected.covariate="parity", min=-2.5, max=5)
+gwplot(net.infert, selected.covariate="induced", min=-2.5, max=5)
+gwplot(net.infert, selected.covariate="spontaneous", min=-2.5, max=5)
+par(mfrow=c(1,1))
+
+# compute() 함수는 각 뉴런의 출력값을 계산해 준다
+new.output <- compute(net.infert,
+                      covariat e=matrix(c(22,1,0,0,
+                                          22,1,1,0
+                                          22,1,0,1,
+                                          22,1,1,1),
+                                        byrow=TRUE, ncol =4))
+new.output$net.result
+# 신경망모형에서 가중치(weights)들에 대한 신뢰구간은 confidence.Interval() 함수를 통해 구할 수 있다.
+
+# R패키지 {neuralnet} 의 neuralnet() 함수를 통해 다층신경망 모형을 적용하여 분석
+# 0과 100 사이의 난수를 50개 발생시키고, 제곱근을 취한 값을 결과로 하는 자료를 구축한다
+library(neuralnet)
+train.out <- as.data.frame(runif(50,min=0,max=100))
+train.input <- as.data.frame(runif(50,min=0,max=100))
+train.output <- sqrt(train.input)
+train.data <- cbind(train.input, train.output)
+colnames(train.data) <- c("Input","Output")
+head(train.data)
+Input      Output
+1 60.23831414 7.761334559
+2 23.13909307 4.810311120
+3 35.02012538 5.917780444
+4 10.53790939 3.246214625
+5 90.50094713 9.513198575
+6 46.70735106 6.834277655
+
+# 1개의 은닉층과 10개의 은닉노드를 가지는 신경망모형을 적용한다
+# threshold= 옵션은 오차함수의 편미분에 대한 값으로 정지규칙 (stopping rule)으로 사용된다
+net.sqrt <- neuralnet(Output~Input,train.data,hidden=10,threshold=0.01)
+print(net.sqrt)
+plot(net.sqrt) # 적합된 신경망모형 시각화 
+
+# 1 ~ 10 정수값의 제곱을 취하여 검증용 자료(test.data)를 만든 후, 
+# 이 자료에 대해 compute() 함수를 통해 신경망 모형 (net.sqrt)을 적용하고, 그 결과를 출력한다.
+test.data <- as.data.frame((1:10)^2)
+test.out <- compute(net.sqrt, test.data)
+ls(test.out)
+[1] "net.result" "neurons"   
+print(test.out$net.result)
+[,1]
+[1,] 0.9053011126
+[2,] 2.0298476075
+[3,] 2.9993973702
+[4,] 3.9985522614
+[5,] 4.9972990921
+[6,] 6.0076170955
+[7,] 6.9938123018
+[8,] 8.0034570552
+[9,] 9.0147943179
+[10,] 9.9555461693
+net2.sqrt <- neuralnet(Output~Input,train.data,hidden=c(10,8),threshold=0.01)
+plot(net2.sqrt)
+
+# 은늬층이 2개인 모형을 적용, 각각의 은닉 노드의 수는 10개, 8개로 한다.
+net2.sqrt <- neuralnet(Output~Input, train.data, hidden = c(10,8), threshold = 0.01)
+plot(net2.sqrt)
+test2.out <- compute(net2.sqrt, test.data)
+print(test2.out$net.result)
+
+
+p.476
+3. 의사결정나무 모형
+
+# R 패키지 {rpart} 의 rpart() 함수를 이용하여 의사결정 나무 분석을 수행한다. 
+# rpart는 recursive partitioning and regression tree 의 약어
+library(rpart)
+c <- rpart(Species~.,data=iris)
+c
+n= 150 
+
+node), split, n, loss, yval, (yprob)
 * denotes terminal node
 
 1) root 150 100 setosa (0.33333333 0.33333333 0.33333333)  
-2) Petal.Length< 2.45 50   0 setosa (1.00000000 0.00000000 0.00000000) *
+  2) Petal.Length< 2.45 50   0 setosa (1.00000000 0.00000000 0.00000000) *
   3) Petal.Length>=2.45 100  50 versicolor (0.00000000 0.50000000 0.50000000)  
-6) Petal.Width< 1.75 54   5 versicolor (0.00000000 0.90740741 0.09259259) *
-  7) Petal.Width>=1.75 46   1 virginica (0.00000000 0.02173913 0.97826087) *
-  plot(c, compress=T, margin=0.3)
+    6) Petal.Width< 1.75 54   5 versicolor (0.00000000 0.90740741 0.09259259) *
+    7) Petal.Width>=1.75 46   1 virginica (0.00000000 0.02173913 0.97826087) *
+plot(c, compress=T, margin=0.3)
 text(c,cex=1.5)
 # predict() 함수를 이용하여 새로운 자료에 대해 예측을 수행한다
 head(predict(c, newdata=iris, type="class"))
@@ -3131,11 +3078,12 @@ tail(predict(c, newdata=iris, type="class"))
 virginica virginica virginica virginica virginica virginica 
 Levels: setosa versicolor virginica
 
+# 적합된 의사결정나무 모형을 여러 가지 방식으로 시각화
 install.packages("rpart.plot")
 library(rpart.plot)
 prp(c, type=4, extra=2)
 
-ls(c)
+ls(c) # rpart() 수행 결과 제공 정보 
 [1] "call"                "control"             "cptable"             "frame"               "functions"           "method"              "numresp"            
 [8] "ordered"             "parms"               "splits"              "terms"               "variable.importance" "where"               "y"                  
 # $cptable은 트리의 크기에 따른 비용-복잡도 모수(cost-complexity parameter)를 제공하며, 교차타당성오차(cross-validation error)를 함께 제공한다.
@@ -3154,10 +3102,12 @@ cp
 prune.c <- prune(c, cp = cp)
 plot(prune.c)
 text(prune.c, use.n=T)
+plotcp(c) # cp값을 그림으로
 
+# 패키지 {party} 의 ctree() 함수를 이용하여 의사결정나무모형을 적용
 install.packages("party")
 library(party)
-data(stagec)
+data(stagec) # 146명의 전립선암 환자의 자료. 7개의 예측변수 이용 범주형 반응변수(ploidy) 예측(또는 분류)
 str(stagec)
 'data.frame':	146 obs. of  8 variables:
   $ pgtime : num  6.1 9.4 5.2 3.2 1.9 4.8 5.8 7.3 3.7 15.9 ...
@@ -3182,7 +3132,7 @@ $ g2     : num  10.26 9.99 3.57 22.56 6.14 ...
 $ grade  : int  2 3 2 4 3 3 3 3 4 3 ...
 $ gleason: int  4 7 4 8 7 6 7 7 8 8 ...
 $ ploidy : Factor w/ 3 levels "diploid","tetraploid",..: 1 1 1 2 1 1 2 2 2 1 ... 
-# 모형구축을 위한 훈련용 자료(training data)와 모형의 성능을 검증하기 위한 검증용 자료(test data) 를 70%와 30%로 구성한다
+# 모형구축을 위한 훈련용 자료(training data)와 모형의 성능 검증용 자료(test data) 를 70%와 30%로 구성
 set.seed(1234)
 ind <- sample(2, nrow(stagec3), replace=TRUE, prob=c(0.7,0.3))
 ind
@@ -3263,7 +3213,7 @@ Ozone
 predict(airct, data=airq, type="node")
 [1] 5 5 5 5 5 5 5 5 3 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 3 5 6 9 9 6 5 5 5 5 5 8 8 6 8 9 8 8 8 8 5 6 6 3 6 8 8 9 3 8 8 6 9 8 8 8 6 3 6 6 8 8 8 8 8 8 9 6 6 5 3 5 6 6 5 5 6
 [82] 3 8 8 8 8 8 8 8 8 8 8 9 6 6 5 5 6 5 3 5 5 3 5 5 5 6 5 5 6 5 5 3 5 5 5
-mean((airq$Ozone - predict(airct))^2)
+mean((airq$Ozone - predict(airct))^2) # 평균제곱오차 
 [1] 403.6668
 
 
@@ -3283,8 +3233,7 @@ plot(iris.bagging$trees[[10]])
 text(iris.bagging$trees[[10]])
 
 pred <- predict(iris.bagging, newdata=iris)
-table(pred$class, iris[,5])
-
+table(pred$class, iris[,5]) # 새로운 자료에 대한 분류(예측)
 setosa versicolor virginica
 setosa         50          0         0
 versicolor      0         47         2
@@ -3293,7 +3242,7 @@ str(pred)
 List of 6
 $ formula  :Class 'formula'  language Species ~ .
 .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv
-  $ votes    : num [1:150, 1:3] 10 10 10 10 10 10 10 10 10 10 ...
+$ votes    : num [1:150, 1:3] 10 10 10 10 10 10 10 10 10 10 ...
 $ prob     : num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
 $ class    : chr [1:150] "setosa" "setosa" "setosa" "setosa" ...
 $ confusion: 'table' int [1:3, 1:3] 50 0 0 0 47 3 0 2 48
@@ -3323,7 +3272,7 @@ setosa         50          0         0
 versicolor      0         50         0
 virginica       0          0        50
 # 오분류율   
-error.rpart <- 1-(sum(diag(tb))/sum(tb))
+error.rpart <- 1-(sum(diag(tb))/sum(tb)) # diagonal : 사선의, 대각선의
 error.rpart
 [1] 0
 
@@ -3331,19 +3280,15 @@ install.packages("ada")
 library(ada)
 data(iris)
 iris[iris$Species!="setosa",]->iris # setosa를 제외
-n <- dim(iris)[1]
-# 100개의 자료를 60 개의 훈련용 자료 (training d ata)와 검증용 자료(testing data)로 나누었다.
-trind <- sample(1:n, floor(.6*n), FALSE)
-teind <- setdiff(1:n, trind)
+n <- dim(iris)[1] # 데이터 건수 n 에 저장 
 n
 [1] 100
-iris[,5] <- as.factor((levels(iris[,5])[2:3])[as.nemeric(iris[,5])-1])
-Error in as.nemeric(iris[, 5]) : could not find function "as.nemeric"
+# 100개의 자료를 60 개의 훈련용 자료 (training data)와 검증용 자료(testing data)로 나누었다.
+trind <- sample(1:n, floor(.6*n), FALSE)
+teind <- setdiff(1:n, trind)
 iris[,5] <- as.factor((levels(iris[,5])[2:3])[as.numeric(iris[,5])-1])
-gdis <- ada(Species~., data=iris[trind,], iter=20, nu=1, type="discrete")
-gdis <- addtest(gdis, iris[teind,-5], iris[teind, 5])
-gids
-Error: object 'gids' not found
+gdis <- ada(Species~., data=iris[trind,], iter=20, nu=1, type="discrete") # 훈련용 데이터를 이용하여 부스팅 방법으로 모형을 구축
+gdis <- addtest(gdis, iris[teind,-5], iris[teind, 5]) # 검증용 자료에 대해 분류(예측)
 gdis
 Call:
   ada(Species ~ ., data = iris[trind, ], iter = 20, nu = 1, type = "discrete")
@@ -3367,26 +3312,26 @@ Additional Estimates of number of iterations:
 # plot() 함수는 오차와 일치도를 나타내는 카파( kappa) 계수를 그려준다. 
 # 두 개의 TRUE 옵션은 훈련용, 검증용 자료 모두에 대해 그림을 그려준다.
 plot(gdis, TRUE, TRUE)
-varplot(gdis) # varplot() 함수는 변수의 중요도(importance)를 나타내는 그림을 제공한다
+# varplot() 함수는 변수의 중요도(importance)를 나타내는 그림을 제공한다
+varplot(gdis) 
+# 두 예측변수의 조합별로 분류된 결과를 그려준다. maxvar= 옵션을 통해 변수의 수(중요도가 높은 상위 변수의 수)를 지정
 pairs(gdis, iris[trind,-5], maxvar=4)
+
 
 # 랜덤포레스트(randorn forest)는 배깅에 랜덤 과정을 추가한 방법이다
 install.packages("randomForest")
 library(randomForest)
 library(rpart)
 data(stagec)
-stagec3 <- stagec[complete.cases(stagec),]
-?complete.cases
+stagec3 <- stagec[complete.cases(stagec),] # 모든 결측값 제거 
 set.seed(1234)
-ind <- sample(2, nrow(stagec3), replace=TRUE, prob=(0.7,0.3))
-Error: unexpected ',' in "ind <- sample(2, nrow(stagec3), replace=TRUE, prob=(0.7,"
 ind <- sample(2, nrow(stagec3), replace=TRUE, prob=c(0.7,0.3))
 trainData <- stagec3[ind==1,]
 testData <- stagec3[ind==2,]
 rf <- randomForest(ploidy~., data=trainData, ntree=100, proximity=TRUE)
 table(predict(rf), trainData$ploidy)
 
-diploid tetraploid aneuploid
+           diploid tetraploid aneuploid
 diploid         45          0         3
 tetraploid       1         51         0
 aneuploid        2          0         0
@@ -3399,14 +3344,17 @@ No. of variables tried at each split: 2
 
 OOB estimate of  error rate: 5.88%
 Confusion matrix:
-  diploid tetraploid aneuploid class.error
+           diploid tetraploid aneuploid class.error
 diploid         45          1         2      0.0625
 tetraploid       0         51         0      0.0000
 aneuploid        3          0         0      1.0000
 plot(rf)
 # importance()와 varImpPlot() 로 변수의 중요성을 알 수 있다.
+# 해당 변수로부터 분할이 일어날 때 불순도(impurity)의 감소가 얼마나 일어나는지를 나타내는 값
+# 불순도의 감소가 클수록 순수도가 증가함
+# 지니 지수(Gini index)는 노드의 불순도를 나타내는 값. 회귀의 경우에는 잔차제곱합을 통해 측정
 importance(rf)
-MeanDecreaseGini
+        MeanDecreaseGini
 pgtime         4.6800225
 pgstat         2.0635061
 age            3.5726107
@@ -3415,6 +3363,7 @@ g2            37.5032896
 grade          1.2084410
 gleason        2.0820408
 varImpPlot(rf)
+# 테스트 자료에 대해 예측을 수행한 결과
 rf.pred <- predict(rf, newdata=testData)
 table(rf.pred, testData$ploidy)
 
@@ -3422,7 +3371,7 @@ rf.pred      diploid tetraploid aneuploid
 diploid         17          0         1
 tetraploid       0         13         1
 aneuploid        0          0         0
-# 마진 (margin)은 랜덤포레스트의 분류기(classifiers) 가운데 정분류를 수행한 비율에서 다른 클래스로 분류한 비율의 최대치를 뺀 값을 나타낸다.
+# 마진(margin)은 랜덤포레스트의 분류기(classifiers) 가운데 정분류를 수행한 비율에서 다른 클래스로 분류한 비율의 최대치를 뺀 값을 나타낸다.
 # 즉, 양(positive)의 마진은 정확한 분류를 의미하며, 음(negative)은 그 반대이다.
 plot(margin(rf))
 # 랜덤포레스트는 다음과 같이 R 패키지 {party} 의 cforest() 합수를 이용할 수도 있다.
@@ -3430,13 +3379,16 @@ set.seed(1234)
 cf <- cforest(ploidy~., data=trainData)
 cf.pred <- predict(cf, newdata=testData, OOB=TRUE, type="response")
 
+#### ________ 5. 모형 평가 #### 
+#### __________ # 흘드아웃(hold-out) 방법 ####
 # 흘드아웃(hold-out) 방법은 주어진 원천 데이터를 랜덤하게 두 분류로 분리하여 교차 검정을 실시하는 방법으로 
 # 하나는 모형의 학습 및 구축을 위한 훈련용 자료로 하나는 성과 평가를 위한 검증용 자료로 사용한다.
 data(iris)
 nrow(iris)
 [1] 150
 set.seed(1234)
-idx <- sample(2, nrow(iris), replace=TRUE, prob=c(0.7, 0.3))
+# sample() 함수를 통해 홀드아웃 방법을 수행
+idx <- sample(2, nrow(iris), replace=TRUE, prob=c(0.7, 0.3)) # 1: Training data , 2: Test data
 trainData <- iris[idx==1,]
 testData <- iris[idx==2,]
 idx
@@ -3447,37 +3399,24 @@ nrow(trainData)
 nrow(testData)
 [1] 38
 
-교차검증은 주어진 데이터 를 가지고 반복적으로 성 과를 측정하여 그 결과를 명균한 것으로 분류 분석
-모형을 평가하는 방법이다. 대표적인 기법인 k - fold 교차검증은 전체 데이터를 사이즈가 동일한 k개의 하부
-집합(subset) 으로 나누고 k번째의 하부집합을 검증용 자료로， 나머지 k-1개의 하부집합을 훈련용 자료로
-사용한다. 이를 k번 반복 측정하고 각각의 반복측정 결과를 명균 낸 값을 최종 명가로 사용한다.
-data(iris)
-nrow(iris)
-[1] 150
+#### __________ # 교차검증(cross-validation) ####
+# 주어진 데이터를 가지고 반복적으로 성과를 측정하여 그 결과를 평균한 것으로 분류 분석 모형을 평가하는 방법. 
+# 대표적인 기법인 k-fold 교차검증은 전체 데이터를 사이즈가 동일한 k개의 하부집합(subset) 으로 나누고 
+# k번째의 하부집합을 검증용 자료로， 나머지 k-1개의 하부집합을 훈련용 자료로 사용
+# 이를 k번 반복 측정하고 각각의 반복측정 결과를 평균 낸 값을 최종 평가로 사용.
+# 일반적으로 10-fold 교차 검증 사용, 하부 집합의 분포에 따라 적절한 k의 선정이 필요.
+data("iris")
 set.seed(1234)
-idx <- sample(2, nrow(iris), replace=TRUE, prob=c(0.7, 0.3))
-trainData <- iris[idx==1,]
-testData <- iris[idx==2,]
-nrow(trainData)
-[1] 112
-nrow(testData)
-[1] 38
-
-  
-  data("iris")
-set.seed(1234)
-k = 10
+k = 10 # #10-fold cross validation
 iris <- iris[sample(nrow(iris)),] # Randomly shuffle the data 
 folds <- cut(seq(1,nrow(iris)), breaks=k, labels=FALSE)
-trainData=list(0)
+trainData=list(0) # an empty list of length k
 testData=list(0)
-for (i in 1:k) {}
-for (i in 1:k) {}
 for (i in 1:k) { 
-  +     testIdx <- which(folds==i, arr.ind=TRUE)
-  +     testData[[i]] <- iris[testIdx,]
-  +     trainData[[i]] <- iris[-testIdx,]
-  +     }
+    testIdx <- which(folds==i, arr.ind=TRUE)
+    testData[[i]] <- iris[testIdx,]
+    trainData[[i]] <- iris[-testIdx,]
+    }
 head(trainData[[1]])
 Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 114          5.7         2.5          5.0         2.0 virginica
@@ -3495,64 +3434,60 @@ Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 31           4.8         3.1          1.6         0.2    setosa
 42           4.5         2.3          1.3         0.3    setosa
 
+#### __________ 가. 오분류표(confusion matrix) ####
+# iris 자료에 대해 범주가 2개인 분류 모형을 구축
+data(iris)
+iris # 150건 
+str(iris) # Factor w/ 3 levels "setosa","versicolor",..
 iris <-subset(iris, Species == "setosa" | Species == "versicolor")
+iris # 100건 
 iris$Species <- factor(iris$Species)
+str(iris) # Factor w/ 2 levels "setosa","versicolor"
 set.seed(1234)
-iris <- iris[sample(nrow(iris)),]
-trainData <- iris[1:(nrow(iris)*0.7),]
-testData <- iris[((nrow(iris)*0.7)+1):nrow(iris),]
+iris <- iris[sample(nrow(iris)),] # Randomly shuffle the data
+trainData <- iris[1:(nrow(iris)*0.7),] # 70% 훈련용 자료 
+testData <- iris[((nrow(iris)*0.7)+1):nrow(iris),] # 30% 검증용 자료 
 nrow(trainData)
 [1] 70
+# 훈련용 자료를 사용하여 각 모형을 학습. 
+# 신경망 모형은 R패키지 {nnet} 의 nnet() 합수를 이용
+# 의사결정나무 모형은 {rpart} 의 rpart() 함수를 이용
 library(nnet)
 library(rpart)
 nn.iris <- nnet(Species~., data=trainData, size=2, rang=0.1, decay=5e-4, maxit=200)
-# weights:  13
-initial  value 48.399646 
-iter  10 value 1.154130
-iter  20 value 0.430537
-iter  30 value 0.328848
-iter  40 value 0.206724
-iter  50 value 0.193359
-iter  60 value 0.189328
-iter  70 value 0.184876
-iter  80 value 0.178340
-iter  90 value 0.172773
-iter 100 value 0.168848
-iter 110 value 0.144970
-iter 120 value 0.131006
-iter 130 value 0.109160
-iter 140 value 0.103257
-iter 150 value 0.102342
-iter 160 value 0.102245
-iter 170 value 0.102218
-iter 180 value 0.102188
-iter 190 value 0.102168
-iter 200 value 0.102168
-final  value 0.102168 
-stopped after 200 iterations
-dt.iris <- rpart(Species~., data=trainData)
+dt.iris <- rpart(Species~., data=trainData) # Decision tree
+# 학습된 각 분류 분석 모형을 검증용 자료에 적용시켜 예측값을 도출
 nn_pred <- predict(nn.iris, testData, type="class")
 dt_pred <- predict(dt.iris, testData, type="class")
 install.packages("e1071")
 library(caret)
-nn_con = confusionMatrix(nn_pred, testData$Speceis) # ??? 
-Error: `data` and `reference` should be factors with the same levels.
-dt_con = confusionMatrix(dt_pred, testData$Speceis) # ??? 
-Error: `data` and `reference` should be factors with the same levels.
+str(nn_pred)
+str(testData$Species)
+nn_con = confusionMatrix(factor(nn_pred), testData$Species) # ????
+dt_con = confusionMatrix(dt_pred, testData$Species) 
+nn_con$table
+dt_con$table
 
+# 오분류표를 이용하여 정분류율(accuracy), 정확도(precision), 재현율(recall), F1지표를 비교
+# 신경망 모형이 모든 지표에서 의사결정 모형보다 더 높은 예측 정확도를 보인다.
 accuracy <- c(nn_con$overall['Accuracy'], dt_con$overall['Accuracy'])
-precision <- c(nn_con$byClass['Pos Pred Value'] , dt_con$byClass[Pos Pred Value'])
-recall <- c(nn_con$byClass['Sensitivity'], dt_con$byClass [Sensitivity])
+precision <- c(nn_con$byClass['Pos Pred Value'] , dt_con$byClass['Pos Pred Value'])
+recall <- c(nn_con$byClass['Sensitivity'], dt_con$byClass['Sensitivity'])
 f1 <- 2 * (( precision * recall ) / (precision + recall ))
 result <- data.frame (rbind(accuracy , precision , recall, f1) )
-names(result ) <- c("Nueral Network", "Decision Tree")
+names(result) <- c("Nueral Network", "Decision Tree")
 result
 
 
-나. ROC 그래프
 
+#### __________ 나. ROC 그래프 ####
+# 자연유산과 인공유산 후의 불임에 대한 자료인 infert 에 대하여 
+# 목표 변수를 분류하는 ( 1: 사례, 0: 대조) 의사결정나무 모형과 신경망 모형의 ROC 그래프 분석 결과 예제
+# 의사결정나무 모형은 R패키지 {C50} 의 C5.00 함수를 사용
+# 신경망 모형은 {neuralnet} 의 neuralnet() 함수를 사용
+# 모형 학습 및 검증을 위하여 70%의 훈련용 자료와 30%의 검증용 자료로 구분
 set.seed(1234)
-infert <- infert[sample(nrow(infert)),]
+infert <- infert[sample(nrow(infert)),] # Randomly shuffle the data
 infert <- infert[,c("age","parity","induced","spontaneous","case")]
 trainData <- infert[1:(nrow(infert)*0.7),]
 testData <- infert[((nrow(infert)*0.7)+1):nrow(infert),]
@@ -3582,457 +3517,288 @@ age parity induced spontaneous case      net_pred      dt_pred
 133  38      3       1           0    0 0.06823728009 0.2015895955
 40   28      1       0           1    1 0.60080163992 0.6240261275
 225  27      2       1           0    0 0.30640076176 0.2015895955
-
+# ROC 그래프를 작성하기 위해서는 R패키지 {Epi} 의 ROC() 함수 사용
 install.packages("Epi")
 library(Epi)
 neural_ROC <- ROC(form=case~net_pred, data=testData, plot="ROC")
 dtree_ROC <- ROC(form=case~dt_pred, data=testData, plot="ROC")
+# 신경망 모형의 AUC(0.723) 가 의사결정나무의 AUC(0.661)보다 크게 나와 
+# 신경망 모형의 분류 분석 모형이 더 높은 성과를 보인다고 할 수 있다.
 
+# prediction()함수를 사용하여 ROC 그래프 및 향상도 그래프의 자료를 준비하고 
+# 신경망 모형과 의사결정나무 모형의 ROC 그래프를 performance() 합수를 사용하여 비교
 install.packages("ROCR")
 library(ROCR)
-n_r <- prediction(testData$net_pred, testData$case)
-d_r <- prediction(testData$dt_pred, testData$case)
-n_p <- performance(n_r, "tpr", "fpr")
-d_p <- performance(d_r, "tpr", "fpr")
-plot(n_p, col="red")
-abline(a=0, b=1)
-
+n_r <- prediction(testData$net_pred, testData$case) 
+d_r <- prediction(testData$dt_pred, testData$case) 
+n_p <- performance(n_r, "tpr", "fpr") # ROC graph for neural network
+d_p <- performance(d_r, "tpr", "fpr") # ROC graph for decision tree 
+plot(n_p, col="red") # neural network (Red )
+par(new=TRUE)
+plot(d_p, col="blue") # decision tree (Blue)
+abline(a=0, b=1) # random model graph (Black)
+# 신경망 모형의 향상도 곡선 예제
+# 신경망 모형의 경우 상위 20%의 집단에 대하여 랜덤 모델과 비교할 때 약2배의 성과 향상
 n_lift <- performance(n_r, "lift", "rpp")
 plot(n_lift, col="red")
 abline(v=0.2)
 
 
-제3절 군집 분석
-
+#### ____ 제3절 군집 분석 ####
+#### ______ 1. 계층적 군집 ####
+# hclust() 함수를 이용하여 계층적 군집을 수행
 data(USArrests)
 str(USArrests)
 'data.frame':	50 obs. of  4 variables:
-$ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+  $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
 $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
 $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
 $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
-d <- dist(USArrests, method="euclidean") # 거리 (또는 비유사성)행렬 
-fit <- hclust(d, method="ave") # 계층적 군집 분석 
-par(mfrow=c(1,2))
+# dist()는 거리 (또는 비유사성)행렬을 제공하는 함수로 method= 옵션을 통해 다양한 방식으로 거리를 정의
+# method= 옵션 : "euclidean", "maximum", "manhattan", "binary", "minkowski" 등 
+d <- dist(USArrests, method="euclidean")  
+# hclust() 합수는 계층적 군집분석을 수행하는 항수로 method= 옵션을 통해 병합(또는 연결) 방법을 지정
+# method= 옵션 : "ward", "single", "complete", "average", "centroid" 등
+fit <- hclust(d, method="ave") 
+# plot() 함수를 통해 덴드로그램으로 시각화
+par(mfrow=c(1,2)) # plot 창을 1행, 2열로 구분 (차트 2개 표시) 
 plot(fit)
 plot(fit, hang=-1)
-par(mfrow=c(1,1))
+par(mfrow=c(1,1)) # plots 창 초기화, plot 창을 1행행, 1열로 구분
 
-# cutree()는 계층적군집의 결과를 이용하여 tree 의 높이 (h) 나 그룹의 수(k)를 옵션으로 지정하여 원하는 수의 그룹으로 나눌 수 있다.
+# cutree()는 계층적군집의 결과를 이용하여 tree의 높이(h)나 그룹의 수(k)를 옵션으로 지정 가능.
 groups <- cutree(fit, k=6)
 groups
-Alabama         Alaska        Arizona       Arkansas     California       Colorado    Connecticut       Delaware        Florida        Georgia         Hawaii 
-1              1              1              2              1              2              3              1              4              2              5 
-Idaho       Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana          Maine       Maryland  Massachusetts       Michigan 
-3              1              3              5              3              3              1              5              1              6              1 
-Minnesota    Mississippi       Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey     New Mexico       New York North Carolina 
-5              1              2              3              3              1              5              6              1              1              4 
-North Dakota           Ohio       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee          Texas           Utah 
-5              3              6              6              3              6              1              5              2              2              3 
-Vermont       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
-5              6              6              5              5              6 
-
 
 plot(fit)
-rect.hclust(fit, k=6, border="red")
+rect.hclust(fit, k=6, border="red") # 6개의 빨간 박스로 그룹 구분, cutree() 함수 결과와 동일 확인  
+# rect.hclust() 함수는 그룹수(k), tree의 높이(h)와 위치(which)를 이용하여 그룹의 전체 또는 일부 표시 
 hca <- hclust(dist(USArrests))
 plot(hca)
-rect.hclust(hca, k=3, border"red")
-Error: unexpected string constant in "rect.hclust(hca, k=3, border"red""
 rect.hclust(hca, k=3, border="red")
-rect.hclust(hca, h=50, which=c(2,7), border=3:4)
+rect.hclust(hca, h=50, which=c(2,7), border=3:4) # 높이 50 기준 2번째, 7번째 그룹 표시 
 
 
-# ??????????????????
+# agnes() 함수는 계층적 군집방법 중 병합적 방법을 이용하여 분석
+# metric= 옵션을 통해 “euclidean", "manhattan" 등의 거리를 지정
+# method= 옵션을 통해 병합(또는 연결) 방법을 지정
+# metric= 용션을 이용하지 않고 daisy() 함수를 이용하여 거리를 계산 가능
+# daisy() 함수는 데이터 관측치 사이의 거리를 계산，수치형 외도 계산 가능하므로 dist() 함수보다 유연
+# daisy() 함수의 옵션에는 "euclidean", "manhattan", “gower" 등
+
+# agnes() 함수를 이용하여 계층적군집을 수행
 library(cluster)
 agn1 <- agnes(USArrests, metric="manhattan", stand=TRUE)
 agn1
-Call:	 agnes(x = USArrests, metric = "manhattan", stand = TRUE) 
-Agglomerative coefficient:  0.7584534729 
-Order of objects:
-[1] Alabama        Tennessee      Georgia        Louisiana      Mississippi    South Carolina North Carolina Alaska         Arizona       
-[10] Maryland       New Mexico     Michigan       Illinois       New York       Texas          Florida        California     Colorado      
-[19] Nevada         Arkansas       Idaho          Nebraska       Kentucky       Montana        Indiana        Kansas         Oklahoma      
-[28] Ohio           Pennsylvania   Virginia       Wyoming        Delaware       Missouri       Oregon         Washington     Connecticut   
-[37] Utah           Hawaii         Massachusetts  New Jersey     Rhode Island   Iowa           New Hampshire  Maine          Minnesota     
-[46] Wisconsin      North Dakota   Vermont        South Dakota   West Virginia 
-Height (summary):
-Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-0.3718103 1.5668819 2.0340726 2.3765539 2.9197634 7.3157290 
-
-Available components:
-[1] "order"     "height"    "ac"        "merge"     "diss"      "call"      "method"    "order.lab" "data"     
-par(mfrow=c(1,2))
-plot(agn1)
+par(mfrow=c(1,2)) # plot 창을 1행, 2열로 구분 (차트 2개 표시) 
+plot(agn1) # 차트 2개 표시 
 agn2 <- agnes(daisy(USArrests), diss=TRUE, method="complete")
 plot(agn2)
 agn3 <- agnes(USArrests, method="flexible", par.meth=0.6)
 plot(agn3)
-par(mfrow=c(1,1))
+par(mfrow=c(1,1)) # plots 창 초기화, plot 창을 1행행, 1열로 구분
 
-# data는 수치형의 자료이며. nc는 고려할 군집의 최대 수. seed는 난수 발생 초기값이다 
+#### ______ 2. k-평균 군집 ####
+
+# 패키지 {Nbclust}를 통해 적절한 군집의 수에 대한 정보를 얻을 수 있다 
+# 군집 수에 따른 집단 내 제곱합(within-groups sum of squares)의 그래프를 그려보는 것도 군집 수를 정하는데 도움
+# data는 수치형의 자료, nc는 고려할 군집의 최대 수, seed는 난수 발생 초기값
 wssplot <- function(data, nc=15, seed=1234) {
-+     wss <- (nrow(data)-1)*sum(apply(data,2,var))
-+     for (i in 2:nc) {
-+         set.seed(seed)
-+         wss[i] <- sum(kmeans(data, centers=i)$withinss)
-+     }
-+     plot(1:nc, wss, type="b", xlab="Number of Clusters", ylab="Within groups sum of squares")
-+ }
+  wss <- (nrow(data)-1)*sum(apply(data,2,var))
+  for (i in 2:nc) {
+    set.seed(seed)
+    wss[i] <- sum(kmeans(data, centers=i)$withinss)
+    }
+}
 
-# rattle, wine 못찾겠음 
+plot(1:nc, wss, type="b", xlab="Number of Clusters", ylab="Within groups sum of squares")}
+
+# kmeans() 함수를 이용하여 k- 평균군집을 수행
+install.packages("rattle")
 data(wine, package="rattle")
 head(wine)
-df <- scale(wine[-1]) # 표준화를 수행 
-wssplot(df) # 적절한 군집 수를 정하기 위해 앞서 소개된 wssplot() 함수를 수행한다
+# 변수의 측정 단위(범위)가 매우 다르므로 군집 분석을 수행하기 전에 scale() 함수를 이용하여 표준화를 수행
+df <- scale(wine[-1]) # wine$Type 제외한 수치 항목 표준화 
+# 적절한 군집 수를 정하기 위해 앞서 소개된 wssplot() 함수를 수행
+wssplot(df) # 군집수 3에서 오차제곱합이 크게 감소되었음을 확인
 
+# 군집수의 결정 : Nbclust{Nbclust} 이용
 install.packages("NbClust")
 library(NbClust)
 set.seed(1234)
+nc <- NbClust(df, min.nc = 2, max.nc = 15, method = "kmeans")
 table(nc$Best.n[1,])
-Error in table(nc$Best.n[1, ]) : object 'nc' not found
+# 최적의 군집수를 정하기 위해 사용되는 지수(총 30개 중 여기서는 26 개의 지수가 계산됨) 가운데 
+# 15개의 지수가 3 을 최적의 군집수로 투표(majority voting) 한 결과를 보여준다.
 barplot(table(nc$Best.n[1,]), 
-+     xlab="Number of Cluster", ylab="Number of Criteria",
-+     main="Number of Cluster Chosen by 26 Criteria"
-+ )
-Error in table(nc$Best.n[1, ]) : object 'nc' not found
+        xlab="Number of Cluster", ylab="Number of Criteria",
+        main="Number of Cluster Chosen by 26 Criteria")
 
+# 군집의 수(k)를 3으로 하여 kmeans()를 수행한 결과 
 set.seed(1234)
 fit.km <- kmeans(df, 3, nstart=25)
 fit.km$size 
 fit.km$centers
 plot(df, col=fit.km$cluster)
-points(fit,km$center, col=1:3, pch=8, cex=1.5)
+points(fit.km$center, col=1:3, pch=8, cex=1.5)
 
+# 각 군집별로 변수의 요약값을 측정단위의 척도로 표시
 aggregate(wine[-1], by=list(cluster=fit.km$cluster), mean) 
+# k-평균군집의 결과에 대한 정오분류표
 ct.km <- table(wine$Type, fit.km$cluster)
 ct.km 
 
-library (flexclust)
 # 실제 와인의 종류(Type)와 군집간의 일치도 (agreement)를 나타내는 수정된 순위 지수(adjusted rank index)
 # 이 지수는 -l(no agreement)과 l (perfect agreement) 사이의 값
-randlndex( ct.km) 
-ARI
+library (flexclust)
+randIndex(ct.km) 
+     ARI
 0.897495
 
+# 패키지 {flexclust} 의 kcca() 함수를 이용하여 k-평균군집 수행
 library(flexclust)
+# Nclus는 {flexclust} 패키지에서 제공하는 서로 다른 4개의 이변량 정규분포로부터 발생된 난수로 구성된 자료
 data("Nclus")
 plot(Nclus)
-cl <- kcca (Nclus, k=4, family=kccaFamily("kmeans"))
+cl <- flexclust::kcca (Nclus, k=4, family=kccaFamily("kmeans"))
 image(cl)
 points(Nclus)
 
-barplot(cl)
-stripes(cl)
+barplot(cl) # 각 군집의 (변수별) 중심이 전체 군집의 중심 (상자 안의 막대)으로부터 얼마나 벗어나 있는지 표시
+stripes(cl) # 각 군집내의 자료들이 해당 군집의 평균으로부터 얼마나 떨어져 있는지를 표시
 
-library(cc1ust)
-c1.1 <- cc1ust(Nc1us, 4, 20, method="kmeans")
-p1ot(Nclus, col=cl.1$cluster) 
-points (c1.1$center, c01 = 1:4, pch = 8, cex=1.5)
+# 패키지 {cclust} 의 cclust() 함수를 이용하여 k-평균군집을 수행한 예제
+install.packages("cclust")
+library(cclust)
+cl.1 <- cclust(Nclus, 4, 20, method="kmeans")
+plot(Nclus, col=cl.1$cluster) 
+points (cl.1$center, col = 1:4, pch = 8, cex=1.5)
 
 library(cluster)
 clusplot(Nclus, cl.1$cluster)
+# k-펑균군집을 수행하는 R 함수에는 kmeans{stats}, kcca{flexclust}, cclust{flexclust}, cclust{cclust}, Kmeans{amap} 등 
+# k-중앙값군집 (k-medoids clusting)은 pam() 함수를 통해 수행할 수 있다. pam (partitioning around medoids)
 
+
+#### ______ 3. 혼합분포군집 (mixture distribution clustering) ####
+
+# R 패키지 {mixtools} 의 normalmixEM() 함수를 통해 혼합분포군집을 수행
 # 미국의 올드페이스풀 간헐천의 분출 간의 시간 자료(faithful) 에 대해 정규혼합분포모형을 적합한다.
 install.packages("mixtools")
 library(mixtools)
 data(faithful)
-attach(faithful)
+str(faithful)
+'data.frame':	272 obs. of  2 variables:
+$ eruptions: num  3.6 1.8 3.33 2.28 4.53 ...
+$ waiting  : num  79 54 74 62 85 55 88 85 51 85 ...
+attach(faithful) # faithful 내부 변수 직접 사용 가능. faithful$waiting 을 waiting 으로 직접 사용   
 hist(waiting, main="Time between Old Faithful eruptions", xlab="Minutes", ylab="", cex.main=1.5, cex.lab=1.5, cex.axis=1.4)
-
 # EM 알고리즘을 이용한 정규혼합분포의 추정결과는 다음과 같다.
 wait1 <- normalmixEM(waiting, lambda=.5, mu=c(55,80), sigma=5)
-number of iterations= 9 
 summary(wait1)
-summary of normalmixEM object:
-comp 1   comp 2
-lambda  0.36085  0.63915
-mu     54.61364 80.09031
-sigma   5.86909  5.86909
-loglik at estimate:  -1034.002 
 # 추정된 정규혼합분포를 시각화 
+# par(mfrow=c(1,2)) # plot 창을 1행, 2열로 구분 (차트 2개 표시) 
 plot(wait1, density=TRUE, cex.axis=1.4, cex.lab=1.4, cex.main=1.8, main2="Time between Old Faithful eruptions", xlab2="Minutes")
+# EM 알고리즘을 통해 모수를 추정하는 과정에서 반복횟수 2회 만에 로그-가능도 함수가 최대가 됨 확인 
 
+# R 패키지 {mclust} 의 Mclust() 함수를 통한 혼합분포군집 수행 예제
 # iris 자료에 대해 Mclust() 함수를 통해 군집 분석을 수행 
 install.packages("mclust")
-Installing package into ‘C:/Users/juno2/Documents/R/win-library/3.5’
-(as ‘lib’ is unspecified)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.5/mclust_5.4.zip'
-Content type 'application/zip' length 4129221 bytes (3.9 MB)
-downloaded 3.9 MB
-
-package ‘mclust’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-C:\Users\juno2\AppData\Local\Temp\RtmpOoYJJt\downloaded_packages
 library(mclust)
-__  ___________    __  _____________
-/  |/  / ____/ /   / / / / ___/_  __/
-/ /|_/ / /   / /   / / / /\__ \ / /   
-/ /  / / /___/ /___/ /_/ /___/ // /    
-/_/  /_/\____/_____/\____//____//_/    version 5.4
-Type 'citation("mclust")' for citing this R package in publications.
 mc <- Mclust(iris[,1:4], G=3)
-fitting ...
-|==============================================================================================================================================================| 100%
 summary(mc, parameters=TRUE)
-----------------------------------------------------
-Gaussian finite mixture model fitted by EM algorithm 
-----------------------------------------------------
-
-Mclust VEV (ellipsoidal, equal shape) model with 3 components:
-
-log.likelihood   n df       BIC       ICL
--186.074 150 38 -562.5522 -566.4673
-
-Clustering table:
-1  2  3 
-50 45 55 
-
-Mixing probabilities:
-1         2         3 
-0.3333333 0.3005423 0.3661243 
-
-Means:
-[,1]     [,2]     [,3]
-Sepal.Length 5.006 5.915044 6.546807
-Sepal.Width  3.428 2.777451 2.949613
-Petal.Length 1.462 4.204002 5.482252
-Petal.Width  0.246 1.298935 1.985523
-
-Variances:
-[,,1]
-Sepal.Length Sepal.Width Petal.Length Petal.Width
-Sepal.Length   0.13320850  0.10938369  0.019191764 0.011585649
-Sepal.Width    0.10938369  0.15495369  0.012096999 0.010010130
-Petal.Length   0.01919176  0.01209700  0.028275400 0.005818274
-Petal.Width    0.01158565  0.01001013  0.005818274 0.010695632
-[,,2]
-Sepal.Length Sepal.Width Petal.Length Petal.Width
-Sepal.Length   0.22572159  0.07613348   0.14689934  0.04335826
-Sepal.Width    0.07613348  0.08024338   0.07372331  0.03435893
-Petal.Length   0.14689934  0.07372331   0.16613979  0.04953078
-Petal.Width    0.04335826  0.03435893   0.04953078  0.03338619
-[,,3]
-Sepal.Length Sepal.Width Petal.Length Petal.Width
-Sepal.Length   0.42943106  0.10784274   0.33452389  0.06538369
-Sepal.Width    0.10784274  0.11596343   0.08905176  0.06134034
-Petal.Length   0.33452389  0.08905176   0.36422115  0.08706895
-Petal.Width    0.06538369  0.06134034   0.08706895  0.08663823
-
 # plot.Mclust() 함수는 다양한 방식으로 군집 결과를 시각화 
-plot.Mclust(mc)
-Model-based clustering plots: 
-
-1: BIC
-2: classification
-3: uncertainty
-4: density
-
-선택: 2
-
-선택: 
-Enter an item from the menu, or 0 to exit
-선택: 0
+plot.Mclust(mc) # 1: BIC, 2: classification, 3: uncertainty, 4: density 중 선택
 str(mc)
-List of 15
-$ call          : language Mclust(data = iris[, 1:4], G = 3)
-$ data          : num [1:150, 1:4] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-..- attr(*, "dimnames")=List of 2
-.. ..$ : NULL
-.. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-$ modelName     : chr "VEV"
-$ n             : int 150
-$ d             : int 4
-$ G             : int 3
-$ BIC           : 'mclustBIC' num [1, 1:14] -879 -854 -813 -779 -798 ...
-..- attr(*, "dimnames")=List of 2
-.. ..$ : chr "3"
-.. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
-..- attr(*, "G")= num 3
-..- attr(*, "modelNames")= chr [1:14] "EII" "VII" "EEI" "VEI" ...
-..- attr(*, "control")=List of 4
-.. ..$ eps     : num 2.22e-16
-.. ..$ tol     : num [1:2] 1.00e-05 1.49e-08
-.. ..$ itmax   : int [1:2] 2147483647 2147483647
-.. ..$ equalPro: logi FALSE
-..- attr(*, "initialization")=List of 3
-.. ..$ hcPairs: 'hc' num [1:2, 1:149] 102 143 128 139 18 41 1 18 1 28 ...
-.. .. ..- attr(*, "initialPartition")= num [1:150] 1 2 3 4 5 6 7 8 9 10 ...
-.. .. .. ..- attr(*, "unique")= int 150
-.. .. ..- attr(*, "dimensions")= int [1:2] 150 4
-.. .. ..- attr(*, "modelName")= chr "VVV"
-.. .. ..- attr(*, "call")= language hc(data = data, modelName = mclust.options("hcModelNames")[1])
-.. ..$ subset : NULL
-.. ..$ noise  : NULL
-..- attr(*, "warn")= logi FALSE
-..- attr(*, "n")= int 150
-..- attr(*, "d")= int 4
-..- attr(*, "oneD")= logi FALSE
-..- attr(*, "criterion")= chr "BIC"
-..- attr(*, "returnCodes")= num [1, 1:14] 0 0 0 0 0 0 0 0 0 0 ...
-.. ..- attr(*, "dimnames")=List of 2
-.. .. ..$ : chr "3"
-.. .. ..$ : chr [1:14] "EII" "VII" "EEI" "VEI" ...
-$ bic           : num -563
-$ loglik        : num -186
-$ df            : num 38
-$ hypvol        : num NA
-$ parameters    :List of 4
-..$ pro     : num [1:3] 0.333 0.301 0.366
-..$ mean    : num [1:4, 1:3] 5.006 3.428 1.462 0.246 5.915 ...
-.. ..- attr(*, "dimnames")=List of 2
-.. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-.. .. ..$ : NULL
-..$ variance:List of 7
-.. ..$ modelName  : chr "VEV"
-.. ..$ d          : int 4
-.. ..$ G          : int 3
-.. ..$ sigma      : num [1:4, 1:4, 1:3] 0.1332 0.1094 0.0192 0.0116 0.1094 ...
-.. .. ..- attr(*, "dimnames")=List of 3
-.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-.. .. .. ..$ : NULL
-.. ..$ scale      : num [1:3] 0.0375 0.0579 0.1142
-.. ..$ shape      : num [1:4] 6.858 1.012 0.627 0.23
-.. ..$ orientation: num [1:4, 1:4, 1:3] -0.6691 -0.7341 -0.0965 -0.0636 0.5979 ...
-.. .. ..- attr(*, "dimnames")=List of 3
-.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-.. .. .. ..$ : chr [1:4] "Sepal.Length" "Sepal.Width" "Petal.Length" "Petal.Width"
-.. .. .. ..$ : NULL
-..$ Vinv    : NULL
-$ z             : num [1:150, 1:3] 1 1 1 1 1 1 1 1 1 1 ...
-..- attr(*, "dimnames")=List of 2
-.. ..$ : NULL
-.. ..$ : NULL
-$ classification: num [1:150] 1 1 1 1 1 1 1 1 1 1 ...
-$ uncertainty   : num [1:150] 0 0 0 0 0 0 0 0 0 0 ...
-- attr(*, "class")= chr "Mclust"
 mc$classification
-[1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 2 3 2 2 2 2 3 2 2 2
-[82] 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
 
 # 새로운 자료에 대한 분류는 predict() 함수를 이용 
 predict(mc, data= )
 
+#### ______ 4. SOM(Self-Organizing Maps) ####
+# R 패키지 {kohonen}에서 제공하고 있는 wines 데이터를 이용한 SOM 군집분석 예제
 install.packages("kohonen")
 library(kohonen)
 data(wines)
 str(wines)
-num [1:177, 1:13] 13.2 13.2 14.4 13.2 14.2 ...
-- attr(*, "dimnames")=List of 2
-..$ : NULL
-..$ : chr [1:13] "alcohol" "malic acid" "ash" "ash alkalinity" ...
 head(wines)
-alcohol malic acid  ash ash alkalinity magnesium tot. phenols flavonoids non-flav. phenols proanth col. int. col. hue OD ratio proline
-[1,]   13.20       1.78 2.14           11.2       100         2.65       2.76              0.26    1.28      4.38     1.05     3.40    1050
-[2,]   13.16       2.36 2.67           18.6       101         2.80       3.24              0.30    2.81      5.68     1.03     3.17    1185
-[3,]   14.37       1.95 2.50           16.8       113         3.85       3.49              0.24    2.18      7.80     0.86     3.45    1480
-[4,]   13.24       2.59 2.87           21.0       118         2.80       2.69              0.39    1.82      4.32     1.04     2.93     735
-[5,]   14.20       1.76 2.45           15.2       112         3.27       3.39              0.34    1.97      6.75     1.05     2.85    1450
-[6,]   14.39       1.87 2.45           14.6        96         2.50       2.52              0.30    1.98      5.25     1.02     3.58    1290
 wines.sc <- scale(wines)
+head(wines.sc)
+str(wines.sc)
 set.seed(7)
-wine.som <- som(data=wines.sc,
-+ grid = somgrid(5,4, "hexagonal"),
-+ rlen = 100, alpha = c(0.05, 0.01), 
-+ toroidal = FALSE, keep.data = TRUE)
-Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
-wine.som <- som(data = wines.sc, grid = somgrid (5, 4, "hexagonal"), rlen = 100, alpha = c(0.05 , 0.01), toroidal = FALSE, keep.data = TRUE)
-Error in supersom(list(X), ...) : unused argument (toroidal = FALSE)
+# 5 x 4 SOM 군집 분석 수행
+wine.som <- som(wines.sc, 
+                grid = somgrid(5, 4, "hexagonal"), 
+                rlen = 100, 
+                alpha = c(0.05, 0.01), 
+                keep.data = TRUE) 
 plot(wine.som, main = "Wine data") 
-summary(wine.som) 
+summary(wine.som) # SOM 군집 분석 결과를 요약
 
+# SOM 그리드 형식 및 색상 변경을 위한 plot.kohonen의 SOM 플롯은 다양한 형식을 지원
 par(mfrow = c(1, 3))
 plot(wine.som, type = "counts", main = "wine data: counts")
 plot(wine.som, type = "quality", main = "wine data: mapping quality")
-plot(wine.som, type="mapping", labels=wine.classes, col=wine.classes, main= "mapping plot")
+plot(wine.som, type="mapping", labels=wine.classes, col=wine.classes, main= "mapping plot") # wine.classes ????
 
 par(mfrow = c(1 , 3))
->
 colour1 <- tricolor(wine.som$grid)
-plot(wine.som, "mapping" , bg = rgb(colour1))
->
+plot(wine.som, "mapping", bg = rgb(colour1))
 colour2 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6))
 plot(wine.som, "mapping", bg = rgb(colour2))
->
 colour3 <- tricolor(wine.som$grid, phi = c(pi/6, 0, -pi/6 ), offset = .5)
 plot(wine.som, "mapping", bg = rgb(colour3))
 
-unit.distances(grid, toroidal) # SOM 군집 분석 결과， 유니트 사이의 거리 계산법 
-
+# SOM 군집 분석 결과, 유니트 사이의 거 리 계산법
 par(mfrow = c(1 , 2))
->
 dists <- unit.distances(wine.som$grid, toroidal=FALSE)
 plot(wine.som, type="property", property=dists[1,],
-+ main="Distances to unit 1" , zlim=c(0, 6) ,
-+ palette = rainbow, ncolors = 7, contin = TRUE)
->
+     main="Distances to unit 1", zlim=c(0, 6),
+     palette = rainbow, ncolors = 7)
 dists <- unit.distances(wine.som$grid, toroidal=FALSE )
 plot(wine.som, type="property", property=dists[1,],
-+ main="Distances to unit 1", zlim=c(0,2),
-+ palette = rainbow, ncolors = 2, contin = TRUE )
+     main="Distances to unit 1", zlim=c(0,2),
+     palette = rainbow, ncolors = 2)
 
+# 데이터가 학습되는 동안 유사도의 변화. 
+# 왼쪽 플롯은 100번, 오른쪽 플롯은 500번 학습 결과 
 data("wines")
 wines.sc <- scale(wines)
-
 set.seed(7)
-
-wine.som <- som(data=wines.sc, 
-+ grid = somgrid(5,4,"hexagonal"), 
-+ rlen = 100, 
-+ alpha = c(0.05, 0.01), 
-+ toroidal = FALSE, keep.data = TRUE)
-
-wine.som_1 <- som(data = wines.sc, 
-+ grid = somgrid(5,4,"hexagonal"), 
-+ rlen = 500, 
-+ alpha = c(0.05, 0.01), 
-+ toroidal = FALSE, keep.data = TRUE) 
+wine.som <- som(wines.sc, 
+                grid = somgrid(5,4,"hexagonal"), 
+                rlen = 100, 
+                alpha = c(0.05, 0.01), 
+                keep.data = TRUE)
+wine.som_1 <- som(wines.sc, 
+                  grid = somgrid(5,4,"hexagonal"), 
+                  rlen = 500, 
+                  alpha = c(0.05, 0.01), 
+                  keep.data = TRUE) 
 
 par(mfrow = c(1,2))
-
 plot(wine.som, type = "changes", main = "Wine data : SOM(Learning no=100")
 plot(wine.som_1, type = "changes", main = "Wine data : SOM(Learning no=500") 
 
+# R로 구현된 SOM 그리드를 SPSS Modeler와 유사하게 도식화하기 위해서는 패키지 {ggplot2}를 이용
 library(ggplot2)
 wines.sc = as.data.frame(wines)
 wines.sc$clusterX <- wine.som$grid$pts[wine.som$unit.classif, "x"]
 wines.sc$clusterY <- wine.som$grid$pts[wine.som$unit.classif, "y"]
-
 p <- ggplot(wines.sc, aes(clusterX, clusterY))
 p+geom_jitter(position=position_jitter(width=0.4, height=0.3))
 
+
+#### ____ 제4절 연관 분석 ####
+#### ______ 2. 실습 ####
+# 사용할 데이터는 arules 패키지 내에 있는 Adult 데이터
 # arules 패키지의 apriori 함수를 사용하면 연관규칙을 발굴해낼 수 있다.
-데이터
 install.packages("arules")
 library(arules)
-data("Adult")
-Adult
-transactions in sparse format with
-48842 transactions (rows) and
-115 items (columns)
+data("Adult") # data 함수를 사용하면 R에 내장되어 있는 데이터를 작업공간으로 불러올 수 있다.
+Adult # 48842 transactions (rows) and 115 items (columns)
+# as(Adult, ‘data frame’) 이라고 하면 트랜잭션의 형태를 데이터 프레임 형식으로 변환 가능 
 rules <- apriori(Adult)
-Apriori
-
-Parameter specification:
-confidence minval smax arem  aval originalSupport maxtime support minlen maxlen target   ext
-0.8    0.1    1 none FALSE            TRUE       5     0.1      1     10  rules FALSE
-
-Algorithmic control:
-filter tree heap memopt load sort verbose
-0.1 TRUE TRUE  FALSE TRUE    2    TRUE
-
-Absolute minimum support count: 4884 
-
-set item appearances ...[0 item(s)] done [0.00s].
-set transactions ...[115 item(s), 48842 transaction(s)] done [0.05s].
-sorting and recoding items ... [31 item(s)] done [0.01s].
-creating transaction tree ... done [0.04s].
-checking subsets of size 1 2 3 4 5 6 7 8 9 done [0.14s].
-writing ... [6137 rule(s)] done [0.00s].
-creating S4 object  ... done [0.01s].
-
 inspect(head(rules)) # inspect 함수를 사용하면 apriori 함수를 통해 발굴된 규칙을 보여준다.
 lhs                         rhs                            support   confidence lift     count
 [1] {}                       ={race=White}                   0.8550428 0.8550428  1.000000 41762
@@ -4041,11 +3807,13 @@ lhs                         rhs                            support   confidence 
 [4] {}                       ={capital-loss=None}            0.9532779 0.9532779  1.000000 46560
 [5] {relationship=Unmarried} ={capital-loss=None}            0.1019819 0.9719024  1.019537  4981
 [6] {occupation=Sales}       ={race=White}                   0.1005282 0.8920785  1.043314  4910
-
+# lhs(left hand side)에 해당하는 항목이 없는 경우 rhs(right hand side) 결과가 나타나는 무의미한 결과가 나타난다 
+# 이를 방지하기 위해 지지도, 신뢰도를 조정 하여 규칙을 발굴해야 한다
+# 지지도와 신뢰도의 값을 지정, rhs를 income 변수 (small, large)에 대한 연관규칙만 출력
 adult.rules <- apriori(Adult, parameter=list(support=0.1, confidence=0.6),
-+                         appearance = list(rhs=c('income=small', 'income=large'),
-+                                             default='lhs'),
-+                         control=list(verbose=F))
+                       appearance = list(rhs=c('income=small', 'income=large'),
+                                         default='lhs'),
+                       control=list(verbose=F))
 adult.rules.sorted <- sort(adult.rules, by='lift')
 inspect(head(adult.rules.sorted))
 lhs          rhs            support   confidence lift     count
@@ -4056,9 +3824,668 @@ lhs          rhs            support   confidence lift     count
 [5] {relationship=Own-child,capital-loss=None}                                   ={income=small} 0.1000983 0.6604972  1.305016 4889 
 [6] {relationship=Own-child}                                                     ={income=small} 0.1023914 0.6596755  1.303393 5001 
 
+# 연관규칙 시각화 패키지 arulesViz
 install.packages("arulesViz") 
 library(arulesViz)
+# 연관 규칙의 지지도, 신뢰도, 향상도간의 산점도 
 plot(adult.rules.sorted, method="scatterplot")
+# 연관규칙 관계도
 plot(adult.rules.sorted, method="graph", control=list(type="items", alpha=0.5))
 
 
+#### __ 제4장 비정형 데이터 마이닝 ####
+#### ____ 제1절 텍스트 마이닝 ####
+#### ______ 2. 텍스트 마이닝의 기본 프로세스 ####
+# R에서 텍스트 마이닝을 수행하는데 펼요한 패키지인 {tm}을 설치
+install.packages("tm")
+library(tm)
+#### ________ 가. 데이터 수집 #### 
+install.packages("twitteR")
+library(twitteR)
+api_key <- "QsRfvZWgb0xUNAPYdkvV3xJW1"
+api_secret <- "iNxFYTtIWRFeokb76cbWEaQdNNsSv0h3rQoixacKcsH9js93MW"
+access_token <- "1122856921533337600-Hx1mTyPW9QWl372dlHhRlOML2aBxzc"
+access_token_secret <- "1N9a5nSB3vPAElDGcs9KdfMnL6NToeO4lwp3fanpPbLHb"
+setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
+keyword <- 'bigdata'
+# 2019년 1월 1일 이후의 메시지 중 bigdata라는 단어가 등장한 트위터 메시지 수집
+bigdata.tw <- searchTwitter(keyword, since='2019-01-01', n=1000, lang = 'en')
+bigdata.tw[1:3] # 상위 3개의 메시지 내용 
+
+tweet <- bigdata.tw[[1]] # 첫번째 트윗 
+tweet$getScreenName() # 스크린 네임 정보 (해당 메시지를 작성한 사람의 이름) 표시 
+tweet$getText() # 해당 트위터 내용
+class(bigdata.tw)
+bigdata.df <- twListToDF(bigdata.tw) # list 형태로 되어있는 bigdata.tw을 data frame 형태로 변환
+bigdata.text <- bigdata.df$text # 텍스트만 추출해 bigdata.text에 저장
+
+# plyr은 데이터를 분리 (splitting), 적용(applying), 조합(combining)할 때 사용하는 패키지
+# 위 내용과 동일 
+install.packages("plyr")
+library(plyr)
+bigdata.text <- laply(bigdata.tw, function(i) i$getText() )
+
+head(bigdata.text, 3)
+
+#### ________ 나. 데이터 전처리 및 가공 #### 
+library(tm)
+txt <- system.file('texts', 'txt', package = 'tm')
+txt # C:\Users\juno2\Documents\R\win-library\3.5\tm\texts\txt 
+ovid <- Corpus(DirSource(txt), readerControl = list(language="lat"))
+ovid 
+ovid[[1]]
+getReaders() # 읽어 들일 reader의 종류 : 텍스트 파일, Word, PDF, CSV 등 다양한 문서형식
+# bigdata. text는 트위터 메시지에서 text 부분만 추출해놓은 벡터 형태이므로 VectorSource를 사용
+my.corpus <- Corpus(VectorSource(bigdata.text))
+my.corpus
+my.corpus[[1]]
+# 문서내용을 보는 방법은 inspect() 함수를 통해서 array를 지정해서 선택해 볼 수 있다
+inspect(my.corpus[1:2])
+
+# tm_map() 함수를 사용하면 Corpus 형식의 데이터에 일반적인 함수를 적용해서 전처리 등의 가공을 할 수 있다.
+# {tm} 패키지 내의 기본 Transformation이라고 지정된 함수 
+getTransformations()
+[1] "removeNumbers"     "removePunctuation" "removeWords"       "stemDocument"      "stripWhitespace"  
+# 위 5개 함수를 제외한 함수들(tolower, stemCompletion, gsub 등)을 tm_map()함수 내에서 그냥 사용 불가 
+# 따라서 아래와 같이 기본 TransformationO함수와는 약간의 차이를 두고 사용하여야 한다.
+my.corpus <- tm_map(my.corpus, stripWhitespace) # 기본 Transformation 함수 이므로 OK
+my.corpus <- tm_map(my.corpus, content_transformer(tolower)) # content_transformer() 안에서만 OK!
+# 또는 
+my.corpus <- tm_map(my.corpus, stripWhitespace) # 기본 Transformation함수 01 므로 OK
+my.corpus <- tm_map(my.corpus, tolower) # 우선 그냥 작성하고，
+my.corpus <- tm_map(my.corpus, PlainTextDocument) # 이 명령을 실행
+
+# 빈 공간(white space) 제거
+my.corpus <- tm_map(my.corpus, stripWhitespace)
+inspect(my.corpus[1:2])
+
+# 특정 패턴을 가지는 단어를 제거하거나 다른 단어로 대체
+# gsub을 사용하여 @뒤에 띄어쓰기 없이 붙어있는 단어를 제거
+# @로 시작되는 re-twitter ID 제거
+my.corpus <- tm_map(my.corpus, content_transformer(gsub), pattern='@\\S*', replacement='')
+inspect(my.corpus[1:2])
+# http로 시작되는 URL 제거
+my.corpus <- tm_map(my.corpus, content_transformer(gsub), pattern='http\\S*', replacement='')
+inspect(my.corpus[1:2])
+# 문장 부호 및 구두점을 제거 : #,?, !, ~, @, $, &, %, 마침표(.), 쉼표(,) 등
+my.corpus <- tm_map(my.corpus, removePunctuation)
+inspect(my.corpus[1:2])
+# 대문자를 소문자로 변경해 사전에 있는 내용과 비교할 수 있도록 표준화 
+# 한글이나 특수문자를 미리 처리한 후 진행하여야 한다.
+my.corpus <- tm_map(my.corpus, content_transformer(tolower))
+inspect(my.corpus[1:2])
+# {tm} 패키지에는 stop word라는 것이 있다. 한글에서는 조사에 해당되며 띄어쓰기 등을 통해 확인할 수 있다. 
+# 영어의 경우 기본적으로 174개의 제외어 (stop word) 를 가지고 있다.
+stopwords('en')
+my.corpus <- tm_map(my.corpus, removeWords, stopwords('en'))
+inspect(my.corpus[1:2])
+# 기본 제외어 (stop word) 이외에 분석에 있어 의미가 없다고 생각되는 단어가 있다면 
+# 제외어 (stop word)와 함께 벡터를 만들어 제거
+mystopword <- c(stopwords("en"),"rt","via","even")
+my.corpus <- tm_map(my.corpus, removeWords, mystopword)
+inspect(my.corpus[1:2])
+
+
+#### ________ 다. 자연어 처리 #### 
+#### __________ 1) Stemming #### 
+install.packages("SnowballC")
+library(SnowballC)
+# stemDocument : 앞 어간을 제외한 나머지 부분을 삭제.
+test <- stemDocument(c("updated", "update", "updating"))
+test 
+# stemCompletion : stemming된 단어와 완성을 위한 dictionary를 함께 넣으면 가장 기본적인 어휘로 완성
+# updat로 stemming되었던 단어들이 dictionary로 넣은 updated, update, updating 중 가장 기본 어휘인 update로 완성
+# stemCompletion을 할 때는 단어의 완성을 위해 반드시 dictionary가 필요
+test <- stemCompletion(test, dictionary = c("updated", "update", "updating"))
+test
+# stemCompletion 에서 사용될 dictionary를 위해 현재의 Corpus파일을 dict.corpus에 저장
+dict.corpus <- my.corpus
+my.corpus <- tm_map(my.corpus, stemDocument)
+inspect(my.corpus[1:2])
+
+#inspect(dict.corpus[1:2])
+#my.corpus <- dict.corpus
+
+# stemCompletion을 할 때 모든 값이 NA가 되어버리는 경우가 있어 
+# 이를 방지하기 위해 completion을 위해 간단하게 제작된 함수를 실행 
+# type을 first로 지정해주어 등장하는 첫 번째 어휘로 어간이 같은 모든 단어를 사용하도록 설정
+stemCompletion_mod <- function(x,dict) {
+  PlainTextDocument(
+    stripWhitespace(
+      paste(
+        stemCompletion(
+          unlist(strsplit(as.character(x)," ")),
+          dictionary = dict, 
+          type='first'), 
+        sep = "", 
+        collapse = " ")
+      )
+    )
+}
+# lapply를 통해 모든 트위터 메시지에 stemCompletion_mod를 적용
+inspect(my.corpus[1:2])
+my.corpus <- lapply(my.corpus, stemCompletion_mod, dict=dict.corpus)
+# 반환된 list를 다시 Corpus로 변환
+my.corpus <- Corpus(VectorSource(my.corpus)) # first
+inspect(my.corpus[1:2]) 
+
+#### __________ 2) 한글 처리 #### 
+# 한글로 되어있는 텍스트 데이터를 사용하여 텍스트 마이닝을 하고 싶을 때는 
+# 자연어 처리 부분에서 KoNLP 패키지를 이용하여 단어를 추출하고 이를 Corpus로 만들어 분석하는 순서로 진행
+# JRE 설치 필요(OS에 맞는 32/64 bit - JAVA 8 Update 211 설치)
+install.packages("KoNLP")
+library(rJava)
+library(KoNLP)
+extractNoun("연습을 해보고자 한다. 명사가 잘 추출되는지 보자. 빨간색으로 글씨를 쓰고 있다.")
+# 한글 처리 속도에 문제가 있을 때
+sapply("연습을 해보고자 한다. 명사가 잘 추출되는지 보자. 빨간색으로 글씨를 쓰고 있다.",extractNoun)
+
+#### ________ 라. TDM 구축 #### 
+# TermDocumentMatrix() 합수: 행(각 단어), 열(트위터 메시지)의 매트릭스 생성
+# 함수를 실행할 때, dictionary 부분을 작성하지 않으면 분리된 모든 단어가 Term으로써 TDM을 만드는데 사용
+my.TDM <- TermDocumentMatrix(my.corpus)
+dim(my.TDM)
+[1] 3327 1000 # 1000개의 트위터 메시지에서 총 3327개 단어 추출 (3327 행과 1000 열 형태)
+inspect(my.TDM[35:40,1:10]) # 트윗 내용에 따라 invalid multibyte string 발생 가능 
+
+# 단어 사전은 복수의 문자들의 집합으로 텍스트 마이닝에서 분석에 사용하고자 하는 단어들의 집합
+# 분석에 사용하고자 하는 단어들을 별도 데이터 프레임인 myDict에 저장
+myDict <- c("bigdata","data","analyst","cloud","company","privacy","analytics","business","hadoop","datascience")
+# 해당 dictionary를 적용한 TDM을 만든다.
+my.TDM <- TermDocumentMatrix(my.corpus, control=list(dictionary=myDict))
+inspect(my.TDM[,60:70])
+
+#### ________ 마. 분석 및 시각화 ####
+# 1) Association 
+# findAssocs 함수를 통해 my.TDM에서 warehouse라는 단어와의 연관성이 0.5 이상인 단어들만 표시
+findAssocs(my.TDM, "warehouse", 0.5) # numeric(0) ????
+# {arules} 패키지의 apriori() 합수를 이용해 연관 분석을 하기 위해 단일 처리형(transaction)으로 변환
+transction_m <- as(terms.m, "transcations") # terms.m ???? 
+library(arules)
+rules.all <- apriori(transaction_m, parameter = list(supp=0.01, conf=0.5))
+inspect(rules.all)
+
+# 2) 워드 클라우드
+install.packages("wordcloud")
+library(wordcloud)
+my.TDM.m <- as.matrix(my.TDM) # TermDocumentMatrix 클래스를 매트릭스 형태로 변환
+# Term-Document Matrix 에서 행(단어)을 기준으로 모든 열의 값을 합하여 각 단어에 대한 빈도수를 계산
+# 빈도가 가장 높은 상위 15개의 단어를 조회한 결과
+term.freq <- sort(rowSums(my.TDM.m), decreasing = T)
+head(term.freq, 15)
+wordcloud(words=names(term.freq), freq=term.freq, min.freq=15, random.order=F, colors=brewer.pal(8,'Dark2'))
+# brewer.pal : R의 색상 파레트 함수 (http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+
+# 3) 감성분석 
+# @hilton을 언급한 최대 1500개의 메시지를 가져와 hilton.tweet에 저장
+hilton.tweets <- searchTwitter("@hilton", n=1500)
+length(hilton.tweets)
+hilton.tweets[1:2]
+# 영어 긍정/부정 단어 파일을 읽어와 저장. 웹에서 직접 가져올 수도 있다. 
+# 단어 파일에서 제공하지 않는 단어는 c 함수를 사용해 별도로 추가한다
+pos.word=scan("C:/Users/juno2/Documents/R01/R code/positive-words.txt", what="character", comment.char=";")
+neg.word=scan("C:/Users/juno2/Documents/R01/R code/negative-words.txt", what="character", comment.char=";")
+pos.word=scan("https://gist.github.com/mkulakowski2/4289437", what="character", comment.char=";")
+neg.word=scan("https://gist.github.com/mkulakowski2/4289441", what="character", comment.char=";")
+pos.word <- c(pos.word, "upgrade")
+neg.word <- c(neg.word, "wtf","waìt","waiting","epicfail","mechanical")
+score.sentiment <- function(sentences, pos.words, neg.words, .progress="none") 
+{
+  require(plyr)
+  require(stringr)
+  
+  # we got a vector of sentences. p1yr wi11 hand1e a list or a vector as an “l" for us
+  # we want a simp1e array of scores back, so we use "l" + "a" + "p1y" = 1ap1y :
+  scores <- laply(sentences, function(sentence, pos.words, neg.words) {
+    # 문장부호, 특수기호, 숫자, 문자열을 빈칸으로 대체한다.
+    # c1ean up sentences with R’s regex-driven globa1 substitute, gsub() :
+    sentence <- gsub('[[:punct:]]', '', sentence)
+    sentence <- gsub('[[:cntrl:]]', '', sentence)
+    sentence <- gsub('\\d+', '', sentence)
+    # 대문자를 소문자로 변환하여 사전의 단어와 비교가 쉽 게 한다.
+    # and convert to 10wer case:
+    sentence <- tolower(sentence)
+    # 문장을 단어 리스트로 변환. 
+    # 문장을 split하는 기준이 되는 패턴을 ‘\\s+’로 하면서 띄어쓰기 혹은 띄어쓰기 이상의 빈칸으로 정의
+    # sp1it into words. str_sp1it is in the stringr package
+    word.list <- str_split(sentence, '\\s+')
+    words <- unlist(word.list)
+    # 단어 리스트로 변환한 문장을 pos.words와 neg.words 에 저장한 긍.부정 단어 사전과 비교
+    # 문장에서 긍·부정 단어가 나타날 때마다 해당 위치를 l로 세팅해 pos.matches, neg.matches 에 저장
+    # compare our words to the dictionaries of positive & negative terms
+    pos.matches <- match (words, pos.words)
+    neg.matches <- match(words, neg.words )
+    # 긍정과 부정 단어의 합을 차감해 점수를 산출
+    # match() returns the position of the matched term or NA
+    pos.matches <- !is.na(pos.matches)
+    neg.matches <- !is.na(neg.matches)
+    # and conveniently enough , TRUE/FALSE will be treated as 1/0 by sum():
+    score <- sum(pos.matches) - sum(neg.matches)
+    # 점수와 문장을 데이터 프레임 형태로 반환한다
+    return(score)
+  }, pos.words, neg.words, .progress=.progress)
+  scores.df <- data.frame(score=scores, text=sentences)
+  return (scores.df)
+}
+# 구분불가 0점, 단어가 명확히 구분된 3 번째 값은 긍정 단어인 ‘wonderful’이 있으므로 1 점
+# 4 번째 값은 부정 단어인 ‘hate’가 있으므로 -1 점이 부여
+sample <- c("Iloveyou", "Ihdateyou", "What a wonderful day!", "I hate you")
+result <- score.sentiment(sample, pos.word, neg.word)
+result$score
+result$text
+
+#### ____ 제2절 사회 연결망 분석 ####
+#### ______ 2. R을 이용한 SNA의 활용 ####
+#### ________ 가. 단어 간 연관성을 이용한 사회연결망 분석 ####
+dim(my.TDM.m)
+# 빈도수가 20 이상인 단어들로 이루어진 데이터만 추출하여 my.Term 에 저장
+term.freq <- sort(rowSums(my.TDM.m), decreasing=T)
+my.Term <- my.TDM.m[rownames(my.TDM.m) %in% names(term.freq[term.freq > 20]),]
+my.Term[1:10,995:1000]
+# 해당 단어가 사용된 횟수가 1 번 이상이면 1, 아니면 0값으로 변환
+my.Term[my.Term >= 1] <- 1 
+my.Term[1:10,995:1000]
+# 각 단어들을 행과 열에 대칭으로 배치하기 위해, transpose를 위한 함수를 사용해 변환
+termMatrix <- my.Term %*% t(my.Term) # 행렬의 곱을 계산하는 %*% 연산자
+termMatrix[1:5, 1:5]
+
+# 네트워크 그래프를 그리기 위한 {igraph} 패키지 를 설치하고 로드
+install.packages("igraph")
+library(igraph)
+# termMatrix 데이터를 이용해 그래프를 생성
+# 그래프의 방향성은 단어의 연관성과 상관이 없으므로 undirected로 변환
+g <- graph.adjacency(termMatrix, weight = T, mode="undirected")
+# simplify() 함수는 loop나 multiple edge를 제거해서 단순하게 해준다.
+g <- simplify(g)
+
+# 소셜 네트워크에서 해당 노드(node) 또는 점 (vertex) 이 몇 개의 노드와 연결되어 있는지를 나타내는 값인 연결정도(degree)를 생성한다.
+# V() 함수는 점(vertex), 노드에 대한 것을 나타낸다. E() 합수는 에지 (edge) 에 대한 함수
+V(g)$label <- V(g)$name
+head(V(g)$label, 5)
+V(g)$degree <- degree(g)
+head(V(g)$degree, 5)
+# 그래프를 그리기 위해 노드 또는 점의 위치를 결정하는 단순한 함수를 실행한다. 
+# 즉, 의미 있게 각 노드를 배치해주는 함수
+layout1 <- layout.fruchterman.reingold(g)
+plot(g)
+
+# 자신의 커뮤니티와 다른 커뮤니티에 모두 연결이 많은 것은 유력자(influencer)
+# 여러 노드와 연결된 것은 리더 지위(leader position)
+# 커뮤니티와 커뮤니티를 연결하는 데 사용되는 노드는 브릿지(bridge)
+# 커뮤니티 끝단에 있는 노드로서 다양한 노드와 연결되지 않은 것은 passive하다고 정의
+# 유력자(influencer)와 지역 리더(local leader), 브릿지(bridge) 순으로 소셜 마케팅을 해야 효율적
+
+# 점 (vertex) 또는 노드의 라벨(label)크기와 색상. 그리고 프레임 색상을 차별화
+V(g)$label.cex <- 2.2 * V(g)$degree / max(V(g)$degree) + 0.2
+V(g)$label.color <- rgb(0, 0, 0.2, 0.8)
+V(g)$frame.color <- NA
+# 연결하는 링크 또는 에지의 굵기와 색상을 차별화
+egam <- (log(E(g)$weight)+0.4) / max(log(E(g)$weight)+0.4)
+E(g)$width <- egam
+E(g)$color <- rgb (0.5, 0.5, 0, egam)
+plot(g, layout=layout1
+     
+#### ________ 나. 트위터 검색을 통한 사용자 간 소셜 네트워크 ####
+length(bigdata.tw)
+length(bigdata.tw) <-  100 # 수집한 1,000개를 100개로 줄여 저장
+# 수집한 결과에서 사용자 이름을 가져온다. 인터넷 접속 필요
+tw.names <- sapply(bigdata.tw, function(i) i$getScreenName())
+head(tw.names)
+# 사용자에 따른 트위터 빈도수를 계산하고 열 이름을 지정
+tw.names <- as.data.frame(table(tw.names))
+colnames(tw.names) <- c("user", "tweets")
+head(tw.names, 3)
+# 노드 추가
+g <- graph.empty(directed=T)
+g <- add.vertices(g, nrow(tw.names), name=as.character(tw.names$user), tweets=tw.names$tweets)
+# 특정 사용자의 팔로어들을 가져오는 스크립트
+V(g)$followers <- 0
+for (usr in V(g)) {
+  tuser <- getUser(V(g)$name[usr+1])
+  print(paste("Getting info on", screenName(tuser)))
+  V(g)$followers[usr+1] <- followersCount(tuser)
+  followers.list <- getUser(V(g)$name[usr+1])$getFollowers()
+  for (tflwr in followers.list) {
+    if (screenName (tflwr) %in% V(g)$name)
+      g <- add.edges(g, c(as.vector(V(g)[name == screenName(tflwr)]), usr))
+  }
+  print ("Sleeping 10 min ...")
+  Sys.sleep(600)
+}
+# 네트워크 그래프의 레이아웃 지정, 노드와 에지의 색상, 크기 등을 지정
+g$layout <- layout.fruchterman.reingold(g)
+V(g)$size <- log(V(g)$followers) * 1.8
+V(g)$label <- V(g)$name
+V(g)$label.cex <- 0.6
+tcolors <- rev(heat.colors(max(V(g)$tweets)))
+V(g)$color <- tcolors[V(g)$tweets]
+E(g)$arrow.size <- 0.3
+E(g)$curved <- FALSE
+E(g)$color <- "blue"
+plot(g)
+
+#### ____ Exercise 1. 대통령의 신년구상 기자회견 연설문 워드 클라우드 ####
+# 데이터는 청와대 홈페이지에 접속하여 수집. 반드시 연설문을 UTF-8 형태의 텍스트 파일 (txt) 로 저장
+# 워드 클라우드를 그리기 위해 펼요한 몇 가지 패키지 설치 
+library(KoNLP) # 한국어 단어 추출
+library(wordcloud) # 워드 클라우드 생성
+# sessionInfo()
+# 파일 경로는 텍스트 파일명과 그 확장자까지 모두 작성, 인코딩을 ‘UTF-8’로 지정
+president.text <- readLines('C:/Users/juno2/Documents/R01/R code/2019_president.txt', encoding='UTF-8')
+head(president.text, 6)
+# 여러 줄의 데이터를 하나의 데이터로 묶어 준다.
+president <- paste(president.text, collapse=" ")
+# 단어 추출, 추출된 단어에서 유니크한 것만 뽑아 다시 저장.
+tran <- Map(extractNoun, president)
+tran <- unique(tran)
+# 2글자에서 4글자 사이의 한글 단어만 선택
+tran <- sapply(tran, function(x) {
+  Filter(function (y) {
+    nchar(y) <= 4 && nchar(y) > 1 && is.hangul(y)
+  }, x)
+})
+head (tran , 2)
+# 워드 클라우드를 그리기 위한 형태 만들기 
+tran.table <- data.frame(table(tran))
+head(tran.table, 3)
+# 빈도수가 3 이상인 단어들만 사용하여 워드 클라우드를 그린다
+wordcloud(words=tran.table$tran, freq=tran.table$Freq, min.freq=3, random.order=F, colors=brewer.pal(5, 'Dark2'))
+
+#### ____ Exercise 2. 미국의 인기 드라마 그레이 아나토미 (Grey’s Anatomy) 데이터로 사회연결망 분석 (SNA) ####
+# 소스 : URL 안됨 http://www.babelgraph.org/data/ga_edgelist.csv
+# 필요한 패키지를 로드하고 기본 그래프를 그린다.
+library(igraph)
+ga.data <- read.csv('C:/Users/juno2/Documents/R01/R code/ga_edgelist.csv', header=T, fileEncoding = "euc-kr")
+g <- graph.data.frame(ga.data, directed = F)
+g$layout <- layout.fruchterman.reingold(g)
+plot(g)
+# 노드의 라벨 제거, 노드의 크기를 연결정도(degree) 값에 2를 곱하여 지정
+V(g)$label <- NA
+V(g)$size <- degree(g) * 2
+plot(g)
+# closeness를 계산하고 closeness 에 따라 노드의 색상을 달리하도록 설정
+clo <- closeness(g)
+clo.score <- round((clo - min(clo)) * length(clo) / max(clo)) + 1 
+clo.colors <- rev(heat.colors(max(clo.score)))
+V(g)$color <- clo.colors[clo.score]
+plot(g)
+# betweenness를 계산하고 betweenness 에 따라 노드의 색상을 달리하도록 설정
+btw <- betweenness(g)
+btw.score <- round(btw) + 1
+btw.colors <- rev(heat.colors((max(btw.score))))
+V(g)$color <- btw.colors[btw.score]
+plot(g)
+
+#### ____ Exercise 3. 페이스북(Facebook) 에서 나와 친구들의 정보를 가져와 관계를 나타내는 방법 ####
+# facebook app을 불러오기 위해서는 반드시 R studio가 아닌 R GUI 환경에서 진행
+# 패키지 Rfacebook과 Rook을 설치
+install.packages("Rfacebook")
+library(Rfacebook)
+install.packages("Rook")
+library(Rook)
+# 페이스북 개발자 등록 https://developers.facebook.com/apps ("Register as a Developer" 클릭) 
+fb_oauth <- fbOAuth(app_id="", app_secret="")
+# 자세한 내용은 교재 참고 
+# Facebook App Setting 에 들어가서 6번 박스의 ‘Add Platform'을 클릭
+# Website를 선택하고, Site URL에 R 메시지에서 복사한 URL주소를 넣은 후 저장
+# ‘Authentication complete. Please close th is page and return to R.’이라는 창이 보이면 
+# R 스크립트창으로 돌아와서 아무 키나 누른다. 그러연 인증이 완료되었다는 메시지가 추가로 나타난다
+save(fb_oauth, file='fb_oauth')
+load('fb_oauth')
+# getUser 함수를 통해 내 정보를 가져온다
+me <- getUsers("me", token=fb_oauth)
+me
+# getFriends 함수를 이용하면 내 친구의 이름과 id가 나온다
+my_friends <- getFriends(token=fb_oauth)
+head(my_friends, n=5)
+# 친구목록으로 다양한 정보를 끌어와 보았다.
+my_friends_info <- getUsers(my_friends$id, token=fb_oauth, private_info=TRUE)
+colnames(my_friends_info)
+# table 형식으로 친구들 상태 확인
+table(my_friends_info$relationship_status)
+# getNetwork 함수로 내 친구들끼리의 관계 확인 
+g.data <- getNetwork(token=fb_oauth, format="edgelist", verbose=T)
+library(igraph)
+g.data <- data.frame(g.data)
+9 <- graph.data.frame (g.data)
+g$layout <- layout.fruchterman.reingold(g)
+plot(g)
+
+
+#### __ 제3장 시각화 구현  ####
+#### ____ 제2절 분석 도구를 이용한 시각화 구현 : R ####
+# ggplot2를 이용한 간단한 시각화 방법
+data(ChickWeight)
+head(ChickWeight)
+dim(ChickWeight) # 변수는 weight, Time, Chick, Diet. 관측치(Observation)는 총 578개.
+colnames(ChickWeight)
+#### ______ 1. 그래프 작성 ####
+#### ________ 가. XY 그래프 #### 
+install.packages("ggplot2")
+library(ggplot2)
+# ChickWeight 데이터를 넣고 x축은 Time 변수, Y축은 weight 변수로, 그래프 라인색은 Diet로 지정
+ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet, group=Chick)) + geom_line( )
+# geom_point로 투명도와 사이즈를 지정, geom_smooth로 배경 색상의 투명도와 평균값 선의 굵기를 조정
+ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet)) +
+  geom_point(alpha=.3) + geom_smooth(alpha=.2, size=1) 
+# 포인트 그래프 표시 
+h <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet))
+h + geom_point(alpha=.3)
+# 스무스 그래프 표시 
+h <- ggplot(ChickWeight, aes(x=Time, y=weight, colour=Diet))
+h + geom_smooth(alpha=.4, size=3) 
+#### ________ 나. 히스토그램 #### 
+# Time이 21 인 경우에 먹이에 따라 weight 분포를 구분해 보여주는 것이다
+ggplot(subset(ChickWeight, Time==21), aes(x=weight, colour=Diet)) + geom_density()
+# 히스토그램 (Histogram) 차트 
+# binwidth는 구간의 weight 간격을 50으로 한다는 뜻
+# 가로 히스토그램을 세로로 바꿔주려면 facet_grid(. ~ Diet) 로 지정
+ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+  geom_histogram(colour="black", binwidth=50) + facet_grid(Diet ~ .)
+ggplot(subset(ChickWeight, Time==21), aes(x=weight, fill=Diet)) +
+  geom_histogram(colour="black", binwidth=50) + facet_grid(. ~ Diet)
+#### ________ 다. 포인트그래프 #### 
+data(mtcars)
+head(mtcars)
+p <- qplot(wt, mpg, colour = hp, data = mtcars)
+p + coord_cartesian(ylim = c(0, 40)) # ylim은 y축의 범위 지정 
+p + scale_color_continuous(breaks = c(100, 300)) # hp의 범위를 100에서 300사이로 지정
+p + guides(color = "colorbar")
+# 많은 양의 데이터 가운데 앞부분 10건만 추출
+m <- mtcars[1:10,] # mtcars를 10개만 가져온 뒤 m으로 설정
+p %+% m # m을 앞에서 그린 그래프 p에 설정
+#### ________ 라. 막대그래프 #### 
+c <- ggplot(mtcars, aes(factor(cyl))) # 변수는 인수(factor) 로 전환해 유형화
+c + geom_bar()
+c + geom_bar(fill = "red") # 내부 색상
+c + geom_bar(color = "red") # 테두리 색상 
+c + geom_bar(fill = "white", color = "red") # 내부 색상, 테두리 색상 
+k <- ggplot(mtcars, aes(factor(cyl), fill = factor(vs)))
+k + geom_bar()
+# 연속형 count를 색상으로 표시
+install.packages("ggplot2movies")
+library(ggplot2movies)
+data(movies)
+head(movies);
+m <- ggplot(movies, aes(x = rating))
+m + geom_histogram()
+m + geom_histogram(aes(fill = ..count..)) 
+
+#### ________ 마. 선그래프 #### 
+# date : 월별 정보 수집 시점, psavert : 개인 저축률, pce : 개인 소비지출, 
+# unemploy : 실업자수(1000단위), unempmed : 실업기간 중앙값(주 단위), pop : 총인구(1000단위)
+data("economics")
+head(economics)
+dim(economics) # 6개 변수로 구성된 478건의 데이터
+b <- ggplot(economics, aes(x = date, y = unemploy))
+b + geom_line()
+b + geom_line(color = "red") # 라인 색상 지정 
+b + geom_line(color= "red", size=3) # 선의 굵기 지정 
+# 선의 종류 선택
+b + geom_line(linetype = 1)# 실선
+b + geom_line(linetype = 2)# 점선
+b + geom_line(linetype = 3)# 점선
+b + geom_line(linetype = 4)# 점선
+
+#### ________ 바. 효과주기 #### 
+# 알파값을 이용해 투명도를 조절
+# rnorm(5000)은 평균이 0이고 표준 편차가 1인 정규분포를 따르는 난수를 5000개 생성 
+df <- data.frame(x = rnorm(5000), y = rnorm(5000))
+h <- ggplot(df, aes(x, y))
+h + geom_point()
+h + geom_point(alpha = 0.5) # 투명도 alpha를 0.5
+h + geom_point(alpha = 1/10) # 투명도 alpha를 0.1
+# 포인트에 색을 할당
+p <- ggplot(mtcars, aes(wt, mpg))
+p + geom_point(size = 4)
+p + geom_point(aes(color = factor(cyl)), size = 4)
+p + geom_point(aes(shape = factor(cyl)), size = 4) # shape를 사용 point 모양 구분 
+
+# reshape2, plyr 패키지는 데이터를 다양한 구조로 가공하는 도구다. 
+# 데이터 마트를 만드는데 필요한 모든 기능은 여기에 있다고 생각하면 된다.
+# melt 함수를 사용하기 위해 reshape2 패키지 설치
+install.packages("reshape2")
+library(reshape2)
+# colwise를 사용하기 위해 plyr 패키지 설치 
+install.packages("plyr")
+library(plyr)
+# rescale01은 각 변수 값을 해당 변수 유형의 최소값과의 차이를 
+# 범위(range) 크기에 대한 비율값으로 만드는 내용으로 상대적 값을 만들어 표준화 해준다
+rescale01 <- function(x) (x - min(x)) / diff(range(x))
+ec_scaled <- data.frame(
+  date = economics$date,
+  colwise(rescale01)(economics[,-(1:2)])
+)
+# 일자와 변수 유형, 변수 값이라는 3개 컬럼의 데이터로 변환
+# date 항목 외 나머지를 변수(variable)로 처리
+ecm <- melt(ec_scaled, id = "date")  
+head(ecm)
+library(ggplot2)
+f <- ggplot(ecm, aes(date, value))
+f + geom_line(aes(linetype = variable))
+# price : $로 표시된 데이터, carat : 다이아몬드의 무게, cut : cut의 품질, 
+# colour : J ~ D 값으로 D가 최상품, clearity : 다이아몬드의 투명도로 1 ~ 1F, 1F가 최상
+data("diamonds")
+head(diamonds)
+dim(diamonds) # 53940건의 자료, 10개 변수로 구성
+# 커트 등급별로 캐럿 
+k <- ggplot(diamonds, aes(carat, ..density..)) + geom_histogram(binwidth = 0.2)
+k + facet_grid(. ~ cut)
+# diamonds 데이터를 이용해 만든 막대그래프
+w <- ggplot(diamonds, aes(clarity, fill = cut))
+w + geom_bar()
+w + geom_bar(aes(order = desc(cut))) # cut 데이터 기준 정렬 
+# 선그래프를 그릴 때 선 스타일에 대한 옵션 설정
+df <- data.frame(x = 1:10, y = 1:10)
+f <- ggplot(df, aes(x = x, y = y))
+f + geom_line(linetype = 2)
+f + geom_line(linetype = "dotdash")
+# 포인트 그래프에서 점의 크기를 qsec 별로 다르게 표현
+p <- ggplot(mtcars, aes(wt, mpg))
+p + geom_point(size = 4)
+p + geom_point(aes(size = qsec) )
+# 기본 옵션 
+p + geom_point()
+# 5번 모형으로 그린 포인트
+p + geom_point(shape = 5)
+# 모양을 k로, 사이즈를 3으로 지정한 포인트 그래프
+p + geom_point(shape = "k", size = 3)
+# 온점으로 표현한 포인트 그래프
+p + geom_point(shape = ".")
+# 모양 옵션을 NA로 지정했기 때문에 아무것도 나타나지 않는다.
+p + geom_point(shape = NA)
+# 25 가지 유형의Shape를 이용해 그래프
+# df2 데이터에 x축과 y축을 지정하고, shape를 z로 지정
+df2 <- data.frame(x = 1:5, y = 1:25, z = 1:25)
+s <- ggplot(df2, aes(x = x, y = y))
+s + geom_point(aes(shape = z), size = 4) + scale_shape_identity()
+# cut 정보를 이용해 다이아몬드 가격을 예측하는 선형 모델링을 수행해 값의 범위를 point range 그래프로 표현
+# dmod와 cut 이 price 에 미치는 영향을 선형 모댈링
+dmod <- lm(price ~ cut, data = diamonds)
+cuts <- data.frame(cut = unique(diamonds$cut), predict(dmod, data.frame(cut = unique(diamonds$cut)), se = TRUE)[c("fit", "se.fit")])
+cuts
+# 선형 모델링을 pointrange 그래프로 표현
+se <- ggplot(cuts, aes(x = cut, y = fit, ymin = fit - se.fit,
+                       ymax = fit +se.fit, color = cut))
+se + geom_pointrange()
+# 자동차에 대한 그래프를 그리고 강조할 특정 영역을 박스로 표현
+# 박스를 보여주기 위해서는 xmin과 xmax로 x 축에 범위를 지정，y축에 ymin과 ymax로 범위를 지정
+p <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+p + annotate("rect", xmin = 2, xmax = 3.5, ymin = 2, ymax = 25, fill = "dark grey", alpha = .5)
+# qplot과 스무스 그래프를 동시에 표현
+p <- qplot(disp, wt, data = mtcars) 
+p <- p + geom_smooth()
+p
+# limits로 범위를 지정해 원하는 부분만 그래프
+p + scale_x_continuous(limits = c(325, 500))
+# 확대 
+d <- ggplot(diamonds, aes(carat, price))
+d + stat_bin2d(bins = 25, color = "grey50")
+d + scale_x_continuous(limits = c(0, 2)) # ??
+
+# boxplot. 가운데 가로 선은 중앙값, 아래 선은 1사분위 수, 상단 선은 4사분위 수
+# 세로 선 위의 점은 데이터의 이상값으로 측정된 부분
+qplot(cut, price, data = diamonds, geom = "boxplot")
+# boxplot을 가로로 눕혀 그릴 수 있다.
+last_plot() + coord_flip()
+# qplot을 적용한 그래프
+h <- qplot(cut, data = diamonds, geom = "bar")
+h
+h <- c # ??? 
+h
+h + coord_flip() # 가로로 표시 
+h + coord_flip() + scale_x_reverse() # ????
+
+#### ________ 사. 다축(Multiple Axis) #### 
+# 3중축 그래프를 그리는 과정
+# 그래프에서 사용할 데이터 
+time <-seq(7000, 3400, -200)
+pop <- c(200, 400, 450, 500, 300, 100, 400, 700, 830, 1200, 400, 350, 200, 700, 370, 800, 200, 100, 120)
+grp <- c(2, 5, 8, 3, 2, 2, 4, 7, 9, 4, 4, 2, 2, 7, 5, 12, 5, 4, 4)
+med <- c(1.2, 1.3, 1.2, 0.9, 2.1, 1.4, 2.9, 3.4, 2.1, 1.1, 1.2, 1.5, 1.2, 0.9, 0.5, 3.3, 2.2, 1.1, 1.2)
+par(mar=c(5, 12, 4, 4) + 0.1)
+# 첫 번째 그래프 (axes = F : 축 지정 안함, type = "l" : 라인 차트)  
+plot(time, pop, axes = F, ylim = c(0, max(pop)), xlab = "", ylab = "", type = "l", col = "black", main = "", xlim = c(7000, 3400))
+# 그래프에 점 표시.
+points(time, pop, pch = 20, col = "black")
+# 그래프의 y축 표시 
+axis(2, ylim = c(0, max(pop)), col = "black", lwd = 2)
+# Y축에 이름 표시 
+mtext(2, text = "Population", line = 2)
+# 두 번째 그래프
+par(new = T)
+plot(time, med, axes = F, ylim = c(0, max(med)), xlab = "", ylab = "", type = "l", lty = 2, main = "", xlim = c(7000,3400), lwd = 2)
+# 두 번째 그래프에 y축 표시 
+axis(2, ylim = c(0, max(med)), lwd = 2, line = 3.5)
+# 두 번째 그래프에 점 표시 
+points(time, med, pch = 20)
+# 두 번째 그래프의 y축 이름 표시
+mtext(2, text = "Median Group Size", line = 5.5)
+# 세 번째 그래프
+par(new=T)
+plot(time, grp, axes = F, ylim=c(0, max(grp)), xlab = "", ylab = "",
+     type = "l", lty = 3, main = "", xlim = c(7000, 3400), lwd = 2)
+# 세 번째 그래프에 점, y축 이름 표시
+points(time, grp, pch = 20)
+axis(2, ylim = c(0, max(grp)), lwd = 2, line = 7)
+mtext(2, text = "Number of Groups", line = 9)
+# x축을 만든 후 이름 표시 
+axis(1, pretty(range(time),10))
+mtext("cal BP", side = 1, col = "black", line = 2)
+# 라인별로 설명(범례) 표시 
+legend(x = 7000, y = 12, legend = c("Population", "Median Group Size", "Number of Groups"), lty = c(1, 2, 3))
+
+#### ________ 아. 그 외 다양한 그래프 #### 
+# aplpack 패키지를 이용하여 그래프를 여러 가지 방법으로 표현
+install.packages("aplpack")
+library(aplpack)
+# 1) 줄기잎 그림
+score <- c(1,2,3,4,10,2,30,42,31,50,80,76,90,87,21,43,65,76,32,12,34,54)
+score
+stem.leaf(score) # ???
+# 2) 얼굴 그림
+WorldPhones
+? WorldPhones # 국가별·연도별 전화기 숫자 데이터
+faces(WorldPhones)
+# 3) 별 그림
+stars(WorldPhones)
