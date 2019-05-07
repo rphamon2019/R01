@@ -3842,10 +3842,10 @@ library(tm)
 #### ________ 가. 데이터 수집 #### 
 install.packages("twitteR")
 library(twitteR)
-api_key <- "QsRfvZWgb0xUNAPYdkvV3xJW1"
-api_secret <- "iNxFYTtIWRFeokb76cbWEaQdNNsSv0h3rQoixacKcsH9js93MW"
-access_token <- "1122856921533337600-Hx1mTyPW9QWl372dlHhRlOML2aBxzc"
-access_token_secret <- "1N9a5nSB3vPAElDGcs9KdfMnL6NToeO4lwp3fanpPbLHb"
+api_key <- ""
+api_secret <- ""
+access_token <- ""
+access_token_secret <- ""
 setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
 keyword <- 'bigdata'
 # 2019년 1월 1일 이후의 메시지 중 bigdata라는 단어가 등장한 트위터 메시지 수집
